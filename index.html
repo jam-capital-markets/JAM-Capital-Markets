@@ -976,7 +976,6 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <button role="tab" aria-selected="true" data-tab="week">Weekly</button>
   <button role="tab" aria-selected="false" data-tab="cap">Capital markets</button>
   <button role="tab" aria-selected="false" data-tab="re">Real estate</button>
-  <button role="tab" aria-selected="false" data-tab="bonds">Bonds</button>
   <button role="tab" aria-selected="false" data-tab="local">Local markets</button>
   <button role="tab" aria-selected="false" data-tab="news">News &amp; deals</button>
   <button role="tab" aria-selected="false" data-tab="cal">Calendar</button>
@@ -1191,7 +1190,7 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 <header class="cap-head">
   <div>
     <h1>Capital markets</h1>
-    <p class="lede">Treasury yields, Fed expectations and fuel prices: the rates and costs that set financing and operating budgets. Property-level pricing, costs, credit and supply are on the Real estate tab.</p>
+    <p class="lede">Treasury yields, Fed expectations, the bond market (credit, Treasury auctions, big deals) and fuel prices: the rates and costs that set financing and operating budgets. Property-level pricing, costs, credit and supply are on the Real estate tab.</p>
   </div>
 </header>
 
@@ -1242,6 +1241,80 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 
 
 
+
+<section class="cblock" id="bondView" data-title="Bond market">
+  <h2>Bond market</h2>
+  <p class="lede" data-cm="bonds_head"><span class="cmwait">Updating…</span></p>
+  <div data-cm="bonds_big"><span class="cmwait">Updating…</span></div>
+  <div class="duo2" style="margin-top:18px">
+    <div>
+      <h3>The market blew past forecasts</h3>
+      <p class="sub">10-year now vs. strategists' year-end 2026 calls</p>
+      <div class="chartbox"><svg id="fcChart" viewBox="0 0 560 230" role="img" aria-label="10-year yield vs forecasts"></svg></div>
+    </div>
+    <div>
+      <h3>What to watch next</h3>
+      <div class="watch" id="bondWatch"></div>
+    </div>
+  </div>
+  <p class="note" data-cmstamp="bonds_big">Not investment advice; ranges describe the 10-year Treasury yield through year-end.</p>
+  <div class="srcs" data-src="il1022,yahoooct22,te1023,igindex,fredhy,cmai,forbesai,nmndelays,cobx,defirate,nuveen,dcaller,hsbcfc,lplfc,schwabfc,tamfc,forecastsorg,eia,trepp" ></div>
+</section>
+
+<section class="cblock" id="bondSnap" data-title="Credit snapshot">
+  <h2 data-ds="BOND_KPI">Credit snapshot</h2>
+  <div class="kpis" id="bondKpis"></div>
+  <div class="stats" id="bondThemes" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+</section>
+<section class="cblock" id="bondTsy" data-title="Treasury auctions">
+  <h2 id="tsyTitle" data-ds="TSY_AUC">Treasury auctions: supply vs. demand</h2>
+  <p class="lede">Washington is borrowing more every quarter. This section follows both sides: how much new debt Treasury is selling, and whether buyers are absorbing it, at auctions and in foreign holdings. When supply outruns demand, yields have to rise to clear the market, and that feeds straight into mortgage and cap-rate math.</p>
+  <div class="tsy-top">
+    <div class="pd-verdict pd-state" id="tsyVerdict"></div>
+    <div class="kpis tsy-kpis" id="tsyKpis"></div>
+  </div>
+
+  <div class="tsy-step"><span class="tsy-n">1</span><div><h3>Supply: how much Treasury is selling</h3><p class="sub" id="tsySupplySub"></p></div></div>
+  <div class="duo2 tsy-duo">
+    <div><h4 class="tsy-h">New debt added in the last 12 months, by type</h4>
+      <div class="chartbox"><svg id="tsyMixChart" viewBox="0 0 560 230" role="img" aria-label="Change in marketable Treasury debt over the last 12 months by security type"></svg></div>
+      <h4 class="tsy-h">Bills as a share of marketable debt</h4>
+      <div class="chartbox"><svg id="tsyBillChart" viewBox="0 0 560 190" role="img" aria-label="Treasury bills as a share of marketable debt by month"></svg></div></div>
+    <div><h4 class="tsy-h">What Treasury has said</h4><ul class="tsy-facts" id="tsyFacts"></ul></div>
+  </div>
+
+  <div class="tsy-step"><span class="tsy-n">2</span><div><h3>Demand: who is buying at auctions</h3><p class="sub">Every coupon auction splits into three buyer groups. <b>Indirect bidders</b> are mostly foreign central banks and big asset managers bidding through dealers. <b>Direct bidders</b> are domestic funds, pensions and banks. <b>Dealers</b> are the banks obliged to bid, so their share is what nobody else wanted: a high dealer share means weak demand.</p></div></div>
+  <div class="duo2 tsy-duo">
+    <div><h4 class="tsy-h">Who bought: share of nominal coupon auctions, by month</h4>
+      <div class="chartbox"><svg id="tsyBuyChart" viewBox="0 0 560 250" role="img" aria-label="Share of nominal coupon auctions taken by indirect bidders, direct bidders and dealers, by month"></svg></div>
+      <div class="pd-legend"><span><i style="background:var(--gA)"></i>Indirect</span><span><i style="background:var(--gX)"></i>Direct</span><span><i style="background:var(--gB)"></i>Dealers (leftover)</span></div></div>
+    <div><h4 class="tsy-h">Demand by maturity, last six auctions</h4>
+      <div class="seg tsy-seg" id="tsyHeatMode" role="group" aria-label="Measure"></div>
+      <div class="scroll"><table class="tsy-heat" id="tsyHeat"></table></div>
+      <p class="note" id="tsyHeatNote"></p></div>
+  </div>
+
+  <div class="tsy-step"><span class="tsy-n">3</span><div><h3>The price: what yield it takes to sell the debt</h3><p class="sub" id="tsyPriceSub"></p></div></div>
+  <div class="duo2 tsy-duo">
+    <div><div class="chartbox"><svg id="tsyYldChart" viewBox="0 0 560 250" role="img" aria-label="Yield at each 2-year, 10-year and 30-year auction"></svg></div>
+      <div class="pd-legend"><span><i style="background:var(--gA)"></i>2-year</span><span><i style="background:var(--gM)"></i>10-year</span><span><i style="background:var(--loss)"></i>30-year</span></div></div>
+    <div><h4 class="tsy-h">Foreign holders</h4><p class="sub" id="tsyForSub"></p><table class="mini" id="tsyFor"></table></div>
+  </div>
+
+  <div class="tsy-step"><span class="tsy-n">4</span><div><h3>Recent auctions</h3><p class="sub">Graded against the previous 12 auctions of the same maturity: <b>Strong</b> means more bids per dollar sold and less left to dealers than usual; <b>Weak</b> means the opposite.</p></div></div>
+  <div class="scroll"><table class="score tsy-recent" id="tsyRecent"></table></div>
+
+  <div class="tsy-step"><span class="tsy-n">5</span><div><h3>Coming up</h3><p class="sub">Auctions and Treasury actions over the next six weeks. All of them are also on the Economic calendar tab.</p></div></div>
+  <div id="tsyNext"></div>
+  <p class="note" id="tsyNote"></p>
+</section>
+<section class="cblock" id="bondJumbo" data-title="Jumbo deal tracker">
+  <h2 data-ds="JUMBO">Jumbo deal tracker</h2>
+  <p class="lede">The biggest corporate and municipal bond sales, and how hungry investors were for them.</p>
+  <div class="ctl-row" style="margin-bottom:10px"><div class="seg" id="jumboType" role="group" aria-label="Market"></div></div>
+  <div class="scroll"><table class="score" id="jumboTable"></table></div>
+  <div class="srcs" data-src="tsyrefund,tsysched,nqsizes,tftcauc,il20,tipswatch1022,kmbnotes,bofaperp,nmndelays,forbesai,foolai,cmai,igindex,fredhy,nuveen,ussnews,softbank,dcaller,ecm,biggohy,bondbuyer,vantage" data-note="Deal sizes and order books are as reported at pricing or launch; some September figures were reported before final pricing."></div>
+</section>
 
 <section class="cblock">
   <h2 data-ds="FUEL_GAS">Fuel: gasoline and diesel</h2>
@@ -1361,87 +1434,6 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <h2 data-ds="STUDENT">Student housing</h2>
   <div class="cards" id="student"></div>
   <div class="srcs" data-src="yardish,realpage"></div>
-</section>
-</div>
-
-<div id="tab-bonds" hidden>
-<header class="cap-head">
-  <div>
-    <h1>Bond market</h1>
-    <p class="lede" data-cm="bonds_head"><span class="cmwait">Updating…</span></p>
-  </div>
-</header>
-
-<section class="cblock" id="bondView" data-title="The big picture">
-  <div data-cm="bonds_big"><span class="cmwait">Updating…</span></div>
-  <div class="duo2" style="margin-top:18px">
-    <div>
-      <h3>The market blew past forecasts</h3>
-      <p class="sub">10-year now vs. strategists' year-end 2026 calls</p>
-      <div class="chartbox"><svg id="fcChart" viewBox="0 0 560 230" role="img" aria-label="10-year yield vs forecasts"></svg></div>
-    </div>
-    <div>
-      <h3>What to watch next</h3>
-      <div class="watch" id="bondWatch"></div>
-    </div>
-  </div>
-  <p class="note" data-cmstamp="bonds_big">Not investment advice; ranges describe the 10-year Treasury yield through year-end.</p>
-  <div class="srcs" data-src="il1022,yahoooct22,te1023,igindex,fredhy,cmai,forbesai,nmndelays,cobx,defirate,nuveen,dcaller,hsbcfc,lplfc,schwabfc,tamfc,forecastsorg,eia,trepp" ></div>
-</section>
-
-<section class="cblock" id="bondSnap" data-title="Credit snapshot">
-  <h2 data-ds="BOND_KPI">Credit snapshot</h2>
-  <div class="kpis" id="bondKpis"></div>
-  <div class="stats" id="bondThemes" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
-</section>
-<section class="cblock" id="bondTsy" data-title="Treasury auctions">
-  <h2 id="tsyTitle" data-ds="TSY_AUC">Treasury auctions: supply vs. demand</h2>
-  <p class="lede">Washington is borrowing more every quarter. This section follows both sides: how much new debt Treasury is selling, and whether buyers are absorbing it, at auctions and in foreign holdings. When supply outruns demand, yields have to rise to clear the market, and that feeds straight into mortgage and cap-rate math.</p>
-  <div class="tsy-top">
-    <div class="pd-verdict pd-state" id="tsyVerdict"></div>
-    <div class="kpis tsy-kpis" id="tsyKpis"></div>
-  </div>
-
-  <div class="tsy-step"><span class="tsy-n">1</span><div><h3>Supply: how much Treasury is selling</h3><p class="sub" id="tsySupplySub"></p></div></div>
-  <div class="duo2 tsy-duo">
-    <div><h4 class="tsy-h">New debt added in the last 12 months, by type</h4>
-      <div class="chartbox"><svg id="tsyMixChart" viewBox="0 0 560 230" role="img" aria-label="Change in marketable Treasury debt over the last 12 months by security type"></svg></div>
-      <h4 class="tsy-h">Bills as a share of marketable debt</h4>
-      <div class="chartbox"><svg id="tsyBillChart" viewBox="0 0 560 190" role="img" aria-label="Treasury bills as a share of marketable debt by month"></svg></div></div>
-    <div><h4 class="tsy-h">What Treasury has said</h4><ul class="tsy-facts" id="tsyFacts"></ul></div>
-  </div>
-
-  <div class="tsy-step"><span class="tsy-n">2</span><div><h3>Demand: who is buying at auctions</h3><p class="sub">Every coupon auction splits into three buyer groups. <b>Indirect bidders</b> are mostly foreign central banks and big asset managers bidding through dealers. <b>Direct bidders</b> are domestic funds, pensions and banks. <b>Dealers</b> are the banks obliged to bid, so their share is what nobody else wanted: a high dealer share means weak demand.</p></div></div>
-  <div class="duo2 tsy-duo">
-    <div><h4 class="tsy-h">Who bought: share of nominal coupon auctions, by month</h4>
-      <div class="chartbox"><svg id="tsyBuyChart" viewBox="0 0 560 250" role="img" aria-label="Share of nominal coupon auctions taken by indirect bidders, direct bidders and dealers, by month"></svg></div>
-      <div class="pd-legend"><span><i style="background:var(--gA)"></i>Indirect</span><span><i style="background:var(--gX)"></i>Direct</span><span><i style="background:var(--gB)"></i>Dealers (leftover)</span></div></div>
-    <div><h4 class="tsy-h">Demand by maturity, last six auctions</h4>
-      <div class="seg tsy-seg" id="tsyHeatMode" role="group" aria-label="Measure"></div>
-      <div class="scroll"><table class="tsy-heat" id="tsyHeat"></table></div>
-      <p class="note" id="tsyHeatNote"></p></div>
-  </div>
-
-  <div class="tsy-step"><span class="tsy-n">3</span><div><h3>The price: what yield it takes to sell the debt</h3><p class="sub" id="tsyPriceSub"></p></div></div>
-  <div class="duo2 tsy-duo">
-    <div><div class="chartbox"><svg id="tsyYldChart" viewBox="0 0 560 250" role="img" aria-label="Yield at each 2-year, 10-year and 30-year auction"></svg></div>
-      <div class="pd-legend"><span><i style="background:var(--gA)"></i>2-year</span><span><i style="background:var(--gM)"></i>10-year</span><span><i style="background:var(--loss)"></i>30-year</span></div></div>
-    <div><h4 class="tsy-h">Foreign holders</h4><p class="sub" id="tsyForSub"></p><table class="mini" id="tsyFor"></table></div>
-  </div>
-
-  <div class="tsy-step"><span class="tsy-n">4</span><div><h3>Recent auctions</h3><p class="sub">Graded against the previous 12 auctions of the same maturity: <b>Strong</b> means more bids per dollar sold and less left to dealers than usual; <b>Weak</b> means the opposite.</p></div></div>
-  <div class="scroll"><table class="score tsy-recent" id="tsyRecent"></table></div>
-
-  <div class="tsy-step"><span class="tsy-n">5</span><div><h3>Coming up</h3><p class="sub">Auctions and Treasury actions over the next six weeks. All of them are also on the Economic calendar tab.</p></div></div>
-  <div id="tsyNext"></div>
-  <p class="note" id="tsyNote"></p>
-</section>
-<section class="cblock" id="bondJumbo" data-title="Jumbo deal tracker">
-  <h2 data-ds="JUMBO">Jumbo deal tracker</h2>
-  <p class="lede">The biggest corporate and municipal bond sales, and how hungry investors were for them.</p>
-  <div class="ctl-row" style="margin-bottom:10px"><div class="seg" id="jumboType" role="group" aria-label="Market"></div></div>
-  <div class="scroll"><table class="score" id="jumboTable"></table></div>
-  <div class="srcs" data-src="tsyrefund,tsysched,nqsizes,tftcauc,il20,tipswatch1022,kmbnotes,bofaperp,nmndelays,forbesai,foolai,cmai,igindex,fredhy,nuveen,ussnews,softbank,dcaller,ecm,biggohy,bondbuyer,vantage" data-note="Deal sizes and order books are as reported at pricing or launch; some September figures were reported before final pricing."></div>
 </section>
 </div>
 
@@ -3772,10 +3764,10 @@ const CMDEF={
  mig_fc:{tab:'mig',kind:'p',brief:'2 sentences on residential foreclosure activity: the national rate and trend, which states lead, and how Massachusetts and New Hampshire compare (rate, change, and whether they are net migration gainers or losers). Plain facts, no alarm.',ctx:()=>{const F=D.FCL; if(!F) throw 0; const net=stateNet('A'); return {period:F.per,national:F.nat,latestMonth:F.mo,worstStates:Object.entries(F.st).filter(([c])=>c!=='DC').sort((a,b)=>b[1][1]-a[1][1]).slice(0,5).map(([c,x])=>({state:c,pct:x[1],yoy:x[3]})),newEngland:['MA','NH','CT','RI','ME','VT'].map(c=>({state:c,oneIn:F.st[c][2],pct:F.st[c][1],yoy:F.st[c][3],netMigration:net[c]?.net??null})),fields:'st values are [filings, pct of housing units, one in X units, pct change vs year earlier, rank]'};}},
  cap_cmbs:{tab:'re',kind:'p',brief:'1–2 sentences on CMBS delinquency by property type and what changed last month.',ctx:()=>({cmbs:D.CMBS,asof:META.CMBS?.asof})},
  cap_supply:{tab:'re',kind:'p',brief:'2 sentences on how the apartment construction pipeline relates to rent softness and migration pull by metro.',ctx:()=>({supply:D.SUPPLY,rents:Object.fromEntries(D.SUPPLY.map(s=>[s[0],RENT[s[0]]?.z||null]))})},
- bonds_head:{tab:'bonds',kind:'p',brief:'2 sentences on who is borrowing and how heavy supply from Treasury and corporates is affecting long rates and real estate borrowing costs.',ctx:()=>({rates:ratesCtx(),kpis:D.BOND_KPI,themes:D.BOND_THEMES,tsyWeek:D.TSY_WEEK})},
- bonds_tsy:{tab:'bonds',kind:'p',brief:'1–2 sentences on the coming coupon auctions in the data (sizes, dates, when results post) and how demand went at the most recent sales.',ctx:()=>({upcoming:D.TSY_WEEK,month:D.TSY_OCT,recentResults:tsyRows().slice(-4).map(r=>({date:r.d,security:r.t,sizeB:r.sz,bidToCover:r.btc,highYield:r.y,dealerPct:r.dlr,indirectPct:r.ind})),rates:ratesCtx()})},
- bonds_tsy_note:{tab:'bonds',kind:'p',brief:'One sentence on other Treasury supply details worth knowing (bills, buybacks) if in the data; otherwise a note on the auction calendar.',ctx:()=>({week:D.TSY_WEEK,month:D.TSY_OCT,themes:D.BOND_THEMES})},
- bonds_big:{tab:'bonds',kind:'html',brief:'The bond market big picture for a real estate investor: a one-sentence headline, three headline stats, what is happening (4 points), what it means for real estate (4 points), three 10-year scenarios through year-end with ranges, risks that push yields higher and things that could pull them lower.',
+ bonds_head:{tab:'cap',kind:'p',brief:'2 sentences on who is borrowing and how heavy supply from Treasury and corporates is affecting long rates and real estate borrowing costs.',ctx:()=>({rates:ratesCtx(),kpis:D.BOND_KPI,themes:D.BOND_THEMES,tsyWeek:D.TSY_WEEK})},
+ bonds_tsy:{tab:'cap',kind:'p',brief:'1–2 sentences on the coming coupon auctions in the data (sizes, dates, when results post) and how demand went at the most recent sales.',ctx:()=>({upcoming:D.TSY_WEEK,month:D.TSY_OCT,recentResults:tsyRows().slice(-4).map(r=>({date:r.d,security:r.t,sizeB:r.sz,bidToCover:r.btc,highYield:r.y,dealerPct:r.dlr,indirectPct:r.ind})),rates:ratesCtx()})},
+ bonds_tsy_note:{tab:'cap',kind:'p',brief:'One sentence on other Treasury supply details worth knowing (bills, buybacks) if in the data; otherwise a note on the auction calendar.',ctx:()=>({week:D.TSY_WEEK,month:D.TSY_OCT,themes:D.BOND_THEMES})},
+ bonds_big:{tab:'cap',kind:'html',brief:'The bond market big picture for a real estate investor: a one-sentence headline, three headline stats, what is happening (4 points), what it means for real estate (4 points), three 10-year scenarios through year-end with ranges, risks that push yields higher and things that could pull them lower.',
    ctx:()=>({rates:ratesCtx(),intraday:D.INTRA,fed:D.FED,fedOdds:D.FW_MEET,fedOddsAsof:META.FW_MEET?.asof,credit:D.BOND_KPI,creditAsof:META.BOND_KPI?.asof,themes:D.BOND_THEMES,recentAuctions:tsyRows().slice(-4).map(r=>({date:r.d,security:r.t,bidToCover:r.btc,highYield:r.y})),cmbs:D.CMBS,caps:D.CAPS,mortgage:{f30:MTG.f30,date:MTG.date},fuel:D.FUEL_KPI,forecasts:D.FORECASTS,headlines:D.NEWS.slice().sort((a,b)=>b.d.localeCompare(a.d)||(b.top?1:0)-(a.top?1:0)).slice(0,12).map(n=>({date:n.d,top:!!n.top,h:n.h,s:n.s}))})},
 };
 let CMDOCS=CMDOCS0;
@@ -3859,7 +3851,7 @@ function scheduleSave(){
 }
 function liveRefresh(){
   if(capDrawn){ capKPIs(); rateChart(); capChart(); }
-  if(currentTab==='bonds') renderBondView();
+  if(currentTab==='cap') renderBondView();
   if(currentTab==='week') renderWeek();
   if(currentTab==='pred'&&MON.on) monRenderGrid();
   buildTicker(); freshBadges(); tpiStamp();
@@ -4157,6 +4149,7 @@ function navSections(tab){
   });
 }
 function showSection(tab,secId){
+  if(tab==='bonds') tab='cap';
   const go=()=>{
     const secs=navSections(tab); curSec=secId||null;
     secs.forEach(s=>s.el.classList.toggle('navhide', !!secId && s.id!==secId));
@@ -4394,6 +4387,7 @@ function renderPred(){
 // ---------- tabs
 let capDrawn=false;
 function showTab(t){
+  if(t==='bonds') t='cap';
   currentTab=t;
   document.querySelectorAll('.tabs button[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===t));
   document.querySelectorAll('.tabwrap').forEach(w=>w.classList.toggle('on',w.dataset.tab===t));
@@ -4404,7 +4398,6 @@ function showTab(t){
   document.getElementById('tab-local').hidden = t!=='local';
   document.getElementById('tab-cal').hidden = t!=='cal';
   document.getElementById('tab-home').hidden = t!=='home';
-  document.getElementById('tab-bonds').hidden = t!=='bonds';
   document.getElementById('tab-week').hidden = t!=='week';
   document.getElementById('tab-pred').hidden = t!=='pred';
   document.getElementById('tab-gov').hidden = t!=='gov';
@@ -4413,7 +4406,7 @@ function showTab(t){
   if (t==='pred'){ renderPred(); try{ gpuRender(); }catch(e){ console.error(e); } try{ hmRender(); }catch(e){ console.error(e); } } monStop();
   if (t==='week'){ renderWeek(); }
   if (t==='mig' && !migDrawn){ renderAll(); migDrawn=true; }
-  if (t==='bonds'){ renderBonds(); renderSources(); }
+  if (t==='cap'){ renderBonds(); }
   if (t==='home'){ calcCF(); }
   if (t==='cal'){ renderCalTab(); }
   if ((t==='cap'||t==='re'||t==='local') && !capDrawn){ renderCap(); capDrawn=true; }
