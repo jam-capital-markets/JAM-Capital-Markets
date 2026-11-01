@@ -11,7 +11,7 @@ H.log_message = lambda *a: None
 srv = http.server.ThreadingHTTPServer(('127.0.0.1', 0), H)
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 URL = f'http://127.0.0.1:{srv.server_port}/'
-TABS = ['week', 'cap', 'bonds', 'local', 'news', 'cal', 'home', 'mig', 'gov', 'pred']
+TABS = ['week', 'cap', 're', 'bonds', 'local', 'news', 'cal', 'home', 'mig', 'gov', 'pred']
 BAD = re.compile(r'(?i:torrington|claude\.ai|\bFMP\b|connector|sign in|draft with claude)|\bNaN\b|\bundefined\b|\[object')
 
 async def main():

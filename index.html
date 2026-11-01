@@ -303,6 +303,9 @@ section.block{margin-top:56px}
 .srcs .h{font:600 11px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-right:8px}
 .srcs ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px}
 .srcs li{white-space:nowrap}
+@media (max-width:600px){.srcs li{white-space:normal}}
+details.more>.srcs{margin-top:6px;border-top:0;padding-top:0}
+details.srcall>summary{font-size:14px}
 .srcs a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
 .srcs a:hover{text-decoration-color:var(--ink)}
 .srcs .n{display:block;margin-top:6px;font-style:italic}
@@ -972,6 +975,7 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 <nav class="tabs" role="tablist" aria-label="Sections">
   <button role="tab" aria-selected="true" data-tab="week">Weekly</button>
   <button role="tab" aria-selected="false" data-tab="cap">Capital markets</button>
+  <button role="tab" aria-selected="false" data-tab="re">Real estate</button>
   <button role="tab" aria-selected="false" data-tab="bonds">Bonds</button>
   <button role="tab" aria-selected="false" data-tab="local">Local markets</button>
   <button role="tab" aria-selected="false" data-tab="news">News &amp; deals</button>
@@ -1187,7 +1191,7 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 <header class="cap-head">
   <div>
     <h1>Capital markets</h1>
-    <p class="lede">Rates, pricing, credit and supply, tied back to the metros on the migration tab. Each section shows when its data was last updated.</p>
+    <p class="lede">Treasury yields, Fed expectations and fuel prices: the rates and costs that set financing and operating budgets. Property-level pricing, costs, credit and supply are on the Real estate tab.</p>
   </div>
 </header>
 
@@ -1250,6 +1254,38 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <div class="srcs" data-src="eia"></div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="cblock" id="allsources" data-title="All sources">
+  <details class="more srcall"><summary>All sources used on this dashboard</summary>
+  <p class="sub">Every dataset, with its publisher, release and date. Links open the original where one is public.</p>
+  <div class="scroll"><table class="score srctable" id="srcTable"></table></div>
+  </details>
+</section>
+</div>
+
+
+
+
+
+<div id="tab-re" hidden>
+<header class="cap-head">
+  <div>
+    <h1>Real estate</h1>
+    <p class="lede">Building and operating costs, pricing, credit stress, supply and demand across property types, nationally and in Boston. Each section shows when its data was last updated.</p>
+  </div>
+</header>
+
 <section class="cblock">
   <h2 data-ds="PPI">Construction costs</h2>
   <p class="lede" data-cm="cap_cost"><span class="cmwait">Updating…</span></p>
@@ -1265,7 +1301,6 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   </div>
   <div class="srcs" data-src="agcppi,turner,agcemp,nahb"></div>
 </section>
-
 
 <section class="cblock">
   <h2 data-ds="OPEX">Operating costs: insurance and energy</h2>
@@ -1297,7 +1332,6 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <div class="srcs" data-src="trepp,kbra"></div>
 </section>
 
-
 <section class="cblock">
   <h2 data-ds="SUPPLY">Supply pipeline vs. migration pull</h2>
   <p class="lede" data-cm="cap_supply"><span class="cmwait">Updating…</span></p>
@@ -1324,29 +1358,11 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 </section>
 
 <section class="cblock">
-  <h2 data-ds="BOS_OFFICE">Boston office and conversions</h2>
-  <div class="cards" id="bosOffice"></div>
-  <div class="srcs" data-src="cbrebos,cwbos,lincoln,lee,boston"></div>
-</section>
-
-<section class="cblock">
   <h2 data-ds="STUDENT">Student housing</h2>
   <div class="cards" id="student"></div>
   <div class="srcs" data-src="yardish,realpage"></div>
 </section>
-
-
-
-<section class="cblock" id="allsources">
-  <h2>All sources</h2>
-  <p class="lede">Every dataset on this tab, with its publisher, release and date. Links open the original where one is public.</p>
-  <div class="scroll"><table class="score srctable" id="srcTable"></table></div>
-</section>
 </div>
-
-
-
-
 
 <div id="tab-bonds" hidden>
 <header class="cap-head">
@@ -1463,6 +1479,7 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
     <button onclick="document.getElementById('locComps').scrollIntoView({behavior:'smooth'})">Comps</button>
     <button onclick="document.getElementById('locNH').scrollIntoView({behavior:'smooth'})">New Hampshire</button>
     <button onclick="document.getElementById('locMA').scrollIntoView({behavior:'smooth'})">Boston &amp; South Shore</button>
+    <button onclick="document.getElementById('locOffice').scrollIntoView({behavior:'smooth'})">Boston office</button>
     <button onclick="document.getElementById('locManh').scrollIntoView({behavior:'smooth'})">Boston vs. NH</button>
   </div>
 </div>
@@ -1551,6 +1568,11 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <div class="scroll"><table class="score" id="maTable"></table></div>
   <p class="note">Braintree, Scituate, Marshfield, Duxbury, Cohasset, Hanover, Norwell and other South Shore towns are not shown yet: their certified FY2026 rates weren't available from a source I could verify. FY2027 rates are certified in November–December 2026.</p>
   <div class="srcs" data-src="bostax,fyts,weymouth,hingham,dls,census,umdi"></div>
+</section>
+<section class="cblock" id="locOffice">
+  <h2 data-ds="BOS_OFFICE">Boston office and conversions</h2>
+  <div class="cards" id="bosOffice"></div>
+  <div class="srcs" data-src="cbrebos,cwbos,lincoln,lee,boston"></div>
 </section>
 <section class="cblock" id="locManh" data-title="Boston vs. southern NH">
   <h2>Boston vs. southern New Hampshire</h2>
@@ -3744,12 +3766,12 @@ const CMDEF={
  cap_fed:{tab:'cap',kind:'p',brief:'1–2 sentences on what futures and prediction markets expect the Fed to do at the next meetings.',ctx:()=>({meetings:D.FW_MEET,fed:D.FED,asof:META.FW_MEET?.asof})},
  cap_fed_note:{tab:'cap',kind:'p',brief:'One or two sentences of caveats on the odds snapshot (its date, how much it moved) and the next scheduled events that could move it.',ctx:()=>({meetings:D.FW_MEET,asof:META.FW_MEET?.asof,next:nextEvents(6)})},
  cap_fuel:{tab:'cap',kind:'p',brief:'2 sentences on retail gasoline and diesel prices vs. a year ago and why that matters for construction, operating costs and tenants.',ctx:()=>({kpis:D.FUEL_KPI,regions:D.FUEL_REG,yearAgo:D.FUEL_YA,asof:META.FUEL_GAS?.asof})},
- cap_cost:{tab:'cap',kind:'p',brief:'2–3 sentences on construction input prices, building costs and wages, and what that means for replacement cost and new starts.',ctx:()=>({kpis:D.CON_KPI,ppi:D.PPI,turner:D.TURNER,labor:D.LABOR})},
- cap_opex:{tab:'cap',kind:'p',brief:'2 sentences on property insurance and energy costs, with a New England angle.',ctx:()=>({cards:D.OPEX})},
- cap_caps:{tab:'cap',kind:'p',brief:'2–3 sentences on core cap rates by sector against the current 10-year Treasury, including the spread vs. history.',ctx:()=>({caps:D.CAPS,metros:D.CAP_METRO,t10:RATES[RATES.length-1].t10,note:'h is the 2010–2020 average spread to the 10-year in percentage points'})},
+ cap_cost:{tab:'re',kind:'p',brief:'2–3 sentences on construction input prices, building costs and wages, and what that means for replacement cost and new starts.',ctx:()=>({kpis:D.CON_KPI,ppi:D.PPI,turner:D.TURNER,labor:D.LABOR})},
+ cap_opex:{tab:'re',kind:'p',brief:'2 sentences on property insurance and energy costs, with a New England angle.',ctx:()=>({cards:D.OPEX})},
+ cap_caps:{tab:'re',kind:'p',brief:'2–3 sentences on core cap rates by sector against the current 10-year Treasury, including the spread vs. history.',ctx:()=>({caps:D.CAPS,metros:D.CAP_METRO,t10:RATES[RATES.length-1].t10,note:'h is the 2010–2020 average spread to the 10-year in percentage points'})},
  mig_fc:{tab:'mig',kind:'p',brief:'2 sentences on residential foreclosure activity: the national rate and trend, which states lead, and how Massachusetts and New Hampshire compare (rate, change, and whether they are net migration gainers or losers). Plain facts, no alarm.',ctx:()=>{const F=D.FCL; if(!F) throw 0; const net=stateNet('A'); return {period:F.per,national:F.nat,latestMonth:F.mo,worstStates:Object.entries(F.st).filter(([c])=>c!=='DC').sort((a,b)=>b[1][1]-a[1][1]).slice(0,5).map(([c,x])=>({state:c,pct:x[1],yoy:x[3]})),newEngland:['MA','NH','CT','RI','ME','VT'].map(c=>({state:c,oneIn:F.st[c][2],pct:F.st[c][1],yoy:F.st[c][3],netMigration:net[c]?.net??null})),fields:'st values are [filings, pct of housing units, one in X units, pct change vs year earlier, rank]'};}},
- cap_cmbs:{tab:'cap',kind:'p',brief:'1–2 sentences on CMBS delinquency by property type and what changed last month.',ctx:()=>({cmbs:D.CMBS,asof:META.CMBS?.asof})},
- cap_supply:{tab:'cap',kind:'p',brief:'2 sentences on how the apartment construction pipeline relates to rent softness and migration pull by metro.',ctx:()=>({supply:D.SUPPLY,rents:Object.fromEntries(D.SUPPLY.map(s=>[s[0],RENT[s[0]]?.z||null]))})},
+ cap_cmbs:{tab:'re',kind:'p',brief:'1–2 sentences on CMBS delinquency by property type and what changed last month.',ctx:()=>({cmbs:D.CMBS,asof:META.CMBS?.asof})},
+ cap_supply:{tab:'re',kind:'p',brief:'2 sentences on how the apartment construction pipeline relates to rent softness and migration pull by metro.',ctx:()=>({supply:D.SUPPLY,rents:Object.fromEntries(D.SUPPLY.map(s=>[s[0],RENT[s[0]]?.z||null]))})},
  bonds_head:{tab:'bonds',kind:'p',brief:'2 sentences on who is borrowing and how heavy supply from Treasury and corporates is affecting long rates and real estate borrowing costs.',ctx:()=>({rates:ratesCtx(),kpis:D.BOND_KPI,themes:D.BOND_THEMES,tsyWeek:D.TSY_WEEK})},
  bonds_tsy:{tab:'bonds',kind:'p',brief:'1–2 sentences on the coming coupon auctions in the data (sizes, dates, when results post) and how demand went at the most recent sales.',ctx:()=>({upcoming:D.TSY_WEEK,month:D.TSY_OCT,recentResults:tsyRows().slice(-4).map(r=>({date:r.d,security:r.t,sizeB:r.sz,bidToCover:r.btc,highYield:r.y,dealerPct:r.dlr,indirectPct:r.ind})),rates:ratesCtx()})},
  bonds_tsy_note:{tab:'bonds',kind:'p',brief:'One sentence on other Treasury supply details worth knowing (bills, buybacks) if in the data; otherwise a note on the auction calendar.',ctx:()=>({week:D.TSY_WEEK,month:D.TSY_OCT,themes:D.BOND_THEMES})},
@@ -4123,8 +4145,8 @@ function askInit(){
 }
 
 // ================= TAB DROPDOWN NAVIGATION =================
-const TABIDS={pred:'tab-pred',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov'};
-const TABNAMES={pred:'Trading',week:'Weekly',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government'};
+const TABIDS={pred:'tab-pred',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov',re:'tab-re'};
+const TABNAMES={pred:'Trading',week:'Weekly',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government',re:'Real estate'};
 let curSec=null;
 function navSections(tab){
   const root=document.getElementById(TABIDS[tab]); if(!root) return [];
@@ -4152,7 +4174,7 @@ function showSection(tab,secId){
       document.getElementById('secall').onclick=()=>showSection(tab,null);
     } else { bar.classList.remove('on'); bar.innerHTML=''; }
     document.querySelectorAll('.tmenu button[data-sec]').forEach(b=>b.setAttribute('aria-current', b.dataset.sec===secId));
-    try{ const base={pred:'#predictions',week:'#weekly',bonds:'#bonds',cap:'#capital-markets',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government'}[tab]; history.replaceState(null,'',base+(secId?'/'+secId:'')); }catch(e){}
+    try{ const base={pred:'#predictions',week:'#weekly',bonds:'#bonds',cap:'#capital-markets',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate'}[tab]; history.replaceState(null,'',base+(secId?'/'+secId:'')); }catch(e){}
     window.scrollTo({top:0});
     if(tab==='local'&&typeof renderTownMap==='function'&&secId==='locMap'){ renderTownMap(); }
   };
@@ -4386,6 +4408,7 @@ function showTab(t){
   document.getElementById('tab-week').hidden = t!=='week';
   document.getElementById('tab-pred').hidden = t!=='pred';
   document.getElementById('tab-gov').hidden = t!=='gov';
+  document.getElementById('tab-re').hidden = t!=='re';
   if (t==='gov'){ try{ govRender(); }catch(e){ console.error(e); } try{ cpiRender(); }catch(e){ console.error(e); } }
   if (t==='pred'){ renderPred(); try{ gpuRender(); }catch(e){ console.error(e); } try{ hmRender(); }catch(e){ console.error(e); } } monStop();
   if (t==='week'){ renderWeek(); }
@@ -4393,8 +4416,8 @@ function showTab(t){
   if (t==='bonds'){ renderBonds(); renderSources(); }
   if (t==='home'){ calcCF(); }
   if (t==='cal'){ renderCalTab(); }
-  if (t==='cap' && !capDrawn){ renderCap(); capDrawn=true; }
-  if (t==='local'){ if(!capDrawn){ renderSources(); } renderLocal(); localDrawn=true; }
+  if ((t==='cap'||t==='re'||t==='local') && !capDrawn){ renderCap(); capDrawn=true; }
+  if (t==='local'){ renderLocal(); localDrawn=true; }
   setTimeout(()=>{ armReveal(); const r=document.getElementById(TABIDS[t]); if(r) countUp(r); tidyAll(); },60);
   clearTimeout(showTab.td); showTab.td=setTimeout(tidyAll,900);
   try{ history.replaceState(null,'',HASHOF[t]||'#'); }catch(e){}
@@ -4773,7 +4796,17 @@ function tidyLedes(root){
     } else if(!over&&b&&el.classList.contains('clamp')) b.remove();
   });
 }
-function tidyAll(){ try{ tidyNotes(document); tidyLedes(document); }catch(e){ console.warn('tidy',e); } }
+function tidySrcs(root){
+  (root||document).querySelectorAll('.srcs').forEach(el=>{
+    if(el.dataset.tidy||el.closest('details')) return; el.dataset.tidy='1';
+    const sec=el.closest('section'), near=sec?[...sec.querySelectorAll('details.more')].filter(d=>!d.classList.contains('srcall')).pop():null;
+    if(near){ const sm=near.querySelector(':scope>summary'); if(sm&&sm.textContent==='About this data') sm.textContent='About this data and sources'; near.appendChild(el); return; }
+    const d=document.createElement('details'); d.className='more';
+    const s=document.createElement('summary'); s.textContent='Sources';
+    el.parentNode.insertBefore(d,el); d.appendChild(s); d.appendChild(el);
+  });
+}
+function tidyAll(){ try{ tidyNotes(document); tidySrcs(document); tidyLedes(document); }catch(e){ console.warn('tidy',e); } }
 
 // ================= LIVE HEAT MAP (owner, Claude desktop app) =================
 // During market hours the owner's view reads Slickcharts' live constituent tables through the
@@ -5013,7 +5046,7 @@ function monStop(){ if(!MON.on) return; MON.on=false; MON.unsub.splice(0).forEac
 applyLiveCache(LIVE0);
 buildTabMenus();
 buildTicker();
-const HASHOF={pred:'#predictions',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government'};
+const HASHOF={pred:'#predictions',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate'};
 const TABOF=Object.fromEntries(Object.entries(HASHOF).map(([k,v])=>[v,k]));
 { const hp=location.hash.split('/'); const t0=TABOF[hp[0]]||'week'; showTab(t0); if(hp[1]) setTimeout(()=>showSection(t0,hp[1]),0); }
 startLiveRates();
