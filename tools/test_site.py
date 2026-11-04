@@ -50,7 +50,7 @@ async def main():
                 report[f'{tag}:{t}'] = info
                 if tag == 'd' or t in ('pred', 'gov', 'week'):
                     await pg.screenshot(path=os.path.join(out, f'{tag}_{t}.png'), full_page=(tag == 'd'))
-            hdr = await pg.evaluate("document.querySelector('.tpi-bar').innerText+' | '+document.title+' | '+(document.querySelector('.jam-foot')||{}).innerText")
+            hdr = await pg.evaluate("document.querySelector('.tpi-bar').innerText+' | '+document.title+' | '+(document.querySelector('.site-foot')||{}).innerText")
             report[f'{tag}:header'] = hdr
             report[f'{tag}:errors'] = errs[:20]
             report[f'{tag}:boot'] = boot

@@ -652,6 +652,28 @@ h3 .fresh{font-size:11.5px}
 .wkbar button:first-child{background:#001C47;color:#fff;border-color:#001C47}
 .wkbar button:disabled{opacity:.5;cursor:default}
 .wkmsg{font-size:13.5px;color:var(--muted)}
+.wrhl{font:600 22px/1.3 Georgia,"Times New Roman",serif;margin:0 0 10px;max-width:60ch}
+.wrmoves{list-style:none;margin:0;padding:0;max-width:84ch}
+.wrmoves li{display:grid;grid-template-columns:20px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.wrmoves li:last-child{border-bottom:0}
+.wrmoves li.empty{display:block;color:var(--muted)}
+.wrdir{color:var(--muted);font-size:13px;padding-top:3px}
+.wrmeta{margin-top:5px}
+.wrtab{font:600 12px Barlow,sans-serif;color:#fff;background:var(--c);border:0;border-radius:4px;padding:2px 8px;cursor:pointer}
+:root[data-theme="dark"] .wrtab{color:#0F1720}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .wrtab{color:#0F1720}}
+.wrtabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.wrcard{border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;background:var(--surface);padding:12px 14px}
+.wrcard h3{margin:0 0 4px}
+.wrh{font:inherit;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.wrh:hover,.wrsub:hover{text-decoration:underline}
+.wrsub{display:block;font:600 12px Barlow,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:0;padding:0;margin:10px 0 4px;cursor:pointer;text-align:left}
+.wrcard ul{margin:0;padding-left:18px;font-size:14px;line-height:1.45}
+.wrcard li{margin:0 0 7px}
+.wrcard li span{color:var(--muted)}
+.wrcard a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+#wrMode button{padding:7px 14px;font-size:14px}
+#tab-week [hidden]{display:none!important}
 .editing{outline:1px dashed var(--gA);outline-offset:3px;border-radius:3px;background:var(--paper)}
 @media (max-width:520px){.askrow button{padding:10px 14px}.wkcell .v{font-size:24px}}
 
@@ -698,6 +720,175 @@ h3 .fresh{font-size:11.5px}
 .hm-livebar{display:inline-flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
 .hm-livebar .linkbtn{font-size:13.5px}
 .hm-livemsg{margin:4px 0 0}
+/* who represents each state */
+.pol-duo{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
+.pol-map{position:relative}
+.pol-map svg{width:100%;height:auto;display:block}
+.pol-st{stroke:var(--land-edge);stroke-width:.8;vector-effect:non-scaling-stroke;cursor:pointer;transition:opacity .12s}
+.pol-st:hover{opacity:.82}
+.pol-st.sel{stroke:var(--ink);stroke-width:2.2}
+.pol-lbl{font:600 10.5px Barlow,sans-serif;fill:#fff;pointer-events:none;text-anchor:middle;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
+.pol-key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:6px}
+.pol-key span{display:inline-flex;align-items:center;gap:5px}
+.pol-key i{display:inline-block;width:14px;height:10px;border-radius:2px}
+.pol-panel{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:14px 16px;max-height:720px;overflow-y:auto}
+.pol-panel h3{font-size:26px;margin:0 0 2px}
+.pol-sum{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.pol-sum span{font-size:12.5px;font-weight:600;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+.pol-grp{font:600 11.5px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.pol-p{border-bottom:1px solid var(--line)}
+.pol-p summary{display:grid;grid-template-columns:22px minmax(0,1fr) auto 14px;gap:8px;align-items:center;padding:7px 2px;cursor:pointer;list-style:none}
+.pol-p summary::-webkit-details-marker{display:none}
+.pol-p summary::after{content:"+";color:var(--muted);font-weight:700;text-align:center}
+.pol-p[open] summary::after{content:"−"}
+.pol-p summary:hover .pn{text-decoration:underline}
+.pol-pty{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:700 11.5px Barlow,sans-serif;color:#fff;background:var(--c)}
+.pol-p .pn{font-weight:600;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pol-p .pr{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.pol-bio{padding:2px 4px 10px 32px;font-size:13.5px;line-height:1.5}
+.pol-bio p{margin:0 0 6px}
+.pol-bio ul{margin:0 0 6px;padding-left:18px}
+.pol-bio .lk{font-size:12.5px}
+.pol-bio .lk a{color:var(--ink);font-weight:600;margin-right:12px}
+.pol-vac{font-size:13px;color:var(--muted);padding:7px 2px;border-bottom:1px solid var(--line)}
+.pol-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+@media (max-width:900px){.pol-duo{grid-template-columns:1fr}.pol-panel{max-height:none}}
+/* state legislation watch */
+.leg-bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:4px 0 12px}
+.leg-bar .seg button{padding:7px 12px;font-size:14px}
+.leg-counts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.leg-counts span{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.leg-counts b{font-variant-numeric:tabular-nums;margin-right:3px}
+.leg-grp{font:600 12px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.leg-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;align-items:start}
+.leg-card{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.leg-top{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.leg-pill{font-weight:700;padding:1px 8px;border-radius:999px;color:#fff;background:var(--c)}
+:root[data-theme="dark"] .leg-pill{color:#0F1720}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .leg-pill{color:#0F1720}}
+.leg-tag{font-weight:600;padding:1px 7px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.leg-dl{color:var(--muted);margin-left:auto}
+.leg-card h3{font:600 19px/1.2 "Barlow Condensed",sans-serif;margin:2px 0 0}
+.leg-card .bn{font-size:12.5px;color:var(--muted)}
+.leg-card p{margin:0;font-size:14px}
+.leg-card .nx{font-size:13.5px}
+.leg-card .nx b{font-weight:600}
+.leg-card details{font-size:13.5px}
+.leg-card details summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.leg-card details summary::-webkit-details-marker{display:none}
+.leg-card details summary::after{content:"+";flex:none;font:600 18px/1 Barlow,sans-serif;color:var(--c);width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;margin-top:2px}
+.leg-card details[open] summary::after{content:"−"}
+.leg-card details summary:hover h3{text-decoration:underline;text-underline-offset:3px}
+.leg-card .leg-body{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.leg-card .leg-body p{margin:0;font-size:13.5px}
+.leg-src{font-size:12.5px;margin-top:auto}
+.leg-src a{color:var(--ink);font-weight:600;margin-right:10px}
+/* ===== consumer tab ===== */
+/* layout: a verdict band, six gauge cards, then one question per section (paychecks, savings, spending, mood, credit, K-shape, retailers, news) */
+:root{--ok:#0E7C74;--warn:#B8540B;--bad:#B4232F;--okbg:rgba(14,124,116,.10);--warnbg:rgba(184,84,11,.10);--badbg:rgba(180,35,47,.09)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#2DBBAE;--warn:#F08A3C;--bad:#F0646E;--okbg:rgba(45,187,174,.14);--warnbg:rgba(240,138,60,.14);--badbg:rgba(240,100,110,.14)}}
+:root[data-theme="dark"]{--ok:#2DBBAE;--warn:#F08A3C;--bad:#F0646E;--okbg:rgba(45,187,174,.14);--warnbg:rgba(240,138,60,.14);--badbg:rgba(240,100,110,.14)}
+.con-verdict{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 18px;align-items:center;border-radius:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--line);margin:0 0 16px}
+.con-dial{width:84px;height:84px}
+.con-dial text{font:700 22px "Barlow Condensed",sans-serif;fill:var(--ink)}
+.con-dial .dl{font:600 9.5px Barlow,sans-serif;letter-spacing:.08em;fill:var(--muted)}
+.con-vt{font:600 12px Barlow,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.con-vh{font:600 20px/1.35 Barlow,sans-serif;margin:3px 0 0;max-width:75ch;text-wrap:pretty}
+.con-gauges{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.cg{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;min-width:0;cursor:pointer;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px 10px;transition:transform .15s ease,box-shadow .15s ease}
+.cg:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,28,71,.10)}
+.cg:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.cg-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cg-l{font-size:13px;color:var(--muted);line-height:1.2}
+.cg-v{font:600 32px/1.05 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums;color:var(--ink)}
+.cg-d{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cg svg{width:100%;height:34px;display:block;margin:2px 0}
+.cg-m{font-size:13px;line-height:1.35;color:var(--ink)}
+.cpill{display:inline-flex;align-items:center;gap:5px;font:700 11px Barlow,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.cpill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cpill.ok{color:var(--ok);background:var(--okbg)} .cpill.warn{color:var(--warn);background:var(--warnbg)} .cpill.bad{color:var(--bad);background:var(--badbg)}
+.con-keyrow{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.con-ctl{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:2px 0 10px}
+.con-ctl .seg button{padding:7px 12px;font-size:14px}
+.con-split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:900px){.con-split{grid-template-columns:1fr}}
+.con-side{display:flex;flex-direction:column;gap:10px;min-width:0}
+.con-fact{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px 12px}
+.con-fact .l{font-size:12.5px;color:var(--muted)}
+.con-fact .v{font:600 24px/1.1 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
+.con-fact .s{font-size:13px;margin-top:2px}
+.con-fact .s a{color:var(--ink)}
+.con-fact .src{font-size:11.5px;color:var(--muted);margin-top:4px}
+.con-callout{font-size:15px;line-height:1.5;margin:4px 0 10px;max-width:72ch}
+.con-callout b{font-weight:600}
+.con-bars{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.con-bars li{display:grid;grid-template-columns:minmax(0,1fr) 110px 46px;gap:8px;align-items:center}
+.con-bars .tr{height:9px;background:var(--land);border-radius:5px;overflow:hidden;position:relative}
+.con-bars .tr i{position:absolute;top:0;bottom:0;left:0;border-radius:5px;background:var(--c,var(--gA))}
+.con-bars .tr i.b{background:var(--muted);opacity:.45;height:4px;top:auto}
+.con-bars .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.con-flow th,.con-flow td{text-align:right}
+.con-flow th:first-child,.con-flow td:first-child{text-align:left}
+.con-flow .up{color:var(--bad)} .con-flow .dn{color:var(--ok)}
+.con-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.con-k article{border-radius:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c)}
+.con-k h3{font:600 19px/1.15 "Barlow Condensed",sans-serif;margin:0 0 4px;color:var(--c)}
+.con-k p{margin:0;font-size:14px}
+.con-ev-bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:4px 0 12px}
+.con-ev-bar .seg button{padding:7px 12px;font-size:14px}
+.con-ev-grp{font:600 12px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.con-ev-grp span{text-transform:none;letter-spacing:0;font-weight:500}
+.con-ev{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;align-items:start}
+.con-co{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;background:var(--surface);padding:10px 12px}
+.con-co details summary,.con-nw details summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.con-co details summary::-webkit-details-marker,.con-nw details summary::-webkit-details-marker{display:none}
+.con-co details summary::after,.con-nw details summary::after{content:"+";flex:none;font:600 16px/1 Barlow,sans-serif;color:var(--muted);width:20px;height:20px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%}
+.con-co details[open] summary::after,.con-nw details[open] summary::after{content:"\2212"}
+.con-co .nm{display:flex;flex-direction:column;gap:4px;min-width:0}
+.con-co h3{font:600 18px/1.15 "Barlow Condensed",sans-serif;margin:0}
+.con-co details summary:hover h3,.con-nw details summary:hover h3{text-decoration:underline;text-underline-offset:3px}
+.con-co p,.con-nw p{margin:8px 0 0;font-size:14px;line-height:1.45;padding-top:8px;border-top:1px solid var(--line)}
+.rate{display:inline-flex;align-items:center;gap:4px;font:700 11px Barlow,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+.con-bl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.con-bl th{font:600 14px "Barlow Condensed",sans-serif;text-align:left;padding:6px 8px;border-bottom:2px solid var(--ink)}
+.con-bl td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.con-bl td.lg{color:var(--ok);font-weight:600} .con-bl td.av{color:var(--bad);font-weight:600}
+.con-re{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.con-re article{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px}
+.con-re h3{font:600 18px/1.15 "Barlow Condensed",sans-serif;margin:0 0 4px}
+.con-re p{margin:0;font-size:14px}
+.con-nws{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;align-items:start}
+.con-nw{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px 12px}
+.con-nw .mt{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:4px}
+.con-nw h3{font:600 18px/1.2 "Barlow Condensed",sans-serif;margin:0}
+.con-nw .lk{font-size:12.5px;margin-top:6px}
+.con-nw .lk a{color:var(--ink);font-weight:600}
+.con-tag{font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px;color:#fff;background:var(--c)}
+:root[data-theme="dark"] .con-tag{color:#0F1720}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .con-tag{color:#0F1720}}
+@media (max-width:520px){.con-verdict{grid-template-columns:1fr}.con-vh{font-size:17px}.con-bars li{grid-template-columns:minmax(0,1fr) 80px 42px}}
+
+/* since your last visit */
+.sv{margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px}
+.sv-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.sv-head h2{font-size:22px;margin:0}
+.sv-head .sub{font-size:13px;color:var(--muted)}
+.sv-btns{display:flex;gap:8px}
+.sv-btns button{font:600 13px Barlow,sans-serif;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:10px}
+.sv-m{border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
+.sv-m:hover{border-color:var(--ink)}
+.sv-m .l{font-size:12.5px;color:var(--muted)}
+.sv-m .v{font:600 18px/1.2 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
+.sv-m .v s{color:var(--muted);font-weight:500;text-decoration:none;font-size:15px}
+.sv-m .d{font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.sv-sec{margin-top:12px}
+.sv-sec h3{font:600 15px "Barlow Condensed",sans-serif;margin:0 0 4px}
+.sv-sec ul{margin:0;padding-left:18px;font-size:14px}
+.sv-sec li{margin:2px 0}
+.sv-sec a{color:var(--ink)}
+.sv-more{font-size:13px;color:var(--muted);margin-top:8px}
+.sv.min .sv-body{display:none}
 /* government tab */
 .gov-head{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;margin-bottom:4px}
 .gov-head h2{margin:0}
@@ -725,6 +916,22 @@ h3 .fresh{font-size:11.5px}
 .gov-src{margin-top:28px}
 .gov-src a{color:inherit}
 @media (max-width:600px){.gov-bars li{grid-template-columns:minmax(0,1fr) 64px 48px;font-size:14px}}
+/* government revenue */
+.rev-h3{margin:6px 0 4px}
+.rev-strip{display:flex;height:16px;border-radius:4px;overflow:hidden;margin:6px 0 2px;max-width:820px;background:var(--land)}
+.rev-strip i{display:block;height:100%;border-right:2px solid var(--paper)}
+.rev-bars li{align-items:center}
+.rev-bars li.has{cursor:pointer}
+.rev-bars li.has:hover .nm span{text-decoration:underline}
+.rev-bars .nm{display:flex;align-items:center;gap:6px}
+.rev-bars .nm .sw{flex:none;width:10px;height:10px;border-radius:2px}
+.rev-bars .nm .car{flex:none;font-size:11px;color:var(--muted);width:10px;transition:transform .15s}
+.rev-bars li.open .nm .car{transform:rotate(90deg)}
+.rev-bars li.subr{padding:4px 0 4px;font-size:14px}
+.rev-bars li.subr .nm{padding-left:34px;color:var(--muted)}
+.rev-bars li.subr .v{font-weight:500}
+.rev-bars li.subr .bar{height:5px}
+.rev-bars li.subr .bar i{opacity:.55}
 /* consumer prices */
 .cpi-tree-head{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);border-bottom:2px solid var(--ink);padding-bottom:4px;max-width:820px}
 .cpi-tree-head .linkbtn{font-size:13.5px}
@@ -950,6 +1157,89 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 .xlink{display:inline-block;margin-top:6px;font:600 15px Barlow,sans-serif}
 .rates-duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:760px){.rates-duo{grid-template-columns:1fr}}
+
+/* ================= design pass: site shell, nav, cards, footer (Nov 2026) ================= */
+:root{--card:#FFFFFF;--radius:14px;--shadow-sm:0 1px 2px rgba(16,28,45,.05),0 2px 6px rgba(16,28,45,.04);--shadow-md:0 10px 28px rgba(16,28,45,.10);--accent:#1F4E8C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#152030;--accent:#6FA3E8;--shadow-sm:0 1px 2px rgba(0,0,0,.35);--shadow-md:0 10px 28px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--card:#152030;--accent:#6FA3E8;--shadow-sm:0 1px 2px rgba(0,0,0,.35);--shadow-md:0 10px 28px rgba(0,0,0,.45)}
+html,body{overflow-x:clip}
+body{font-size:15.5px;text-rendering:optimizeLegibility}
+.wrap{padding-top:0}
+
+/* header: brand left, status right, compact */
+.tpi-bar{background:#001C47;border-bottom:0}
+.tpi-inner{grid-template-columns:minmax(0,1fr) auto!important;padding:10px 24px!important;min-height:60px}
+.tpi-left{display:none!important}
+.tpi-inner .tpi-title{justify-content:flex-start!important;font-size:21px!important;gap:12px!important;letter-spacing:.01em}
+.tpi-title .tpi-mark{height:36px!important}
+.tpi-title svg.jam-mark{width:36px;height:36px}
+.tpi-meta{font-size:12px;color:#AFC0D6;line-height:1.45}
+
+/* market pulse strip */
+.ticker{font-size:13px;background:#0A2350;border-bottom:0}
+.tk-label{font-size:10.5px;padding:8px 14px;background:#1F4E8C;color:#fff}
+.tk-track{padding:8px 0}
+
+/* primary nav: full-width white bar, one clean row */
+nav.tabs{position:sticky;top:0;z-index:30;background:transparent;box-shadow:none;margin:0 0 26px;padding-top:0;gap:2px;border-bottom:0;flex-wrap:nowrap}
+nav.tabs::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 4px 14px -10px rgba(0,28,71,.35);z-index:-1}
+.tabs .tabwrap>button.tbtn,.tabs>button{font:600 15.5px/1 Barlow,sans-serif;letter-spacing:0;color:var(--muted);padding:17px 3px 16px 11px;border-bottom:2px solid transparent;margin-bottom:0;white-space:nowrap}
+.tabs .caret{font-size:10px;padding:17px 9px 16px 3px;border-bottom:2px solid transparent;margin-bottom:0;opacity:.55}
+.tabwrap:hover>button.tbtn,.tabwrap:hover .caret{color:var(--ink)}
+.tabwrap.on>button.tbtn,.tabwrap.on .caret{color:var(--accent);border-bottom-color:var(--accent);opacity:1}
+.tmenu{top:calc(100% + 1px);border-radius:12px;box-shadow:var(--shadow-md)}
+@media (max-width:1400px){.tabs .tabwrap>button.tbtn{font-size:15px;padding-left:9px}.tabs .caret{padding-right:7px}}
+@media (max-width:1240px){.tabs .tabwrap>button.tbtn{font-size:14.5px;padding-left:7px}.tabs .caret{padding-right:5px}}
+@media (min-width:761px) and (max-width:1100px){nav.tabs{flex-wrap:wrap}}
+@media (max-width:760px){
+  nav.tabs{margin-left:-14px;margin-right:-14px;padding-left:6px;padding-right:6px;margin-bottom:18px}
+  .tabs .tabwrap>button.tbtn,.tabs>button{font-size:15px;padding:15px 10px 14px}
+}
+
+/* page titles */
+.cap-head h1,header h1,#tab-week h1{font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;max-width:none}
+.lede{font-size:16px;line-height:1.55}
+header{margin-bottom:6px}
+
+/* sections become cards */
+.cblock,section.block,.nblock{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px 20px;margin-top:18px;box-shadow:var(--shadow-sm)}
+.cblock:first-of-type,section.block:first-of-type{margin-top:16px}
+.cblock>h2,section.block>h2,.nblock>h2,.sec-head h2{font-size:clamp(21px,2.1vw,26px);letter-spacing:-.005em;margin-bottom:4px}
+.cblock .lede,section.block .lede{font-size:15px;color:var(--muted)}
+.cblock .card,.cblock .kpis,.cblock .cg,.cblock .rentcard,.cblock .stat{background:var(--surface)}
+.kpis{border-radius:12px;overflow:hidden}
+.kpi .v{letter-spacing:-.01em}
+.card,.cg,.stat,.ncard{border-radius:12px}
+.note,.srcs{font-size:12.5px}
+.duo2>.cblock{margin-top:18px}
+@media (max-width:760px){.cblock,section.block,.nblock{padding:16px 14px;border-radius:12px;margin-top:14px}}
+
+/* status / since-visit / section bar */
+.sv,.secbar{border-radius:12px;box-shadow:var(--shadow-sm);background:var(--card)}
+.bootmsg{border-radius:12px;background:var(--card)}
+.bootmsg:not(.err)::after{content:"";display:block;height:150px;margin-top:12px;border-radius:10px;background:linear-gradient(90deg,var(--surface) 25%,var(--line) 37%,var(--surface) 63%);background-size:400% 100%;animation:skel 1.3s ease-in-out infinite}
+@keyframes skel{0%{background-position:100% 50%}100%{background-position:0 50%}}
+@media (prefers-reduced-motion:reduce){.bootmsg:not(.err)::after{animation:none}}
+
+/* footer */
+.site-foot{margin-top:56px;background:#001C47;color:#C9D6E6;font-size:14px;padding-bottom:env(safe-area-inset-bottom,0px)}
+.sf-inner{max-width:1280px;margin:0 auto;padding:40px 24px 26px;display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:28px 36px}
+.sf-name{display:block;font:700 19px Georgia,"Times New Roman",serif;color:#fff;margin-bottom:8px}
+.sf-brand p{margin:0 0 10px;max-width:44ch;line-height:1.55}
+.sf-stamp{color:#8FA6C3;font-size:13px}
+.sf-col h4{margin:2px 0 10px;font:700 11.5px Barlow,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8FA6C3}
+.sf-col ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.sf-col a{color:#E6EDF6;text-decoration:none}
+.sf-col a:hover{text-decoration:underline;text-underline-offset:3px}
+.sf-legal{max-width:1280px;margin:0 auto;padding:16px 24px 28px;border-top:1px solid rgba(143,166,195,.25);font-size:12.5px;color:#8FA6C3;line-height:1.55}
+@media (max-width:860px){.sf-inner{grid-template-columns:1fr 1fr}.sf-brand{grid-column:1/-1}}
+@media (max-width:520px){.sf-inner{padding:30px 16px 20px;gap:22px 20px}.sf-legal{padding:14px 16px 24px}}
+@media (max-width:600px){
+  .tpi-inner{padding:10px 14px!important;gap:10px!important;min-height:54px}
+  .tpi-inner .tpi-title{font-size:18px!important;white-space:nowrap;gap:10px!important}
+  .tpi-title .tpi-mark{height:30px!important}.tpi-title svg.jam-mark{width:30px;height:30px}
+  #tpiStamp{display:none}
+}
 </style>
 <style>#rfBox,#ask,#wkDraft,#wkEdit,#wkSave,#wkFinal,#wkStatus,#hmLiveBtn,#hmLiveMsg{display:none!important}
 .jam-mark{width:44px;height:44px;flex:none;color:#fff}
@@ -973,9 +1263,10 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 <div class="ticker" id="ticker" aria-label="Market pulse"><div class="tk-label">MARKET PULSE</div><div class="tk-viewport"><div class="tk-track" id="tkTrack"></div></div></div>
 <div class="wrap">
 <nav class="tabs" role="tablist" aria-label="Sections">
-  <button role="tab" aria-selected="true" data-tab="week">Weekly</button>
+  <button role="tab" aria-selected="true" data-tab="week">Wrap</button>
   <button role="tab" aria-selected="false" data-tab="cap">Capital markets</button>
   <button role="tab" aria-selected="false" data-tab="re">Real estate</button>
+  <button role="tab" aria-selected="false" data-tab="con">Consumer</button>
   <button role="tab" aria-selected="false" data-tab="local">Local markets</button>
   <button role="tab" aria-selected="false" data-tab="news">News &amp; deals</button>
   <button role="tab" aria-selected="false" data-tab="cal">Calendar</button>
@@ -994,15 +1285,17 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <div class="askout" id="askOut" hidden><div class="askq" id="askQ"></div><div class="askans" id="askAns"></div><button class="linkbtn" id="askClear" type="button">Clear</button></div>
 </div>
 <div class="bootmsg" id="bootMsg" role="status">Loading market data…</div>
+<section class="sv" id="sinceVisit" hidden aria-label="Changes since your last visit"></section>
 
 <div id="tab-week" hidden>
 <header class="cap-head wk-head">
   <div>
-    <h1 id="wkTitle">The week</h1>
-    <p class="lede" id="wkSub">A one-screen recap, published every Friday.</p>
+    <h1 id="wkTitle">The wrap</h1>
+    <p class="lede" id="wkSub"></p>
   </div>
   <div class="wk-ctl">
-    <label class="wk-pick">Week ending <select id="wkSelect"></select></label>
+    <div class="seg" id="wrMode" role="group" aria-label="Wrap type"><button type="button" data-m="d" aria-pressed="true">Daily</button><button type="button" data-m="w" aria-pressed="false">Weekly</button></div>
+    <label class="wk-pick"><span id="wkPickL">Day</span> <select id="wkSelect"></select></label>
     <span class="wk-status" id="wkStatus"></span>
   </div>
 </header>
@@ -1011,15 +1304,23 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <div class="wkgrid" id="wkGrid"></div>
   <p class="note" id="wkBoardNote"></p>
 </section>
-<section class="cblock wk" id="wkSummarySec" data-title="The week in brief">
-  <h2>The week in brief</h2>
-  <div class="wkedit" id="wkSummary" data-field="summary"></div>
+<section class="cblock wk" id="wkSummarySec" data-title="In brief">
+  <h2 id="wkSumH">The day in brief</h2>
+  <div id="wkSummary"></div>
+</section>
+<section class="cblock wk" id="wrMovesSec" data-title="Big changes">
+  <h2>Big changes across the dashboard</h2>
+  <ul class="wrmoves" id="wrMoves"></ul>
+</section>
+<section class="cblock wk" id="wrHeadSec" data-title="Headlines by tab">
+  <h2>Headlines by tab</h2>
+  <div class="wrtabs" id="wrHeads"></div>
 </section>
 <section class="cblock wk" id="wkItemsSec" data-title="What mattered">
-  <h2>What mattered</h2>
+  <h2>What mattered this week</h2>
   <ol class="wkitems" id="wkItems"></ol>
 </section>
-<div class="duo2 wkduo">
+<div class="duo2 wkduo" id="wkDuo">
 <section class="cblock wk" id="wkDealsSec" data-title="Deals of the week">
   <h2>Deals of the week</h2>
   <ul class="wkdeals" id="wkDeals"></ul>
@@ -1029,14 +1330,8 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
   <ul class="wknext" id="wkNext"></ul>
 </section>
 </div>
-<div class="wkbar" id="wkBar" hidden>
-  <button id="wkDraft" type="button">Draft with Claude</button>
-  <button id="wkEdit" type="button">Edit</button>
-  <button id="wkSave" type="button" hidden>Save changes</button>
-  <button id="wkFinal" type="button">Mark as final</button>
-  <span class="wkmsg" id="wkMsg" role="status"></span>
 </div>
-</div>
+
 <div id="tab-mig" hidden>
 <header>
   <div>
@@ -1846,9 +2141,102 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 <header class="cap-head">
   <div>
     <h1>Government data</h1>
-    <p class="lede">What the federal government spends and what things cost. Spending comes from the Treasury's Monthly Treasury Statement (fiscal years run October to September); inflation and everyday prices come from the Bureau of Labor Statistics.</p>
+    <p class="lede">Who holds each state's top elected offices, what the federal government collects and spends, and what things cost. Officials come from official congressional records and the current list of governors; revenue and spending come from the Treasury's Monthly Treasury Statement (fiscal years run October to September); inflation and everyday prices come from the Bureau of Labor Statistics.</p>
   </div>
 </header>
+
+<section class="cblock" id="govPol" data-title="Who represents each state">
+  <div class="gov-head">
+    <h2 data-ds="GOV_POL">Who represents each state</h2>
+    <div class="gov-ctl">
+      <div class="seg" id="polSeg" role="group" aria-label="Color the map by">
+        <button aria-pressed="true" data-m="all">Overall</button><button aria-pressed="false" data-m="gov">Governor</button><button aria-pressed="false" data-m="sen">Senate</button><button aria-pressed="false" data-m="house">House</button>
+      </div>
+    </div>
+  </div>
+  <p class="sub" id="polSub"></p>
+  <div class="pol-duo">
+    <div>
+      <div class="pol-map" id="polMapBox"><svg id="polMap" viewBox="0 0 975 610" role="img" aria-label="Map of party control by state; click a state to see its governor, senators and House members"></svg><div class="tip" id="polTip" role="tooltip"></div></div>
+      <div class="pol-key" id="polKey"></div>
+    </div>
+    <div class="pol-panel" id="polPanel" aria-live="polite">
+      <div class="pol-tools"><label class="ctl-label" for="polSel">State</label><select id="polSel"></select></div>
+      <div id="polBody"></div>
+    </div>
+  </div>
+  <details class="more"><summary>About this data</summary>
+    <p class="note" id="polNote"></p>
+  </details>
+</section>
+
+<section class="cblock" id="govLeg" data-title="State legislation watch">
+  <div class="gov-head">
+    <h2 data-ds="LEG_WATCH">State legislation watch</h2>
+    <div class="gov-ctl leg-bar">
+      <div class="seg" id="legStSeg" role="group" aria-label="State"><button aria-pressed="true" data-v="all">Both</button><button aria-pressed="false" data-v="MA">Massachusetts</button><button aria-pressed="false" data-v="NH">New Hampshire</button></div>
+      <label class="ctl-label" for="legCat">Topic</label>
+      <select id="legCat"><option value="all">All topics</option><option value="rent">Rent control</option><option value="zoning">Zoning &amp; permitting</option><option value="tenant">Tenant rules</option><option value="tax">Taxes &amp; costs</option><option value="ballot">Ballot measures</option></select>
+    </div>
+  </div>
+  <p class="sub" id="legSub"></p>
+  <div class="leg-counts" id="legCounts"></div>
+  <div id="legBody"></div>
+  <details class="more"><summary>About this data</summary><p class="note" id="legNote"></p></details>
+</section>
+
+<section class="cblock" id="govRevYear" data-title="Revenue this year">
+  <div class="gov-head">
+    <h2 data-ds="GOV_REV">Federal revenue this year</h2>
+    <div class="gov-ctl">
+      <div class="seg" id="revViewSeg" role="group" aria-label="Show revenue as">
+        <button aria-pressed="true" data-v="cum">Running total</button><button aria-pressed="false" data-v="mo">By month</button>
+      </div>
+    </div>
+  </div>
+  <div class="kpis" id="revKpis"></div>
+  <h3 id="revChartTitle" class="rev-h3"></h3>
+  <div class="chartbox"><svg id="revChart" viewBox="0 0 760 300" role="img" aria-label="Federal revenue compared with spending, this fiscal year"></svg></div>
+  <div class="gov-leg" id="revLeg"></div>
+  <details class="more"><summary>About this data</summary>
+    <p class="note">Revenue is what the Treasury actually collected (receipts), net of tax refunds. The gap between spending and revenue is the deficit, which the Treasury covers by borrowing. April is the big month because that is when most people settle their prior-year income taxes; corporate estimated payments land in mid-April, June, September and December, which is why those months also run high. Treasury publishes each month's figures about eight business days after the month ends.</p>
+  </details>
+</section>
+
+<section class="cblock" id="govFrom" data-title="Where the money comes from">
+  <div class="gov-head">
+    <h2>Where the money comes from</h2>
+    <div class="gov-ctl">
+      <div class="seg" id="revUnitSeg" role="group" aria-label="Show as">
+        <button aria-pressed="true" data-u="pct">Share</button><button aria-pressed="false" data-u="usd">Dollars</button>
+      </div>
+    </div>
+  </div>
+  <p class="sub" id="revFromSub"></p>
+  <div class="rev-strip" id="revStrip" aria-hidden="true"></div>
+  <ol class="gov-bars rev-bars" id="revBars"></ol>
+  <details class="more"><summary>About this data</summary>
+    <p class="note">Sources follow the Monthly Treasury Statement's receipt categories. Individual income taxes include what employers withhold from paychecks plus quarterly estimates and April payments, minus refunds. Payroll taxes are the Social Security and Medicare taxes split between workers and employers (plus self-employment tax) and unemployment insurance; they are set aside for those trust funds. Customs duties are tariffs collected at the border. Federal Reserve earnings are the profits the Fed sends to the Treasury, which shrank to almost nothing when its interest costs rose. Change is versus the same months of the prior fiscal year.</p>
+  </details>
+</section>
+
+<section class="cblock" id="govGap" data-title="Revenue, spending and the deficit">
+  <div class="gov-head">
+    <h2>Revenue, spending and the deficit</h2>
+    <div class="gov-ctl">
+      <div class="seg" id="revGapSeg" role="group" aria-label="Show as">
+        <button aria-pressed="true" data-g="usd">Dollars</button><button aria-pressed="false" data-g="pct">Share of GDP</button>
+      </div>
+      <label class="gov-chk" id="revRealWrap"><input type="checkbox" id="revReal" checked> Adjust for inflation</label>
+    </div>
+  </div>
+  <p class="sub" id="revGapSub"></p>
+  <div class="chartbox"><svg id="revTrend" viewBox="0 0 760 320" role="img" aria-label="Federal revenue and spending by fiscal year, with the deficit"></svg></div>
+  <div class="gov-leg" id="revTrendLeg"></div>
+  <details class="more"><summary>About this data</summary>
+    <p class="note" id="revGapNote"></p>
+  </details>
+</section>
 
 <section class="cblock" id="govYear" data-title="Spending this year">
   <h2 data-ds="GOV_SPEND">Federal spending this year</h2>
@@ -1946,6 +2334,127 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
 </section>
 <p class="note gov-src" id="govSrc"></p>
 </div>
+<div id="tab-con" hidden>
+<header class="cap-head">
+  <div>
+    <h1>The consumer</h1>
+    <p class="lede">How American households are doing: what they earn, what they save, what they spend and what they owe. Retail and restaurant tenants live on these numbers, and so does rent collection. Data come from the BEA, the Atlanta Fed, Census, the University of Michigan, the Fed and the New York Fed, plus Evercore's retail analysts and current retail news.</p>
+  </div>
+</header>
+
+<section class="cblock" id="conPulse" data-title="Consumer pulse">
+  <h2 data-ds="CONSUMER">Consumer pulse</h2>
+  <div class="con-verdict">
+    <svg class="con-dial" id="conDial" viewBox="0 0 84 84" role="img" aria-label="How many of six consumer gauges look healthy"></svg>
+    <div><div class="con-vt" id="conVt">The bottom line</div><p class="con-vh" id="conHead" data-cm="con_head"></p></div>
+  </div>
+  <div class="con-gauges" id="conGauges"></div>
+  <div class="con-keyrow"><span class="cpill ok">Healthy</span><span class="cpill warn">Watch</span><span class="cpill bad">Strained</span><span>Tap a card to jump to its chart.</span></div>
+</section>
+
+<section class="cblock" id="conPay" data-title="Paychecks vs. prices">
+  <div class="gov-head">
+    <h2>Are paychecks beating prices?</h2>
+    <div class="con-ctl">
+      <div class="seg" id="conPaySeg" role="group" aria-label="Compare"><button aria-pressed="true" data-v="all">Everyone</button><button aria-pressed="false" data-v="move">Job switchers vs. stayers</button><button aria-pressed="false" data-v="half">Lower vs. upper earners</button></div>
+      <div class="seg" id="conPayRange" role="group" aria-label="Time range"><button aria-pressed="false" data-r="36">3 yrs</button><button aria-pressed="true" data-r="60">5 yrs</button><button aria-pressed="false" data-r="999">Since 2018</button></div>
+    </div>
+  </div>
+  <p class="con-callout" id="conPayCall"></p>
+  <div class="chartbox"><svg id="conPayChart" viewBox="0 0 760 300" role="img" aria-label="Median wage growth compared with consumer price inflation"></svg><div class="tip" id="conPayTip" role="tooltip"></div></div>
+  <div class="gov-leg" id="conPayLeg"></div>
+  <h3 style="margin-top:18px">Real pay: wage growth minus inflation</h3>
+  <p class="sub">Above zero, the typical worker's raise beat price increases. Below zero, it did not.</p>
+  <div class="chartbox"><svg id="conRealChart" viewBox="0 0 760 170" role="img" aria-label="Wage growth minus inflation by month"></svg><div class="tip" id="conRealTip" role="tooltip"></div></div>
+</section>
+
+<section class="cblock" id="conSave" data-title="The saving cushion">
+  <h2>How much cushion is left?</h2>
+  <div class="con-split">
+    <div>
+      <p class="con-callout" id="conSaveCall"></p>
+      <div class="chartbox"><svg id="conSaveChart" viewBox="0 0 760 280" role="img" aria-label="Personal saving rate"></svg><div class="tip" id="conSaveTip" role="tooltip"></div></div>
+      <div class="con-ctl"><div class="seg" id="conSaveRange" role="group" aria-label="Time range"><button aria-pressed="false" data-r="36">3 yrs</button><button aria-pressed="true" data-r="60">5 yrs</button><button aria-pressed="false" data-r="999">Since 2018</button></div></div>
+    </div>
+    <div class="con-side" id="conSaveSide"></div>
+  </div>
+</section>
+
+<section class="cblock" id="conSpend" data-title="Spending">
+  <h2>Are people still spending?</h2>
+  <div class="con-split">
+    <div>
+      <p class="con-callout" id="conSpendCall"></p>
+      <h3>Real retail sales, change from a year earlier</h3>
+      <p class="sub">Census retail and restaurant sales adjusted for inflation.</p>
+      <div class="chartbox"><svg id="conSpendChart" viewBox="0 0 760 240" role="img" aria-label="Inflation-adjusted retail sales growth from a year earlier"></svg><div class="tip" id="conSpendTip" role="tooltip"></div></div>
+    </div>
+    <div class="con-side" id="conSpendSide"></div>
+  </div>
+</section>
+
+<section class="cblock" id="conMood" data-title="Mood vs. wallets">
+  <h2>How do consumers feel?</h2>
+  <div class="con-split">
+    <div>
+      <p class="con-callout" id="conMoodCall"></p>
+      <div class="chartbox"><svg id="conMoodChart" viewBox="0 0 760 260" role="img" aria-label="University of Michigan consumer sentiment"></svg><div class="tip" id="conMoodTip" role="tooltip"></div></div>
+    </div>
+    <div class="con-side" id="conMoodSide"></div>
+  </div>
+</section>
+
+<section class="cblock" id="conCredit" data-title="Credit stress">
+  <h2>Are people falling behind on debt?</h2>
+  <div class="con-split">
+    <div>
+      <p class="con-callout" id="conCreditCall"></p>
+      <h3>Credit card loans 30+ days past due, banks</h3>
+      <div class="chartbox"><svg id="conCreditChart" viewBox="0 0 760 240" role="img" aria-label="Credit card delinquency rate at commercial banks by quarter"></svg><div class="tip" id="conCreditTip" role="tooltip"></div></div>
+    </div>
+    <div class="con-side">
+      <div class="con-fact" id="conDebt"></div>
+      <div class="con-fact"><div class="l" id="conFlowT"></div>
+        <ul class="con-bars" id="conFlow"></ul>
+        <div class="src">Bar = this year, thin line = a year earlier. Share of balances moving 90+ days late, annualized. Source: New York Fed.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cblock" id="conK" data-title="The K-shaped consumer">
+  <h2 id="conKh">The K-shaped consumer</h2>
+  <p class="con-callout" id="conKlede"></p>
+  <div class="con-k" id="conKcards"></div>
+  <p class="sub" id="conKsrc" style="margin-top:8px"></p>
+</section>
+
+<section class="cblock" id="conEv" data-title="Who's winning at the register">
+  <h2>Who's winning at the register</h2>
+  <p class="sub" id="conEvSub"></p>
+  <div class="con-ev-bar">
+    <div class="seg" id="conEvSec" role="group" aria-label="Sector"></div>
+    <div class="seg" id="conEvRate" role="group" aria-label="View"><button aria-pressed="true" data-v="all">All views</button><button aria-pressed="false" data-v="pos" style="--c:var(--ok)">Positive</button><button aria-pressed="false" data-v="neg" style="--c:var(--bad)">Negative</button></div>
+  </div>
+  <div id="conEvBody"></div>
+  <h3 style="margin-top:22px">Bottom line</h3>
+  <div class="scroll"><table class="con-bl" id="conBottom"></table></div>
+</section>
+
+<section class="cblock" id="conRe" data-title="What it means for our properties">
+  <h2>What it means for our properties</h2>
+  <div class="con-re" id="conReCards"></div>
+</section>
+
+<section class="cblock" id="conNews" data-title="Retail news & stats">
+  <div class="gov-head">
+    <h2>Retail news &amp; stats</h2>
+    <div class="seg" id="conNewsSeg" role="group" aria-label="Topic"><button aria-pressed="true" data-v="all">All</button><button aria-pressed="false" data-v="retail">Retail</button><button aria-pressed="false" data-v="macro">Spending</button><button aria-pressed="false" data-v="mood">Sentiment</button><button aria-pressed="false" data-v="credit">Credit</button></div>
+  </div>
+  <p class="sub">Tap a headline for the numbers and why it matters.</p>
+  <div class="con-nws" id="conNewsBody"></div>
+  <details class="more"><summary>About this data and sources</summary><p class="note" id="conNote"></p><div class="srcs"><span class="h">Sources</span><ul id="conSrc"></ul></div></details>
+</section>
+</div>
 <div id="tab-news" hidden>
 <header class="cap-head">
   <div>
@@ -1968,11 +2477,11 @@ nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);padding-top:6p
     <div class="dstats" id="dealStats"></div>
   </div>
   <div class="scroll"><table class="score" id="dealTable"></table></div>
-  <div class="srcs" data-src="tradedbos,tradednh,bretall,bisnowbos,bret,connectcre,nhbr,csearch,crenews,prn,hoodline" data-note="Curated from the sources below and refreshed every Friday. Dates are closing or announcement dates where the source reports one. Bold links open the specific deal page or article; deals posted by Traded: Boston without a Traded deal page link to the deal's press coverage instead."></div>
+  <div class="srcs" data-src="tradedbos,tradednh,bretall,bisnowbos,bret,connectcre,nhbr,csearch,crenews,prn,hoodline" data-note="Curated from the sources below and refreshed every weekday evening. Dates are closing or announcement dates where the source reports one. Bold links open the specific deal page or article; deals posted by Traded: Boston without a Traded deal page link to the deal's press coverage instead."></div>
 </section>
 
-<section class="nblock" id="newsLatest" data-title="Latest headlines"><h2>Latest</h2><div id="newsList"></div><p class="sub" id="newsEmpty" hidden>No headlines from the last three weeks match. Ask Claude to refresh the news.</p></section>
-<div class="srcs" style="margin-top:28px"><span class="h">About this page</span><span class="n" style="font-style:normal">Curated from public news sources and refreshed every Friday. Some links open the publisher's front page where a direct article link was not available.</span></div>
+<section class="nblock" id="newsLatest" data-title="Latest headlines"><h2>Latest</h2><div id="newsList"></div><p class="sub" id="newsEmpty" hidden>No headlines from the last three weeks match. Check back after the next update.</p></section>
+<div class="srcs" style="margin-top:28px"><span class="h">About this page</span><span class="n" style="font-style:normal">Curated from public news sources and refreshed every weekday evening. Some links open the publisher's front page where a direct article link was not available.</span></div>
 </div>
 </div>
 
@@ -2023,10 +2532,87 @@ function bootMsg(t,err){ const el=document.getElementById('bootMsg'); if(!el) re
   try{ const lv=await DB.doc('site/live').get(); if(lv.exists) LIVE0=lv.data(); }catch(e){}
   try{ const cs=await DB.collection('cm').get(); cs.docs.forEach(doc=>{ CMDOCS0[doc.id]=doc.data(); }); }catch(e){}
   if(USER){ try{ CANWRITE=(await USER.can('data.write'))!==false; }catch(e){} try{ CANEDIT=!!(await USER.canEdit()); }catch(e){} }
-  try{ __boot(); bootMsg(null); }
+  try{ __boot(); bootMsg(null); try{ sinceVisit().catch(e=>console.error(e)); }catch(e){ console.error(e); } }
   catch(e){ console.error(e); bootMsg('Something in the data broke the page: '+(e&&e.message||e)+'. Reload the page to try again.',true); }
 })();
 const CMDOCS0={};
+// ================= SINCE YOUR LAST VISIT (per-viewer; db data/users/<id>, localStorage fallback) =================
+const SV_S={vote:'Vote pending',conf:'In negotiation',stalled:'Stalled',dead:'Off the table',law:'Law'};
+const SV_KEY='tpi.sinceVisit.v1', SV_GAP=30*60*1000;
+const svEsc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function svNum(s){ if(s==null) return null; if(typeof s==='number') return s; const m=String(s).replace(/,/g,'').replace(/−/g,'-').match(/-?\d+(\.\d+)?/); return m?+m[0]:null; }
+function svSnap(){
+  const m={}, put=(k,l,v,tab,sec,unit)=>{ if(v==null||v==='') return; m[k]=[l,String(v),tab||'',sec||'',unit||'']; };
+  try{ const r=String(D.RATES.v||D.RATES).trim().split('\n'); const last=r[r.length-1].split(',');
+    put('r.2y','2-yr Treasury',last[2]+'%','cap','','bp'); put('r.10y','10-yr Treasury',last[3]+'%','cap','','bp'); put('r.30y','30-yr Treasury',last[4]+'%','cap','','bp'); }catch(e){}
+  try{ put('fed','Fed funds target',D.FED.range,'cap'); }catch(e){}
+  try{ (D.FW_MEET||[]).forEach((x,i)=>put('fw.'+i,`${x.m} hike odds`,x.hike+'%','cap','','pt')); }catch(e){}
+  try{ put('mtg.f30','30-yr mortgage (Freddie Mac)',D.MTG.f30+'%','home','','bp'); put('mtg.mnd','30-yr mortgage (MND daily)',D.MTG.mnd+'%','home','','bp'); }catch(e){}
+  const rows=(ds,pre,tab,li,vi)=>{ try{ (D[ds]||[]).forEach(x=>put(pre+'.'+x[li],x[li],x[vi],tab)); }catch(e){} };
+  rows('BOND_KPI','bk','cap',0,1); rows('FUEL_KPI','fu','re',0,1); rows('CON_KPI','ck','re',0,1); rows('HPI','hpi','home',1,0); rows('BOS_OFFICE','bo','local',1,0);
+  try{ (D.CMBS||[]).forEach(x=>{ const ks=Object.keys(x).filter(k=>k!=='t'); put('cmbs.'+x.t,`${x.t} CMBS delinquency`,x[ks[ks.length-1]]+'%','re','','bp'); }); }catch(e){}
+  try{ const b=D.RENT.Boston; if(b.z) put('rent.z','Boston rent (Zillow)','$'+b.z.r.toLocaleString('en-US'),'local'); if(b.a) put('rent.a','Boston rent (Apartment List)','$'+b.a.r.toLocaleString('en-US'),'local'); if(b.u) put('rent.u','Boston 1BR (Zumper)','$'+b.u.r.toLocaleString('en-US'),'local'); }catch(e){}
+  try{ const C=D.CONSUMER.ser; const lv=k=>{ const x=C[k].v; for(let i=x.length-1;i>=0;i--) if(x[i]!=null) return x[i]; return null; }; put('con.sav','Personal saving rate',lv('sav')+'%','con','conSave','pt'); put('con.wage','Median wage growth',lv('wo')+'%','con','conPay','pt'); put('con.sent','Consumer sentiment',lv('sent'),'con','conMood'); }catch(e){}
+  try{ const t=D.TSY_CTX.borrow; put('tsy.borrow',`Treasury borrowing, ${t.q}`,'$'+t.v+'B','cap'); }catch(e){}
+  const news=(D.NEWS||[]).map(x=>x.d+'|'+x.h), deals=(D.DEALS||[]).map(x=>x[0]+'|'+x[4]), comps=(D.COMPS||[]).map(x=>x[0]+'|'+x[2]);
+  const leg={}; try{ (D.LEG_WATCH.items||[]).forEach(x=>leg[x.id]=x.s); }catch(e){}
+  const asof={}; Object.keys(META).forEach(k=>{ if(META[k]&&META[k].asof) asof[k]=META[k].asof; });
+  return {t:Date.now(),m,news,deals,comps,leg,asof};
+}
+async function svStore(){
+  let id=null, col=null;
+  try{ if(USER&&USER.id){ id=await USER.id(); if(id&&DB) col=DB.collection('data/users/'+id); } }catch(e){}
+  return {
+    async get(){ let a=null,b=null;
+      try{ if(col){ const s=await col.doc('sinceVisit').get(); if(s.exists) a=s.data(); } }catch(e){}
+      try{ const r=localStorage.getItem(SV_KEY); if(r) b=JSON.parse(r); }catch(e){}
+      if(a&&b) return (a.curT||0)>=(b.curT||0)?a:b; return a||b; },
+    async set(v){ try{ localStorage.setItem(SV_KEY,JSON.stringify(v)); }catch(e){}
+      try{ if(col) await col.doc('sinceVisit').set(v); }catch(e){} }
+  };
+}
+function svDelta(a,b,unit){ const x=svNum(a), y=svNum(b); if(x==null||y==null||!unit) return ''; const d=y-x; if(!d) return '';
+  if(unit==='bp') return (d>0?'▲':'▼')+Math.abs(Math.round(d*100))+' bp'; if(unit==='pt') return (d>0?'▲':'▼')+Math.abs(Math.round(d))+' pts'; return ''; }
+function svRender(base,now,store,state){
+  const el=document.getElementById('sinceVisit'); if(!el) return;
+  if(!base){ el.hidden=false; el.innerHTML=`<div class="sv-head"><div><h2>Since your last visit</h2><div class="sub">Starting today, this box will list what changed between your visits: rates, odds, rents, new headlines, deals and bill statuses.</div></div><div class="sv-btns"><button type="button" data-a="hide">Hide</button></div></div>`; svWire(el,base,now,store,state); return; }
+  const ch=[]; Object.entries(now.m).forEach(([k,v])=>{ const o=base.m[k]; if(o&&o[1]!==v[1]) ch.push({k,l:v[0],o:o[1],n:v[1],tab:v[2],d:svDelta(o[1],v[1],v[4])}); });
+  const nn=(a,b)=>{ const s=new Set(b||[]); return (a||[]).filter(x=>!s.has(x)); };
+  const newNews=nn(now.news,base.news), newDeals=nn(now.deals,base.deals), newComps=nn(now.comps,base.comps);
+  const legCh=Object.entries(now.leg).filter(([k,s])=>base.leg&&base.leg[k]!==s);
+  const upd=Object.keys(now.asof).filter(k=>base.asof&&base.asof[k]&&base.asof[k]!==now.asof[k]);
+  const total=ch.length+newNews.length+newDeals.length+newComps.length+legCh.length;
+  const when=new Date(base.t).toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  let h=`<div class="sv-head"><div><h2>Since your last visit</h2><div class="sub">${total?`${total} update${total===1?'':'s'}`:'No changes'} since ${svEsc(when)}</div></div><div class="sv-btns">${total?'<button type="button" data-a="min">'+(state.min?'Show':'Collapse')+'</button><button type="button" data-a="seen">Mark all as seen</button>':'<button type="button" data-a="hide">Hide</button>'}</div></div><div class="sv-body">`;
+  if(ch.length) h+=`<div class="sv-grid">`+ch.map(c=>`<button type="button" class="sv-m" data-tab="${svEsc(c.tab)}"><div class="l">${svEsc(c.l)}</div><div class="v"><s>${svEsc(c.o)}</s> → ${svEsc(c.n)}</div>${c.d?`<div class="d">${c.d}</div>`:''}</button>`).join('')+`</div>`;
+  const NEWS=D.NEWS||[];
+  if(newNews.length){ const items=newNews.slice(0,6).map(k=>NEWS.find(x=>x.d+'|'+x.h===k)).filter(Boolean);
+    h+=`<div class="sv-sec"><h3>${newNews.length} new headline${newNews.length===1?'':'s'}</h3><ul>`+items.map(x=>`<li>${x.u?`<a href="${svEsc(x.u)}" target="_blank" rel="noopener">${svEsc(x.h)}</a>`:svEsc(x.h)}</li>`).join('')+`</ul>${newNews.length>6?`<button class="linkbtn" type="button" data-tab="news">See all in News</button>`:''}</div>`; }
+  if(newDeals.length||newComps.length){ const DL=D.DEALS||[]; const items=newDeals.slice(0,5).map(k=>DL.find(x=>x[0]+'|'+x[4]===k)).filter(Boolean);
+    h+=`<div class="sv-sec"><h3>${newDeals.length} new deal${newDeals.length===1?'':'s'}${newComps.length?`, ${newComps.length} new comp${newComps.length===1?'':'s'}`:''}</h3><ul>`+items.map(x=>`<li>${svEsc(x[4])}, ${svEsc(x[3])}: ${svEsc(x[1])} ${svEsc(x[7]||'')}</li>`).join('')+`</ul><button class="linkbtn" type="button" data-tab="news">Open deals</button></div>`; }
+  if(legCh.length){ const L=(D.LEG_WATCH&&D.LEG_WATCH.items)||[];
+    h+=`<div class="sv-sec"><h3>Legislation status changes</h3><ul>`+legCh.map(([k,s])=>{ const x=L.find(i=>i.id===k)||{t:k}; return `<li>${svEsc(x.t)}: ${svEsc(SV_S[base.leg[k]]||'new')} → ${svEsc(SV_S[s]||s)}</li>`; }).join('')+`</ul><button class="linkbtn" type="button" data-sec="govLeg">Open legislation watch</button></div>`; }
+  if(upd.length) h+=`<div class="sv-more">Also refreshed: ${upd.map(k=>svEsc((META[k]&&META[k].label||k).split(/[:(]/)[0].trim())).slice(0,12).join(' · ')}${upd.length>12?` and ${upd.length-12} more`:''}.</div>`;
+  h+='</div>';
+  el.hidden=false; el.innerHTML=h; el.classList.toggle('min',!!state.min); svWire(el,base,now,store,state);
+}
+function svWire(el,base,now,store,state){
+  el.onclick=async e=>{ const b=e.target.closest('button'); if(!b) return;
+    if(b.dataset.tab){ try{ window.showTab(b.dataset.tab); }catch(x){} return; }
+    if(b.dataset.sec){ try{ window.showSection('gov',b.dataset.sec); }catch(x){ try{ window.showTab('gov'); }catch(y){} } return; }
+    const a=b.dataset.a;
+    if(a==='min'){ state.min=!state.min; el.classList.toggle('min',state.min); b.textContent=state.min?'Show':'Collapse'; return; }
+    if(a==='seen'||a==='hide'){ const v={base:now,cur:now,curT:Date.now()}; el.hidden=true; await store.set(v); }
+  };
+}
+async function sinceVisit(){
+  const now=svSnap(), store=await svStore(); let st=null; try{ st=await store.get(); }catch(e){}
+  let base;
+  if(!st||!st.cur){ base=null; await store.set({base:now,cur:now,curT:now.t}); }
+  else if(now.t-(st.curT||0)>SV_GAP){ base=st.cur; await store.set({base:st.cur,cur:now,curT:now.t}); }
+  else { base=st.base||null; await store.set({base:st.base,cur:now,curT:now.t}); }
+  svRender(base,now,store,{min:false});
+}
 </script>
 <script>
 function __boot(){
@@ -3193,7 +3779,7 @@ function tsyAgo(d,days){ const x=new Date(d+'T12:00'); x.setDate(x.getDate()-day
 function renderTsy(){
   const el=document.getElementById('tsyVerdict'); if(!el) return;
   const R=tsyGrade(tsyRows()), C=D.TSY_CTX||{}, M=Array.isArray(D.TSY_MIX)?D.TSY_MIX:[], F=D.TSY_FOR||null;
-  if(!R.length){ el.innerHTML='<b>No auction data yet</b>The Friday refresh adds it.'; return; }
+  if(!R.length){ el.innerHTML='<b>No auction data yet</b>The weekday refresh adds it.'; return; }
   const last=R[R.length-1].d, nom=R.filter(r=>r.k==='N'||r.k==='R');
   const recent=nom.filter(r=>r.d>tsyAgo(last,91)), prior=nom.filter(r=>r.d<=tsyAgo(last,91)&&r.d>tsyAgo(last,456));
   const bN=tsyWavg(recent,'btc'), bP=tsyWavg(prior,'btc'), dN=tsyWavg(recent,'dlr'), dP=tsyWavg(prior,'dlr'), iN=tsyWavg(recent,'ind'), iP=tsyWavg(prior,'ind');
@@ -3387,11 +3973,14 @@ function earnChunks(){ const out=[], t=new Date(); t.setHours(12,0,0,0);
   for(let a=new Date(s); a<e; a=new Date(a.getTime()+7*DAY)){ const b=new Date(a.getTime()+6*DAY); out.push([ymd(a),ymd(b)]); }
   return out; }
 function earnMerge(){ const ch=earnChunks(), all=ch.every(c=>EARN.st[c[0]]), snap=EARN.snap||[];
-  // chunks still loading (or failing) fall back to the saved copy for their dates
-  const rows=[].concat(...ch.map(([a,b])=>EARN.st[a]||snap.filter(r=>r[0]>=a&&r[0]<=b))).sort((a,b)=>a[0].localeCompare(b[0])||a[2].localeCompare(b[2]));
+  // live FMP rows win; saved rows stay unless FMP reports the same company within 60 days (a moved date),
+  // so an empty or partial FMP week never wipes earnings off the calendar
+  const live=[].concat(...ch.map(([a])=>EARN.st[a]||[]));
+  const near=(r,l)=>l[2]===r[2]&&Math.abs(new Date(l[0]+'T12:00')-new Date(r[0]+'T12:00'))<60*DAY;
+  const rows=live.concat(snap.filter(r=>!live.some(l=>near(r,l)))).sort((a,b)=>a[0].localeCompare(b[0])||a[2].localeCompare(b[2]));
   EARN.rows=rows; D.EARNINGS=rows; EARN.at=Date.now();
   if(currentTab==='cal'){ clearTimeout(earnMerge.t); earnMerge.t=setTimeout(renderCalTab,80); }
-  earnStatus(); if(all) earnSave(rows); }
+  earnStatus(); if(all&&rows.length) earnSave(rows); }
 async function earnSave(rows){ // editors keep a saved copy so viewers without FMP still see the dates
   if(!CANEDIT||!DB) return; const key=JSON.stringify(rows); if(key===EARN.saved) return; EARN.saved=key;
   clearTimeout(earnSave.t); earnSave.t=setTimeout(async()=>{ try{ await DB.collection('ds').doc('EARNINGS').set({v:rows,asof:ymd(new Date()),tier:'live',label:'Large-cap earnings dates and estimates from the FMP earnings calendar (date, time bmo/amc, symbol, EPS est, revenue est, EPS actual, revenue actual, fiscal period)'}); META.EARNINGS={asof:ymd(new Date()),tier:'live'}; }catch(e){ EARN.saved=''; } },4000); }
@@ -3749,7 +4338,7 @@ function freshBadges(){
   });
   const fw=document.getElementById('fwStamp'); if(fw) fw.textContent=`Snapshot as of ${fmtD(META.FW_MEET?.asof,{month:'short',day:'numeric',year:'numeric'})} · current range ${D.FED.range}`;
   const mt=document.getElementById('mtgStamp'); if(mt) mt.textContent=`Rates as of ${MTG.date} · Freddie Mac updates every Thursday`;
-  const ns=document.getElementById('newsStampText'); if(ns) ns.textContent=`Updated ${fmtD(META.NEWS?.asof,{month:'short',day:'numeric',year:'numeric'})} · refreshed every Friday`;
+  const ns=document.getElementById('newsStampText'); if(ns) ns.textContent=`Updated ${fmtD(META.NEWS?.asof,{month:'short',day:'numeric',year:'numeric'})} · refreshed every weekday evening`;
 }
 
 // ================= COMMENTARY (written by Claude from the page's own data) =================
@@ -3759,6 +4348,7 @@ const CMDEF={
  cap_fed_note:{tab:'cap',kind:'p',brief:'One or two sentences of caveats on the odds snapshot (its date, how much it moved) and the next scheduled events that could move it.',ctx:()=>({meetings:D.FW_MEET,asof:META.FW_MEET?.asof,next:nextEvents(6)})},
  cap_fuel:{tab:'cap',kind:'p',brief:'2 sentences on retail gasoline and diesel prices vs. a year ago and why that matters for construction, operating costs and tenants.',ctx:()=>({kpis:D.FUEL_KPI,regions:D.FUEL_REG,yearAgo:D.FUEL_YA,asof:META.FUEL_GAS?.asof})},
  cap_cost:{tab:'re',kind:'p',brief:'2–3 sentences on construction input prices, building costs and wages, and what that means for replacement cost and new starts.',ctx:()=>({kpis:D.CON_KPI,ppi:D.PPI,turner:D.TURNER,labor:D.LABOR})},
+ con_head:{tab:'con',kind:'p',brief:'Two plain sentences on the overall state of the U.S. consumer from the six gauges (saving rate, wage growth, real pay, real retail sales, sentiment, card delinquency), leading with what is most stretched and what is holding up, then what it means for retail and restaurant tenants and rent collection. Name the month of each figure you cite.',ctx:()=>conCtx()},
  cap_opex:{tab:'re',kind:'p',brief:'2 sentences on property insurance and energy costs, with a New England angle.',ctx:()=>({cards:D.OPEX})},
  cap_caps:{tab:'re',kind:'p',brief:'2–3 sentences on core cap rates by sector against the current 10-year Treasury, including the spread vs. history.',ctx:()=>({caps:D.CAPS,metros:D.CAP_METRO,t10:RATES[RATES.length-1].t10,note:'h is the 2010–2020 average spread to the 10-year in percentage points'})},
  mig_fc:{tab:'mig',kind:'p',brief:'2 sentences on residential foreclosure activity: the national rate and trend, which states lead, and how Massachusetts and New Hampshire compare (rate, change, and whether they are net migration gainers or losers). Plain facts, no alarm.',ctx:()=>{const F=D.FCL; if(!F) throw 0; const net=stateNet('A'); return {period:F.per,national:F.nat,latestMonth:F.mo,worstStates:Object.entries(F.st).filter(([c])=>c!=='DC').sort((a,b)=>b[1][1]-a[1][1]).slice(0,5).map(([c,x])=>({state:c,pct:x[1],yoy:x[3]})),newEngland:['MA','NH','CT','RI','ME','VT'].map(c=>({state:c,oneIn:F.st[c][2],pct:F.st[c][1],yoy:F.st[c][3],netMigration:net[c]?.net??null})),fields:'st values are [filings, pct of housing units, one in X units, pct change vs year earlier, rank]'};}},
@@ -3919,8 +4509,8 @@ function rfRender(){
   if(RF.confirm){ b.textContent='Confirm: run full refresh'; b.classList.add('confirm'); rfSet('Researches every section on the web and takes about 10–20 minutes.'); return; }
   b.textContent=RF.owner?'Refresh all':'Refresh live data';
   if(d.state==='error') rfSet('Last refresh hit a problem'+(d.note?': '+d.note:'')+'.');
-  else if(finT) rfSet('Last full refresh '+rfTime(d.finishedAt)+(RF.owner?'':' · runs Fridays 4 PM'));
-  else rfSet(RF.owner?'Full refresh runs Fridays 4 PM, or any time from here.':'Full refresh runs Fridays 4 PM.');
+  else if(finT) rfSet('Last full refresh '+rfTime(d.finishedAt)+(RF.owner?'':' · runs weekdays about 5:15 PM ET'));
+  else rfSet(RF.owner?'Full refresh runs weekdays about 5:15 PM ET, or any time from here.':'Full refresh runs weekdays about 5:15 PM ET.');
 }
 async function rfClick(){
   if(RF.busy) return;
@@ -3965,23 +4555,27 @@ async function rfInit(){
   DB.doc('site/refresh').onSnapshot(s=>{ RF.doc=s.exists?s.data():null; rfRender(); },()=>{});
   rfRender(); setInterval(rfRender,60*1000);
 }
-// ================= WEEKLY =================
-let WKDOCS={}, wkSel=null, wkEditing=false;
+// ================= WRAP (daily + weekly, written by the refresh task) =================
+let WKDOCS={}, DYDOCS={}, wkSel=null, dySel=null, wrMode='d';
+try{ const m=localStorage.getItem('tpiWrapMode'); if(m==='w'||m==='d') wrMode=m; }catch(e){}
 function fridayOf(dt){ const d=new Date(dt); d.setHours(12,0,0,0); const day=d.getDay(); d.setDate(d.getDate()+(day===6?-1:day===0?-2:5-day)); return d; }
 function wkRange(fri){ const end=new Date(fri); end.setHours(23,59,0,0); const start=new Date(fri); start.setDate(start.getDate()-6); start.setHours(0,0,0,0); return {start,end}; }
-function wkBoard(fri){
-  const {start,end}=wkRange(fri), prevEnd=new Date(start.getTime()-1);
-  const rows=[];
-  const r1=rateAt(end), r0=rateAt(prevEnd);
+function boardFor(start,end,cur,daily){
+  let prevEnd=new Date(start.getTime()-1); const rows=[];
+  const dayStart=d=>{ const x=new Date(d); x.setHours(0,0,0,0); return x; };
+  const r1=rateAt(end); let r0=rateAt(prevEnd);
+  if(daily&&r1&&r1.d<start) r0=rateAt(new Date(dayStart(r1.d).getTime()-1)); // no close yet on this day: show the latest day's move
   [['t2y','2-year Treasury'],['t10','10-year Treasury'],['t30','30-year Treasury']].forEach(([k,l])=>{ if(r1&&r0) rows.push({l,v:r1[k].toFixed(2)+'%',c:Math.round((r1[k]-r0[k])*100),u:'bp',inv:true,asof:ymd(r1.d)}); });
-  const ix=(arr,l,pct)=>{ const a=arr.filter(r=>r.d<=end), b=arr.filter(r=>r.d<=prevEnd); if(!a.length||!b.length) return; const x=a[a.length-1].v, y=b[b.length-1].v;
+  const ix=(arr,l,pct)=>{ const a=arr.filter(r=>r.d<=end); if(!a.length) return; const pe=(daily&&a[a.length-1].d<start)?new Date(dayStart(a[a.length-1].d).getTime()-1):prevEnd; const b=arr.filter(r=>r.d<=pe); if(!b.length) return; const x=a[a.length-1].v, y=b[b.length-1].v;
     rows.push(pct?{l,v:x.toLocaleString('en-US',{maximumFractionDigits:0}),c:+((x/y-1)*100).toFixed(1),u:'%',asof:ymd(a[a.length-1].d)}:{l,v:x.toFixed(1),c:+(x-y).toFixed(1),u:' pts',inv:true,asof:ymd(a[a.length-1].d)}); };
   ix(IDX.spx,'S&P 500',true); ix(IDX.vix,'VIX',false);
-  const cur=ymd(fridayOf(new Date()))===ymd(fri);
-  if(cur){ rows.push({l:'30-yr mortgage',v:MTG.f30.toFixed(2)+'%',c:Math.round((MTG.f30-MTG.f30wk)*100),u:'bp',inv:true,asof:'Freddie Mac '+MTG.date});
-    const g=FUEL_DSL, L=g[g.length-1], P=g[g.length-2]; if(L&&P) rows.push({l:'U.S. diesel',v:'$'+L.v.toFixed(2),c:+(L.v-P.v).toFixed(2),u:'$',inv:true,asof:ymd(L.d)}); }
+  if(cur){ const per=daily?'vs. prior week':undefined;
+    rows.push({l:'30-yr mortgage',v:MTG.f30.toFixed(2)+'%',c:Math.round((MTG.f30-MTG.f30wk)*100),u:'bp',inv:true,asof:'Freddie Mac '+MTG.date,per});
+    const g=FUEL_DSL, L=g[g.length-1], P=g[g.length-2]; if(L&&P) rows.push({l:'U.S. diesel',v:'$'+L.v.toFixed(2),c:+(L.v-P.v).toFixed(2),u:'$',inv:true,asof:ymd(L.d),per}); }
   return rows;
 }
+function wkBoard(fri){ const {start,end}=wkRange(fri); return boardFor(start,end,ymd(fridayOf(new Date()))===ymd(fri),false); }
+function dyBoard(ds){ return boardFor(new Date(ds+'T00:00'),new Date(ds+'T23:59'),ds===dyOptions()[0],true); }
 function wkAuto(fri){
   const {start,end}=wkRange(fri), inWk=s=>{ const d=new Date(s+'T12:00'); return d>=start&&d<=end; };
   const deals=D.DEALS.filter(x=>inWk(x[0])).sort((a,b)=>(parseAmt(b[7])||0)-(parseAmt(a[7])||0)).slice(0,3).map(x=>({t:`${x[4]} (${x[5]}, ${x[3]}): ${x[7]||x[1]}. ${x[6]||''}`.replace(/\s+/g,' ').trim()}));
@@ -3989,92 +4583,73 @@ function wkAuto(fri){
   const next=D.EVENTS.filter(e=>{ const d=new Date(e[0]+'T12:00'); return d>end&&d<=nEnd; }).slice(0,6).map(e=>({d:e[0],t:e[3]+(e[6]?' · '+e[6]:'')}));
   return {deals,next};
 }
-function wkOptions(){
-  const cur=ymd(fridayOf(new Date())), ids=new Set([cur,...Object.keys(WKDOCS)]);
-  return [...ids].sort().reverse();
-}
+function wkOptions(){ const cur=ymd(fridayOf(new Date())), ids=new Set([cur,...Object.keys(WKDOCS)]); return [...ids].sort().reverse(); }
+function dyOptions(){ const ids=Object.keys(DYDOCS).sort().reverse(); if(ids.length) return ids; const d=new Date(); while(d.getDay()===0||d.getDay()===6) d.setDate(d.getDate()-1); return [ymd(d)]; }
+const WRC={cap:'--gA',re:'--gB',con:'--gZ',local:'--gM',news:'--gX',cal:'--sale',home:'--gB',mig:'--gM',gov:'--gZ',pred:'--gA',week:'--muted'};
+const WRORDER=['cap','re','con','local','news','cal','home','mig','gov','pred'];
+function wrSecOk(tab,sec){ try{ return !!sec&&navSections(tab).some(s=>s.id===sec); }catch(e){ return false; } }
+function wrSecName(tab,sec){ if(!wrSecOk(tab,sec)) return ''; const el=document.getElementById(sec); return (el&&el.dataset.title)||''; }
+function wrBtn(tab,sec,label,cls){ return `<button type="button" class="${cls||'wrtab'}" data-wt="${esc(tab)}" data-ws="${wrSecOk(tab,sec)?esc(sec):''}" style="--c:var(${WRC[tab]||'--muted'})">${esc(label)}</button>`; }
+function wrTime(at){ try{ return new Date(at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET'; }catch(e){ return ''; } }
 function renderWeek(){
-  const sel=document.getElementById('wkSelect'), opts=wkOptions(); if(!wkSel||!opts.includes(wkSel)) wkSel=opts[0];
-  sel.innerHTML=opts.map(id=>{ const dd=WKDOCS[id]; const st=dd?'':' (coming Friday)'; return `<option value="${id}"${id===wkSel?' selected':''}>${fmtD(id,{month:'short',day:'numeric',year:'numeric'})}${st}</option>`; }).join('');
-  sel.onchange=()=>{ wkSel=sel.value; wkEditing=false; renderWeek(); };
-  const fri=new Date(wkSel+'T12:00'), {start}=wkRange(fri), doc=WKDOCS[wkSel]||null, auto=wkAuto(fri);
-  const final=doc&&doc.status==='final';
-  document.getElementById('wkTitle').textContent='Week ending '+fmtD(wkSel,{month:'long',day:'numeric'});
-  document.getElementById('wkSub').textContent=`${fmtD(ymd(start),{month:'long',day:'numeric'})} – ${fmtD(wkSel,{month:'long',day:'numeric',year:'numeric'})}. A one-screen recap, published every Friday.`;
-  const st=document.getElementById('wkStatus'); st.className='wk-status '+(final?'final':doc?'draft':'none'); st.textContent=final?'Final':doc?'Draft':'Not written yet';
-  const board=(final&&doc.board)?doc.board:wkBoard(fri);
+  const daily=wrMode==='d';
+  document.querySelectorAll('#wrMode button').forEach(b=>{ b.setAttribute('aria-pressed',String(b.dataset.m===wrMode)); b.onclick=()=>{ wrMode=b.dataset.m; try{ localStorage.setItem('tpiWrapMode',wrMode); }catch(e){} renderWeek(); }; });
+  const sel=document.getElementById('wkSelect'); let doc, board, final=false;
+  if(daily){
+    const opts=dyOptions(); if(!dySel||!opts.includes(dySel)) dySel=opts[0];
+    sel.innerHTML=opts.map(id=>`<option value="${id}"${id===dySel?' selected':''}>${fmtD(id,{weekday:'short',month:'short',day:'numeric',year:'numeric'})}${DYDOCS[id]?'':' (not written yet)'}</option>`).join('');
+    sel.onchange=()=>{ dySel=sel.value; renderWeek(); };
+    doc=DYDOCS[dySel]||null;
+    document.getElementById('wkTitle').textContent='Daily wrap';
+    document.getElementById('wkSub').textContent=fmtD(dySel,{weekday:'long',month:'long',day:'numeric',year:'numeric'})+'. Written automatically after each weekday refresh: the biggest changes across the dashboard and the day’s headlines, tab by tab.';
+    board=dyBoard(dySel);
+  } else {
+    const opts=wkOptions(); if(!wkSel||!opts.includes(wkSel)) wkSel=opts[0];
+    sel.innerHTML=opts.map(id=>`<option value="${id}"${id===wkSel?' selected':''}>${fmtD(id,{month:'short',day:'numeric',year:'numeric'})}${WKDOCS[id]?'':' (not written yet)'}</option>`).join('');
+    sel.onchange=()=>{ wkSel=sel.value; renderWeek(); };
+    doc=WKDOCS[wkSel]||null; final=!!(doc&&doc.status==='final');
+    const fri=new Date(wkSel+'T12:00'), {start}=wkRange(fri);
+    document.getElementById('wkTitle').textContent='Weekly wrap';
+    document.getElementById('wkSub').textContent=`Week ending ${fmtD(wkSel,{month:'long',day:'numeric'})}: ${fmtD(ymd(start),{month:'long',day:'numeric'})} – ${fmtD(wkSel,{month:'long',day:'numeric',year:'numeric'})}. Written automatically every Friday after the close.`;
+    board=(final&&doc.board)?doc.board:wkBoard(fri);
+  }
+  document.getElementById('wkPickL').textContent=daily?'Day':'Week ending';
+  const st=document.getElementById('wkStatus'); st.className='wk-status '+(doc?'final':'none'); st.textContent=doc?('Written '+wrTime(doc.at||doc.finalAt)):'Not written yet';
   document.getElementById('wkGrid').innerHTML=board.length?board.map(b=>{ const dir=b.c>0?(b.inv?'dn':'up'):b.c<0?(b.inv?'up':'dn'):''; const sign=b.c>0?'+':b.c<0?'−':'';
       const cv=b.u==='$'?`${sign}$${Math.abs(b.c).toFixed(2)}`:`${sign}${Math.abs(b.c)}${b.u==='%'?'%':b.u==='bp'?' bp':b.u}`;
-      return `<div class="wkcell"><div class="l">${esc(b.l)}</div><div class="v">${esc(b.v)}</div><div class="d ${dir}">${cv} on the week</div></div>`; }).join('')
+      return `<div class="wkcell"><div class="l">${esc(b.l)}</div><div class="v">${esc(b.v)}</div><div class="d ${dir}">${cv} ${esc(b.per||(daily?'on the day':'on the week'))}</div></div>`; }).join('')
     :'<p class="sub">Scoreboard numbers appear once rates and index data have loaded.</p>';
-  document.getElementById('wkBoardNote').textContent=final?'Numbers frozen when this week was marked final.':'Treasury, S&P 500 and VIX are Friday-to-Friday closes from FMP; mortgage and diesel are the latest weekly prints.';
-  const S=document.getElementById('wkSummary');
-  S.innerHTML=doc&&doc.summary?sanitize(doc.summary):`<p class="sub">This week's recap hasn't been written yet.${CANEDIT?' Use “Draft with Claude” below to start one.':''}</p>`;
-  const items=(doc&&doc.items)||[];
-  document.getElementById('wkItems').innerHTML=items.length?items.map(it=>`<li><b class="wkh">${esc(it.h)}</b> <span class="wkt">${esc(it.t)}</span></li>`).join(''):'<li class="sub empty">Added with the recap.</li>';
-  const deals=(doc&&doc.deals&&doc.deals.length)?doc.deals:auto.deals;
-  document.getElementById('wkDeals').innerHTML=deals.length?deals.map(x=>`<li>${esc(x.t)}</li>`).join(''):'<li class="sub empty">No deals on the tape for this week yet.</li>';
-  const next=(doc&&doc.next&&doc.next.length)?doc.next:auto.next;
-  document.getElementById('wkNext').innerHTML=next.length?next.map(x=>`<li><span class="wkd">${fmtD(x.d,{weekday:'short',month:'short',day:'numeric'})}</span> ${esc(x.t)}</li>`).join(''):'<li class="sub empty">Nothing scheduled.</li>';
-  const bar=document.getElementById('wkBar'); bar.hidden=!CANEDIT;
-  document.getElementById('wkFinal').textContent=final?'Reopen as draft':'Mark as final';
-  document.getElementById('wkFinal').disabled=!doc;
-  document.getElementById('wkEdit').hidden=wkEditing||!doc; document.getElementById('wkSave').hidden=!wkEditing;
-  document.getElementById('wkDraft').textContent=doc?'Redraft with Claude':'Draft with Claude';
-  document.querySelectorAll('#tab-week .wkedit, #wkItems .wkh, #wkItems .wkt, #wkDeals li, #wkNext li').forEach(el=>{ el.contentEditable=wkEditing?'true':'false'; el.classList.toggle('editing',wkEditing); });
-}
-function wkMsg(t){ document.getElementById('wkMsg').textContent=t||''; }
-async function wkDraft(){
-  const sample=await getSample(); if(!sample){ wkMsg('Drafting needs Claude access in this view.'); return; }
-  const fri=new Date(wkSel+'T12:00'), {start,end}=wkRange(fri), inWk=s=>{ const d=new Date(s+'T12:00'); return d>=start&&d<=end; };
-  const data={weekStart:ymd(start),weekEnd:wkSel,scoreboard:wkBoard(fri),rates:ratesCtx(),fed:D.FED,fedOdds:D.FW_MEET,
-    news:D.NEWS.filter(n=>inWk(n.d)).map(n=>({date:n.d,h:n.h,s:n.s,why:n.w,tags:n.c})),
-    deals:D.DEALS.filter(x=>inWk(x[0])).map(x=>({date:x[0],type:x[1],state:x[2],area:x[3],what:x[4],asset:x[5],parties:x[6],amount:x[7]})),
-    releases:D.EVENTS.filter(e=>inWk(e[0])).map(e=>({date:e[0],what:e[3],result:D.RESULTS[e[0]+'|'+e[2]]||null})),
-    nextWeek:wkAuto(fri).next, mortgage:{f30:MTG.f30,prior:MTG.f30wk,date:MTG.date}};
-  wkMsg('Drafting… this takes about 30 seconds.'); document.getElementById('wkDraft').disabled=true;
-  try{
-    const out=await sample.json(`You write the Friday "week in review" for the JAM Capital Markets for a Boston commercial real estate investor (multifamily, office, retail, student housing in Massachusetts and New Hampshire). Write for the firm's acquisitions and asset management team.
-
-Use only facts in the data below. No invented numbers, events or names. Plain, direct sentences; no hype, no advice, no first person.
-
-Return only JSON with this shape:
-{"summary": "<p>3 sentences: what moved markets this week and what it means for Boston/NH real estate.</p>",
- "items": [{"h": "Short headline", "t": "One or two sentences."}],   // 3 to 5 items, most important first
- "deals": [{"t": "One line per deal: what, where, size, who."}],       // up to 3, from the deals data only; [] if none
- "next": [{"d": "YYYY-MM-DD", "t": "What and why it matters, one line"}]  // from nextWeek only
-}
-
-DATA:
-${JSON.stringify(data)}`,{modelTier:'default'});
-    const prev=WKDOCS[wkSel]||{};
-    const doc={status:'draft',summary:String(out.summary||''),items:(out.items||[]).slice(0,5),deals:(out.deals||[]).slice(0,3),next:(out.next||[]).slice(0,6),at:new Date().toISOString(),created:prev.created||new Date().toISOString()};
-    await DB.doc('weekly/'+wkSel).set(doc); WKDOCS[wkSel]=doc; wkMsg('Draft saved. Edit anything, then mark it final.'); renderWeek();
-  }catch(e){ wkMsg(e&&e.code==='not_granted'?'Claude access was declined for this page.':e&&e.code==='rate_limited'?'Too many requests right now. Try again in a minute.':'The draft could not be written. Try again.'); }
-  finally{ document.getElementById('wkDraft').disabled=false; }
-}
-async function wkSave(){
-  const doc={...(WKDOCS[wkSel]||{status:'draft'})};
-  doc.summary=sanitize(document.getElementById('wkSummary').innerHTML);
-  doc.items=[...document.querySelectorAll('#wkItems li')].filter(li=>!li.classList.contains('empty')).map(li=>({h:li.querySelector('.wkh')?.textContent.trim()||'',t:li.querySelector('.wkt')?.textContent.trim()||''})).filter(x=>x.h||x.t);
-  doc.deals=[...document.querySelectorAll('#wkDeals li')].filter(li=>!li.classList.contains('empty')).map(li=>({t:li.textContent.trim()})).filter(x=>x.t);
-  doc.next=[...document.querySelectorAll('#wkNext li')].filter(li=>!li.classList.contains('empty')).map(li=>{ const d=li.querySelector('.wkd'); const t=li.textContent.replace(d?d.textContent:'','').trim(); const old=(WKDOCS[wkSel]?.next||wkAuto(new Date(wkSel+'T12:00')).next).find(n=>d&&fmtD(n.d,{weekday:'short',month:'short',day:'numeric'})===d.textContent); return {d:old?old.d:wkSel,t}; }).filter(x=>x.t);
-  doc.at=new Date().toISOString();
-  try{ await DB.doc('weekly/'+wkSel).set(doc); WKDOCS[wkSel]=doc; wkEditing=false; wkMsg('Saved.'); renderWeek(); }
-  catch(e){ wkMsg('Not saved: only editors of this dashboard can change the weekly recap.'); }
-}
-async function wkFinal(){
-  const doc={...WKDOCS[wkSel]}; if(!doc) return;
-  if(doc.status==='final'){ doc.status='draft'; delete doc.board; } else { doc.status='final'; doc.board=wkBoard(new Date(wkSel+'T12:00')); doc.finalAt=new Date().toISOString(); }
-  try{ await DB.doc('weekly/'+wkSel).set(doc); WKDOCS[wkSel]=doc; wkMsg(doc.status==='final'?'Marked final.':'Reopened as a draft.'); renderWeek(); }
-  catch(e){ wkMsg('Not saved: only editors of this dashboard can change the weekly recap.'); }
+  document.getElementById('wkBoardNote').textContent=daily?'Treasury, S&P 500 and VIX are the latest closes from FMP compared with the prior trading day (before today’s close, the previous session’s move); mortgage and diesel are the latest weekly prints.'
+    :(final&&doc.board)?'Numbers frozen when this week’s wrap was written.':'Treasury, S&P 500 and VIX are Friday-to-Friday closes from FMP; mortgage and diesel are the latest weekly prints.';
+  document.getElementById('wkSumH').textContent=daily?'The day in brief':'The week in brief';
+  document.getElementById('wkSummary').innerHTML=(doc&&doc.headline?`<p class="wrhl">${esc(doc.headline)}</p>`:'')+(doc&&doc.summary?sanitize(doc.summary)
+    :`<p class="sub">${daily?'This day’s wrap hasn’t been written yet. It is written after the weekday refresh, around 5:30 PM ET.':'This week’s wrap hasn’t been written yet. It is written after the Friday refresh.'}</p>`);
+  const ch=(doc&&doc.changes)||[];
+  document.getElementById('wrMovesSec').hidden=!daily&&!ch.length;
+  document.getElementById('wrMoves').innerHTML=ch.length?ch.map(c=>{ const nm=(TABNAMES[c.tab]||'')+(wrSecName(c.tab,c.sec)?' · '+wrSecName(c.tab,c.sec):'');
+      return `<li><span class="wrdir">${c.dir==='up'?'▲':c.dir==='down'?'▼':'•'}</span><div><b>${esc(c.h)}</b> <span>${esc(c.t||'')}</span>${TABNAMES[c.tab]?`<div class="wrmeta">${wrBtn(c.tab,c.sec,nm)}</div>`:''}</div></li>`; }).join('')
+    :`<li class="sub empty">${doc?'No big changes today.':'Appears with the wrap.'}</li>`;
+  const secs=(doc&&doc.sections)||[], byTab={};
+  secs.forEach(s=>{ if(!s||!s.tab||!(s.items||[]).length) return; (byTab[s.tab]=byTab[s.tab]||[]).push(s); });
+  const tabs=[...WRORDER.filter(t=>byTab[t]),...Object.keys(byTab).filter(t=>!WRORDER.includes(t))];
+  document.getElementById('wrHeadSec').hidden=!daily&&!tabs.length;
+  document.getElementById('wrHeads').innerHTML=tabs.length?tabs.map(t=>`<div class="wrcard" style="--c:var(${WRC[t]||'--muted'})"><h3>${wrBtn(t,null,TABNAMES[t]||t,'wrh')}</h3>${byTab[t].map(s=>{ const lab=s.label||wrSecName(t,s.sec);
+      return `${lab?wrBtn(t,s.sec,lab,'wrsub'):''}<ul>${(s.items||[]).map(it=>`<li><b>${it.u&&/^https?:\/\//.test(it.u)?`<a href="${esc(it.u)}" target="_blank" rel="noopener">${esc(it.h)}</a>`:esc(it.h)}</b>${it.t?` <span>${esc(it.t)}</span>`:''}</li>`).join('')}</ul>`; }).join('')}</div>`).join('')
+    :`<p class="sub">${doc?'No new headlines recorded.':'Appears with the wrap.'}</p>`;
+  document.getElementById('wkItemsSec').hidden=daily; document.getElementById('wkDuo').hidden=daily;
+  if(!daily){
+    const fri=new Date(wkSel+'T12:00'), auto=wkAuto(fri), items=(doc&&doc.items)||[];
+    document.getElementById('wkItems').innerHTML=items.length?items.map(it=>`<li><b class="wkh">${esc(it.h)}</b> <span class="wkt">${esc(it.t)}</span></li>`).join(''):'<li class="sub empty">Added with the wrap.</li>';
+    const deals=(doc&&doc.deals&&doc.deals.length)?doc.deals:auto.deals;
+    document.getElementById('wkDeals').innerHTML=deals.length?deals.map(x=>`<li>${esc(x.t)}</li>`).join(''):'<li class="sub empty">No deals on the tape for this week yet.</li>';
+    const next=(doc&&doc.next&&doc.next.length)?doc.next:auto.next;
+    document.getElementById('wkNext').innerHTML=next.length?next.map(x=>`<li><span class="wkd">${fmtD(x.d,{weekday:'short',month:'short',day:'numeric'})}</span> ${esc(x.t)}</li>`).join(''):'<li class="sub empty">Nothing scheduled.</li>';
+  }
 }
 function wkInit(){
-  document.getElementById('wkDraft').onclick=wkDraft;
-  document.getElementById('wkEdit').onclick=()=>{ wkEditing=true; wkMsg('Click any text to edit it, then save.'); renderWeek(); };
-  document.getElementById('wkSave').onclick=wkSave;
-  document.getElementById('wkFinal').onclick=wkFinal;
-  DB.collection('weekly').onSnapshot(s=>{ s.docs.forEach(doc=>{ WKDOCS[doc.id]=doc.data(); }); if(currentTab==='week'&&!wkEditing) renderWeek(); },()=>{});
+  DB.collection('weekly').onSnapshot(s=>{ const o={}; s.docs.forEach(d=>{ o[d.id]=d.data(); }); WKDOCS=o; if(currentTab==='week') renderWeek(); },()=>{});
+  DB.collection('daily').onSnapshot(s=>{ const o={}; s.docs.forEach(d=>{ o[d.id]=d.data(); }); DYDOCS=o; if(currentTab==='week') renderWeek(); },()=>{});
+  document.getElementById('tab-week').addEventListener('click',e=>{ const b=e.target.closest('[data-wt]'); if(!b||!TABNAMES[b.dataset.wt]) return; showSection(b.dataset.wt,b.dataset.ws||null); });
 }
 
 // ================= ASK =================
@@ -4101,7 +4676,10 @@ function askTools(){
     {name:'get_earnings',description:'Large-cap earnings reports (about 140 of the biggest U.S.-listed companies) from the FMP earnings calendar between two dates, YYYY-MM-DD: date, timing (bmo = before the open, amc = after the close), ticker, company, EPS estimate, revenue estimate, and EPS/revenue actuals once reported.',
       inputSchema:{type:'object',properties:{from:{type:'string'},to:{type:'string'}}},
       execute:({from,to})=>{ const a=from||ymd(new Date(Date.now()-14*DAY)), b=to||ymd(new Date(Date.now()+30*DAY)); return {columns:['date','time','symbol','company','epsEst','revEst','epsActual','revActual','period'],rows:earnAll().filter(r=>r[0]>=a&&r[0]<=b).map(r=>[r[0],r[1],r[2],EARN_CO[r[2]]||'',r[3],r[4],r[5],r[6],r[7]])}; }},
-    {name:'get_weekly',description:'The Friday weekly recap for a week ending on a given Friday (YYYY-MM-DD), or the list of saved weeks if no date is given.',
+    {name:'get_daily',description:'The daily wrap for a weekday (YYYY-MM-DD): headline, summary, big changes and headlines by tab. Lists saved days if no date is given.',
+      inputSchema:{type:'object',properties:{date:{type:'string'}}},
+      execute:({date})=>date?(DYDOCS[date]||{error:'No daily wrap saved for '+date}):Object.keys(DYDOCS).sort()},
+    {name:'get_weekly',description:'The Friday weekly wrap for a week ending on a given Friday (YYYY-MM-DD), or the list of saved weeks if no date is given.',
       inputSchema:{type:'object',properties:{date:{type:'string'}}},
       execute:({date})=>date?(WKDOCS[date]||{error:'No recap saved for '+date}):Object.keys(WKDOCS).sort()},
   ];
@@ -4137,8 +4715,8 @@ function askInit(){
 }
 
 // ================= TAB DROPDOWN NAVIGATION =================
-const TABIDS={pred:'tab-pred',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov',re:'tab-re'};
-const TABNAMES={pred:'Trading',week:'Weekly',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government',re:'Real estate'};
+const TABIDS={pred:'tab-pred',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov',re:'tab-re',con:'tab-con'};
+const TABNAMES={pred:'Trading',week:'Wrap',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government',re:'Real estate',con:'Consumer'};
 let curSec=null;
 function navSections(tab){
   const root=document.getElementById(TABIDS[tab]); if(!root) return [];
@@ -4348,7 +4926,7 @@ function renderPred(){
   document.getElementById('pdLean').innerHTML=`<div class="pd-verdict"><b>${esc(rt.lean)}</b>${esc(rt.leanWhy)} 20-day average ${rt.avg20.toFixed(2)}%, 60-day ${rt.avg60.toFixed(2)}%.</div>
     <p class="sub">For underwriting, every 25 bp on the 10-year moves a typical 65%-LTV fixed-rate quote by about the same amount.</p>`;
   (document.getElementById('pdFw')||{}).innerHTML=(rt.fw||[]).map(([m,p])=>`<li><span>${esc(m)}</span><span class="b"><i style="width:${Math.round(p*100)}%"></i></span><span class="p">${Math.round(p*100)}%</span></li>`).join('')||'<li>No reading</li>';
-  (document.getElementById('pdFwNote')||{}).textContent=`Prediction-market odds of a hike, as of ${fmtD(META.FW_PATH&&META.FW_PATH.asof)}. Updated on Fridays.`;
+  (document.getElementById('pdFwNote')||{}).textContent=`Prediction-market odds of a hike, as of ${fmtD(META.FW_PATH&&META.FW_PATH.asof)}. Updated each weekday.`;
 
   // calls
   const NM=PredModel.SYMNAME;
@@ -4402,7 +4980,9 @@ function showTab(t){
   document.getElementById('tab-pred').hidden = t!=='pred';
   document.getElementById('tab-gov').hidden = t!=='gov';
   document.getElementById('tab-re').hidden = t!=='re';
-  if (t==='gov'){ try{ govRender(); }catch(e){ console.error(e); } try{ cpiRender(); }catch(e){ console.error(e); } }
+  document.getElementById('tab-con').hidden = t!=='con';
+  if (t==='con'){ try{ conRender(); }catch(e){ console.error(e); } }
+  if (t==='gov'){ try{ polRender(); }catch(e){ console.error(e); } try{ legRender(); }catch(e){ console.error(e); } try{ govRender(); }catch(e){ console.error(e); } try{ cpiRender(); }catch(e){ console.error(e); } }
   if (t==='pred'){ renderPred(); try{ gpuRender(); }catch(e){ console.error(e); } try{ hmRender(); }catch(e){ console.error(e); } } monStop();
   if (t==='week'){ renderWeek(); }
   if (t==='mig' && !migDrawn){ renderAll(); migDrawn=true; }
@@ -4647,9 +5227,270 @@ function govTrend(G){
   const nt=G.notes||{};
   document.getElementById('govGdpNote').textContent=`Fiscal-year spending is the September year-to-date total from the Monthly Treasury Statement. ${nt.gdp||''}. ${nt.cpi||''}. Treasury's own chart uses a slightly different inflation measure, so its inflation-adjusted dollars can differ by about 1%; the share of GDP matches.`;
 }
+// ================= GOVERNMENT REVENUE (ds/GOV_REV: MTS receipts + FRED FYFR) =================
+const REV={view:'cum',u:'pct',g:'usd',real:true,open:new Set(),wired:false};
+const REV_C=['--gX','--gA','--gB','--gM','--gZ','--muted','--ink'];
+function revFyGdp(fy){ const S=D.GOV_SPEND, r=S&&S.trend&&S.trend.find(x=>x[0]===fy); return r?{out:r[1],gdp:r[2],cpi:r[3]}:null; }
+function revKpis(R){
+  const f=R.fytd, last=f.months[f.months.length-1][0], full=last.slice(5)==='09', chg=f.cur-f.prior;
+  const S=D.GOV_SPEND, sp=S&&S.fy===R.fy&&S.fytd?S.fytd:null;
+  const spAt=sp?(sp.months.find(m=>m[0]===last)||null):null;
+  const def=spAt?spAt[1]-f.cur:null, defP=spAt?spAt[2]-f.prior:null;
+  const fg=revFyGdp(R.fy), share=full&&fg&&fg.gdp?f.cur/fg.gdp*100:null;
+  const cover=spAt?f.cur/spAt[1]*100:null;
+  const k=[
+    [full?`FY${R.fy} revenue`:`FY${R.fy} revenue so far`, govMoney(f.cur), full?'Full fiscal year, Oct–Sep':`Oct through ${govMonthLabel(last).split(' ')[0]}`],
+    ['Vs. last year', `${chg>=0?'+':'−'}${govMoney(Math.abs(chg),0)}`, `${govPct(chg/f.prior*100)} over the same months`],
+    [full?'Share of the economy':'Covers spending', full?(share!=null?share.toFixed(1)+'%':'–'):(cover!=null?Math.round(cover)+'%':'–'), full?(share!=null?`About $${(share/10).toFixed(1)} of every $10 of GDP`:'GDP not out yet'):'of what was spent'],
+    [full?`FY${R.fy} deficit`:'Deficit so far', def!=null?govMoney(def):'–', def!=null?`${govPct((def/defP-1)*100,0)} vs. FY${R.fy-1}${cover!=null?` · revenue covered ${Math.round(cover)}% of spending`:''}`:'Spending data not loaded']
+  ];
+  document.getElementById('revKpis').innerHTML=k.map(([l,v,d])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join('');
+}
+function revChart(R){
+  const svg=document.getElementById('revChart'), W=760,H=300,L=58,R0=92,T=16,B=30, pw=W-L-R0, ph=H-T-B;
+  const S=D.GOV_SPEND, sp=S&&S.fy===R.fy&&S.fytd?S.fytd.months:[];
+  const rv=govVar('--gX'), sa=govVar('--gA'), mu=govVar('--muted'), ln=govVar('--line'), loss=govVar('--loss');
+  const fy=R.fy; let g='', leg='';
+  if(REV.view==='cum'){
+    document.getElementById('revChartTitle').textContent='Running total, revenue vs. spending';
+    const cur=R.fytd.months.map(m=>m[1]), pri=R.fytd.months.map(m=>m[2]), spc=sp.slice(0,cur.length).map(m=>m[1]), n=12;
+    const hi=d3.max(cur.concat(pri,spc))*1.06, X=i=>L+i*pw/(n-1), Y=v=>T+ph-v/hi*ph;
+    d3.ticks(0,hi,5).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${ln}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${v?govMoney(v,0):'$0'}</text>`; });
+    GOV_MON.forEach((m,i)=>{ g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" class="gov-ax">${m}</text>`; });
+    const path=v=>v.map((y,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(y).toFixed(1)).join('');
+    if(spc.length===cur.length&&cur.length>1){
+      const area=path(spc)+cur.slice().reverse().map((y,j)=>'L'+X(cur.length-1-j).toFixed(1)+' '+Y(y).toFixed(1)).join('')+'Z';
+      g+=`<path d="${area}" fill="${loss}" fill-opacity=".10"/>`;
+      g+=`<path d="${path(spc)}" fill="none" stroke="${sa}" stroke-width="2"/>`;
+      const li=cur.length-1, d=spc[li]-cur[li];
+      g+=`<text x="${X(li)+8}" y="${Y(spc[li])+4}" class="gov-end" fill="${sa}">${govMoney(spc[li])}</text>`;
+      const mi=Math.max(1,Math.round(li*0.72)); g+=`<text x="${X(mi)}" y="${(Y(spc[mi])+Y(cur[mi]))/2+4}" text-anchor="middle" class="gov-lbl" fill="${loss}" style="fill:${loss}">Deficit ${govMoney(d)}</text>`;
+    }
+    g+=`<path d="${path(pri)}" fill="none" stroke="${mu}" stroke-width="2" stroke-dasharray="5 4"/>`;
+    g+=`<path d="${path(cur)}" fill="none" stroke="${rv}" stroke-width="3" stroke-linejoin="round"/>`;
+    cur.forEach((v,i)=>{ g+=`<circle cx="${X(i)}" cy="${Y(v)}" r="3.2" fill="${rv}"><title>${GOV_MON[i]}: FY${fy} revenue ${govMoney(v)} vs FY${fy-1} ${govMoney(pri[i])}${spc[i]!=null?`; spending ${govMoney(spc[i])}`:''}</title></circle>`; });
+    const li=cur.length-1; g+=`<text x="${X(li)+8}" y="${Y(cur[li])+16}" class="gov-end" fill="${rv}">${govMoney(cur[li])}</text>`;
+    leg=`<span><i style="background:${rv}"></i>FY${fy} revenue</span><span><i class="dash" style="border-color:${mu}"></i>FY${fy-1} revenue</span>`+(spc.length?`<span><i style="background:${sa}"></i>FY${fy} spending</span><span><i style="background:${loss};opacity:.25"></i>Deficit (the gap)</span>`:'');
+  } else {
+    document.getElementById('revChartTitle').textContent='Each month, revenue vs. spending';
+    const rows=R.mo, n=rows.length, hi=d3.max(rows,r=>Math.max(r[1],r[2]))*1.1, Y=v=>T+ph-v/hi*ph, slot=pw/12, bw=slot*0.34, X=i=>L+(i+0.5)*slot;
+    d3.ticks(0,hi,5).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${ln}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${v?govMoney(v,0):'$0'}</text>`; });
+    GOV_MON.forEach((m,i)=>{ g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" class="gov-ax">${m}</text>`; });
+    rows.forEach((r,i)=>{ const d=r[2]-r[1], tt=`${govMonthLabel(r[0])}: revenue ${govMoney(r[1])}, spending ${govMoney(r[2])}, ${d>=0?'deficit':'surplus'} ${govMoney(Math.abs(d))}. A year earlier: revenue ${govMoney(r[3])}, spending ${govMoney(r[4])}.`;
+      g+=`<g><title>${tt}</title><rect x="${(X(i)-bw-1).toFixed(1)}" y="${Y(r[1]).toFixed(1)}" width="${bw.toFixed(1)}" height="${(T+ph-Y(r[1])).toFixed(1)}" rx="2" fill="${rv}"/><rect x="${(X(i)+1).toFixed(1)}" y="${Y(r[2]).toFixed(1)}" width="${bw.toFixed(1)}" height="${(T+ph-Y(r[2])).toFixed(1)}" rx="2" fill="${sa}"/>`;
+      g+=`<text x="${X(i)}" y="${Y(Math.max(r[1],r[2]))-5}" text-anchor="middle" class="gov-ax" style="fill:${d<0?govVar('--gain'):loss}">${d<0?'+':'−'}${Math.round(Math.abs(d))}</text></g>`; });
+    leg=`<span><i style="background:${rv}"></i>Revenue</span><span><i style="background:${sa}"></i>Spending</span><span>Number above each month: surplus (+) or deficit (−), $ billions</span>`;
+  }
+  svg.innerHTML=g; document.getElementById('revLeg').innerHTML=leg;
+}
+function revFrom(R){
+  const tot=d3.sum(R.src,r=>r[1]), totP=d3.sum(R.src,r=>r[2]), full=R.fytd.months.length===12;
+  const src=R.src.slice().sort((a,b)=>b[1]-a[1]), max=src[0][1];
+  const col=i=>govVar(REV_C[i%REV_C.length]);
+  document.getElementById('revFromSub').textContent=`All ${govMoney(tot)} of FY${R.fy}${full?'':' to date'} revenue by source. Change is vs. the same months last year (total ${govPct((tot/totP-1)*100)}). Click a source to see what is inside it.`;
+  document.getElementById('revStrip').innerHTML=src.map((r,i)=>`<i style="width:${Math.max(0,r[1]/tot*100).toFixed(2)}%;background:${col(i)}" title="${esc(r[0])}: ${(r[1]/tot*100).toFixed(1)}%"></i>`).join('');
+  const val=v=>REV.u==='pct'?((v/tot*100)<1&&v>0?(v/tot*100).toFixed(1):Math.round(v/tot*100))+'%':govMoney(v);
+  const row=(r,cls,c,sw,car,key)=>{ const ch=r[2]?((r[1]/r[2]-1)*100):null;
+    return `<li class="${cls}"${key!=null?` data-k="${key}" tabindex="0" role="button" aria-expanded="${REV.open.has(key)}"`:''} title="${esc(r[0])}: ${govMoney(r[1])} (${(r[1]/tot*100).toFixed(1)}% of revenue); FY${R.fy-1}: ${govMoney(r[2])}"><span class="nm">${car}${sw?`<i class="sw" style="background:${c}"></i>`:''}<span>${esc(r[0])}</span></span><span class="v">${val(r[1])}</span><span class="c ${ch>0.05?'up':ch<-0.05?'dn':''}">${ch==null?'':govPct(ch,0)}</span><span class="bar"><i style="width:${Math.max(0,r[1]/max*100).toFixed(1)}%;background:${c}"></i></span></li>`; };
+  document.getElementById('revBars').innerHTML=src.map((r,i)=>{ const has=r[3]&&r[3].length, op=REV.open.has(r[0]);
+    let h=row(r,(has?'has':'')+(op?' open':''),col(i),true,has?'<span class="car">▶</span>':'<span class="car"></span>',has?r[0]:null);
+    if(has&&op) h+=r[3].slice().sort((a,b)=>b[1]-a[1]).map(s=>row(s,'subr',col(i),false,'',null)).join('');
+    return h; }).join('');
+}
+function revTrend(R){
+  const svg=document.getElementById('revTrend'), W=760,H=320,L=58,R0=70,T=18,B=30, pw=W-L-R0, ph=H-T-B;
+  const rows=R.trend.map(r=>{ const s=revFyGdp(r[0]); return s?[r[0],r[1],s.out,s.gdp,s.cpi]:null; }).filter(r=>r&&r[2]!=null);
+  if(!rows.length){ svg.innerHTML=''; return; }
+  const n=rows.length, cpiL=rows[n-1][4], adj=r=>REV.real&&r[4]?cpiL/r[4]:1, y0=rows[0][0], y1=rows[n-1][0];
+  const rv=govVar('--gX'), sa=govVar('--gA'), ln=govVar('--line'), loss=govVar('--loss'), slot=pw/n, X=i=>L+(i+0.5)*slot;
+  document.getElementById('revRealWrap').hidden=REV.g==='pct';
+  let g='', leg='';
+  if(REV.g==='usd'){
+    const rc=rows.map(r=>r[1]*adj(r)), ou=rows.map(r=>r[2]*adj(r)), hi=d3.max(ou.concat(rc))*1.1, Y=v=>T+ph-v/hi*ph, bw=slot*0.36;
+    d3.ticks(0,hi,6).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${ln}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${v?govMoney(v,0):'$0'}</text>`; });
+    rows.forEach((r,i)=>{ const d=ou[i]-rc[i];
+      g+=`<g><title>FY${r[0]}: revenue ${govMoney(rc[i])}, spending ${govMoney(ou[i])}, deficit ${govMoney(d)}${REV.real?` (FY${y1} dollars)`:''}</title><rect x="${(X(i)-bw-1).toFixed(1)}" y="${Y(rc[i]).toFixed(1)}" width="${bw.toFixed(1)}" height="${(T+ph-Y(rc[i])).toFixed(1)}" rx="2" fill="${rv}"/><rect x="${(X(i)+1).toFixed(1)}" y="${Y(ou[i]).toFixed(1)}" width="${bw.toFixed(1)}" height="${(T+ph-Y(ou[i])).toFixed(1)}" rx="2" fill="${sa}"/></g>`;
+      g+=`<text x="${X(i)}" y="${Y(ou[i])-6}" text-anchor="middle" class="gov-ax" style="fill:${loss}">${(d/1000).toFixed(1)}</text>`; });
+    leg=`<span><i style="background:${rv}"></i>Revenue</span><span><i style="background:${sa}"></i>Spending</span><span style="color:${loss}">Number above each year: deficit, $ trillions</span>`;
+    const d0=ou[0]-rc[0], d1=ou[n-1]-rc[n-1];
+    document.getElementById('revGapSub').textContent=`FY${y0}–FY${y1}, ${REV.real?`in FY${y1} dollars (adjusted for inflation)`:'in dollars of each year'}. Revenue ${REV.real?'after inflation ':''}went from ${govMoney(rc[0])} to ${govMoney(rc[n-1])}; the deficit went from ${govMoney(d0)} to ${govMoney(d1)}.`;
+  } else {
+    const rp=rows.map(r=>r[1]/r[3]*100), op=rows.map(r=>r[2]/r[3]*100), lo=Math.floor(d3.min(rp)/2)*2-2, hi=Math.ceil(d3.max(op)/2)*2+2, Y=v=>T+ph-(v-lo)/(hi-lo)*ph;
+    d3.range(lo,hi+0.01,2).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${ln}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${v}%</text>`; });
+    const path=v=>v.map((y,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(y).toFixed(1)).join('');
+    g+=`<path d="${path(op)+rp.slice().reverse().map((y,j)=>'L'+X(n-1-j).toFixed(1)+' '+Y(y).toFixed(1)).join('')}Z" fill="${loss}" fill-opacity=".10"/>`;
+    g+=`<path d="${path(op)}" fill="none" stroke="${sa}" stroke-width="2.5"/><path d="${path(rp)}" fill="none" stroke="${rv}" stroke-width="3" stroke-linejoin="round"/>`;
+    rows.forEach((r,i)=>{ g+=`<circle cx="${X(i)}" cy="${Y(rp[i])}" r="3.5" fill="${rv}"><title>FY${r[0]}: revenue ${rp[i].toFixed(1)}% of GDP, spending ${op[i].toFixed(1)}%, deficit ${(op[i]-rp[i]).toFixed(1)}%</title></circle><circle cx="${X(i)}" cy="${Y(op[i])}" r="3" fill="${sa}"><title>FY${r[0]}: spending ${op[i].toFixed(1)}% of GDP</title></circle>`; });
+    g+=`<text x="${X(n-1)+8}" y="${Y(rp[n-1])+4}" class="gov-end" fill="${rv}">${rp[n-1].toFixed(1)}%</text><text x="${X(n-1)+8}" y="${Y(op[n-1])+4}" class="gov-end" fill="${sa}">${op[n-1].toFixed(1)}%</text>`;
+    leg=`<span><i style="background:${rv}"></i>Revenue, % of GDP</span><span><i style="background:${sa}"></i>Spending, % of GDP</span><span><i style="background:${loss};opacity:.25"></i>Deficit (the gap)</span>`;
+    const avg=d3.mean(rp);
+    document.getElementById('revGapSub').textContent=`Revenue was ${rp[n-1].toFixed(1)}% of GDP in FY${y1} (FY${y0}–${y1} average ${avg.toFixed(1)}%), while spending was ${op[n-1].toFixed(1)}%, leaving a deficit of ${(op[n-1]-rp[n-1]).toFixed(1)}% of GDP.`;
+  }
+  rows.forEach((r,i)=>{ g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" class="gov-ax">'${String(r[0]).slice(2)}</text>`; });
+  svg.innerHTML=g; document.getElementById('revTrendLeg').innerHTML=leg;
+  document.getElementById('revGapNote').textContent=`Fiscal-year revenue is total federal receipts (OMB, via FRED series FYFR), which match the September Monthly Treasury Statement; spending, GDP and inflation come from the spending sections below. Deficit = spending minus revenue. ${(R.notes&&R.notes.units)||''}.`;
+}
+function revRender(){
+  const R=D.GOV_REV, ids=['govRevYear','govFrom','govGap'];
+  if(!R||!R.fytd){ ids.forEach(id=>{ const s=document.getElementById(id); if(s) s.hidden=true; }); return; }
+  ids.forEach(id=>{ const s=document.getElementById(id); if(s) s.hidden=false; });
+  if(!REV.wired){ REV.wired=true;
+    const seg=(id,key,attr)=>{ const el=document.getElementById(id); el.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; REV[key]=b.dataset[attr]; el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); revRender(); }); };
+    seg('revViewSeg','view','v'); seg('revUnitSeg','u','u'); seg('revGapSeg','g','g');
+    document.getElementById('revReal').addEventListener('change',e=>{ REV.real=e.target.checked; revRender(); });
+    const bars=document.getElementById('revBars'), tog=li=>{ const k=li.dataset.k; if(!k) return; REV.open.has(k)?REV.open.delete(k):REV.open.add(k); try{ revFrom(D.GOV_REV); }catch(e){ console.error(e); } const nl=bars.querySelector(`li[data-k="${CSS.escape(k)}"]`); if(nl) nl.focus(); };
+    bars.addEventListener('click',e=>{ const li=e.target.closest('li[data-k]'); if(li) tog(li); });
+    bars.addEventListener('keydown',e=>{ if(e.key!=='Enter'&&e.key!==' ') return; const li=e.target.closest('li[data-k]'); if(li){ e.preventDefault(); tog(li); } });
+  }
+  try{ revKpis(R); }catch(e){ console.error(e); }
+  try{ revChart(R); }catch(e){ console.error(e); }
+  try{ revFrom(R); }catch(e){ console.error(e); }
+  try{ revTrend(R); }catch(e){ console.error(e); }
+}
+// ================= WHO REPRESENTS EACH STATE (ds/GOV_POL) =================
+const POL={m:'all',sel:'MA',wired:false};
+const POL_C={D:'#2F6DB5',R:'#C33B3F',I:'#7A6FA8'};
+const POL_PN={D:'Democrat',R:'Republican',I:'Independent'};
+const POL_MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function polOrd(n){ const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+function polDate(iso,short){ if(!iso) return ''; const [y,m,d]=iso.split('-').map(Number); return short?`${POL_MON[m-1].slice(0,3)} ${y}`:`${POL_MON[m-1]} ${d}, ${y}`; }
+function polAge(iso){ if(!iso) return null; const [y,m,d]=iso.split('-').map(Number), t=new Date(); let a=t.getFullYear()-y; if(t.getMonth()+1<m||(t.getMonth()+1===m&&t.getDate()<d)) a--; return a; }
+function polSide(o){ return o.p==='I'?(o.caucus||'I'):o.p; }
+function polState(V,s){
+  const g=V.gov[s]||null, cong=V.cong.filter(o=>o.st===s);
+  const sen=cong.filter(o=>o.ch==='sen').sort((a,b)=>(a.rank==='senior'?0:1)-(b.rank==='senior'?0:1));
+  const house=cong.filter(o=>o.ch==='rep').sort((a,b)=>(a.d||0)-(b.d||0));
+  const vac=(V.vac||[]).filter(x=>x[0]===s).map(x=>x[1]);
+  const hD=house.filter(o=>polSide(o)==='D').length, hR=house.filter(o=>polSide(o)==='R').length;
+  const sD=sen.filter(o=>polSide(o)==='D').length, sR=sen.filter(o=>polSide(o)==='R').length;
+  const gv=g?(g.p==='D'?1:g.p==='R'?-1:0):0;
+  const hs=house.length?(hD-hR)/house.length:0;
+  return {g,sen,house,vac,hD,hR,sD,sR,score:{gov:gv,sen:(sD-sR)/2,house:hs,all:(gv+(sD-sR)+2*hs)/5}};
+}
+function polFill(v){ const land=govVar('--land')||'#DCE2E8'; const a=Math.abs(v); if(a<0.001) return d3.interpolateRgb(land,POL_C.I)(.55);
+  return d3.interpolateRgb(land,v>0?POL_C.D:POL_C.R)(.35+.65*Math.min(1,a)); }
+function polLabel(v){ return v>=.8?'Solid D':v>=.2?'Leans D':v>-.2?'Split':v>-.8?'Leans R':'Solid R'; }
+function polBio(o,s){
+  const age=polAge(o.b), pn=POL_PN[o.p]||o.p, sn=ST[s]||s;
+  const role=o.ch==='sen'?`${o.rank?o.rank[0].toUpperCase()+o.rank.slice(1)+' ':''}U.S. senator from ${sn}`:(o.d===0?`U.S. representative for ${sn}'s at-large district`:`U.S. representative for ${sn}'s ${polOrd(o.d)} district`);
+  let h=`<p>${esc(pn)}${o.p==='I'&&o.caucus?` (caucuses with ${o.caucus==='D'?'Democrats':'Republicans'})`:''}. ${esc(role)} since ${o.since}${o.terms>1?`, ${o.terms} terms`:''}.`;
+  if(o.appt) h+=' Appointed to the seat.';
+  if(o.b) h+=` Born ${esc(polDate(o.b))}${age!=null?` (age ${age})`:''}.`;
+  h+='</p>';
+  const now=(o.lead||[]).filter(r=>!r[2]), past=(o.lead||[]).filter(r=>r[2]);
+  if(now.length) h+=`<p><b>Leadership:</b> ${now.map(r=>esc(r[0])+` (since ${r[1]})`).join('; ')}.</p>`;
+  const prev=(o.prior||[]).concat(past.map(r=>`${r[0]} ${r[1]}–${r[2]}`));
+  if(prev.length) h+=`<p><b>Previously:</b> ${prev.map(esc).join('; ')}.</p>`;
+  if(o.com&&o.com.length) h+=`<p><b>Committees:</b> ${o.com.map(esc).join('; ')}.</p>`;
+  const ey=+String(o.end||'').slice(0,4);
+  if(o.spec) h+=`<p>Seat filled by a special election on ${esc(polDate(o.spec))}.</p>`;
+  else if(ey===2027) h+=`<p>Term ends Jan 3, 2027 (seat on the Nov 3, 2026 ballot).</p>`;
+  else if(ey) h+=`<p>Current term runs to Jan 3, ${ey}.</p>`;
+  const lk=[];
+  if(o.w) lk.push(`<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(o.w.replace(/ /g,'_'))}" target="_blank" rel="noopener">Wikipedia</a>`);
+  if(o.bg) lk.push(`<a href="https://bioguide.congress.gov/search/bio/${esc(o.bg)}" target="_blank" rel="noopener">Congress bio</a>`);
+  if(o.u) lk.push(`<a href="${esc(o.u)}" target="_blank" rel="noopener">Official site</a>`);
+  return h+(lk.length?`<p class="lk">${lk.join('')}</p>`:'');
+}
+function polGovBio(g,s){
+  const pr=g.prior&&g.prior.length?g.prior:null;
+  let h=`<p>${esc(g.pl||POL_PN[g.p])}. Governor of ${esc(ST[s]||s)} since ${esc(g.since)}. Born ${esc(g.born)} (about ${new Date().getFullYear()-(+g.born)} years old).</p>`;
+  h+=pr?`<p><b>Previously:</b> ${pr.map(esc).join('; ')}.</p>`:'<p>Held no public office before becoming governor.</p>';
+  if(g.end) h+=`<p>Current term ends ${esc(g.end)}.</p>`;
+  if(g.w) h+=`<p class="lk"><a href="${esc(g.w)}" target="_blank" rel="noopener">Wikipedia</a></p>`;
+  return h;
+}
+function polPerson(name,party,role,bio,open){
+  return `<details class="pol-p"${open?' open':''}><summary><span class="pol-pty" style="--c:${POL_C[party]||POL_C.I}" aria-label="${esc(POL_PN[party]||party)}">${esc(party)}</span><span class="pn">${esc(name)}</span><span class="pr">${esc(role)}</span></summary><div class="pol-bio">${bio}</div></details>`;
+}
+function polPanel(V){
+  const s=POL.sel, x=polState(V,s), sn=ST[s]||s;
+  let h=`<h3>${esc(sn)}</h3><p class="sub">${esc(polLabel(x.score.all))} across its governor and congressional delegation</p>`;
+  h+=`<div class="pol-sum"><span>Governor ${x.g?esc(x.g.p):'–'}</span><span>Senate ${x.sD?x.sD+'D':''}${x.sD&&x.sR?' · ':''}${x.sR?x.sR+'R':''}</span><span>House ${x.hD}D · ${x.hR}R${x.vac.length?` · ${x.vac.length} vacant`:''}</span></div>`;
+  h+=`<div class="pol-grp">Governor</div>`;
+  h+=x.g?polPerson(x.g.n,x.g.p,'Governor',polGovBio(x.g,s)):'<div class="pol-vac">No data</div>';
+  h+=`<div class="pol-grp">U.S. Senate</div>`+x.sen.map(o=>polPerson(o.n,o.p,o.rank?o.rank[0].toUpperCase()+o.rank.slice(1)+' senator':'Senator',polBio(o,s))).join('');
+  h+=`<div class="pol-grp">U.S. House · ${x.house.length+x.vac.length} seat${x.house.length+x.vac.length===1?'':'s'}</div>`;
+  const rows=x.house.map(o=>({d:o.d||0,h:polPerson(o.n,o.p,o.d===0?'At-large':'District '+o.d,polBio(o,s))})).concat(x.vac.map(d=>({d,h:`<div class="pol-vac">District ${d}: vacant</div>`})));
+  h+=rows.sort((a,b)=>a.d-b.d).map(r=>r.h).join('');
+  document.getElementById('polBody').innerHTML=h;
+  const sel=document.getElementById('polSel'); if(sel.value!==s) sel.value=s;
+}
+function polMap(V){
+  const svg=d3.select('#polMap'); svg.selectAll('*').remove();
+  const feats=topojson.feature(TOPO,TOPO.objects.states).features.filter(f=>NAME2CODE[f.properties.name]&&f.properties.name!=='District of Columbia');
+  const path=d3.geoPath(), tip=document.getElementById('polTip'), box=document.getElementById('polMapBox');
+  const sc=s=>polState(V,s).score[POL.m];
+  svg.append('g').selectAll('path').data(feats).join('path')
+    .attr('class',f=>'pol-st'+(NAME2CODE[f.properties.name]===POL.sel?' sel':''))
+    .attr('d',path).attr('fill',f=>polFill(sc(NAME2CODE[f.properties.name])))
+    .attr('tabindex',0).attr('role','button').attr('aria-label',f=>f.properties.name)
+    .on('mousemove',(ev,f)=>{ const s=NAME2CODE[f.properties.name], x=polState(V,s);
+      tip.innerHTML=`<b>${esc(f.properties.name)}</b><br>Governor: ${x.g?esc(x.g.n)+' ('+x.g.p+')':'–'}<br>Senate: ${x.sen.map(o=>esc(o.n.split(' ').slice(-1)[0])+' ('+o.p+')').join(', ')}<br>House: ${x.hD} D, ${x.hR} R${x.vac.length?`, ${x.vac.length} vacant`:''}<br><span style="color:var(--muted)">${polLabel(x.score.all)} · click for details</span>`;
+      tip.style.opacity=1; const r=box.getBoundingClientRect(); let l=ev.clientX-r.left+14; if(l+260>r.width) l=Math.max(4,ev.clientX-r.left-270); tip.style.left=l+'px'; tip.style.top=(ev.clientY-r.top+14)+'px'; })
+    .on('mouseleave',()=>{ tip.style.opacity=0; })
+    .on('click',(ev,f)=>{ POL.sel=NAME2CODE[f.properties.name]; tip.style.opacity=0; polDraw(); if(matchMedia('(max-width:900px)').matches) document.getElementById('polPanel').scrollIntoView({behavior:'smooth',block:'start'}); })
+    .on('keydown',(ev,f)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); POL.sel=NAME2CODE[f.properties.name]; polDraw(); } });
+  svg.select('path.sel').raise();
+  const small=new Set(['RI','DE','CT','NJ','MD','MA','VT','NH','DC','HI']);
+  svg.append('g').selectAll('text').data(feats.filter(f=>!small.has(NAME2CODE[f.properties.name]))).join('text').attr('class','pol-lbl')
+    .attr('x',f=>path.centroid(f)[0]).attr('y',f=>path.centroid(f)[1]+4).text(f=>NAME2CODE[f.properties.name]);
+  const keys=POL.m==='gov'?[[1,'Democratic governor'],[-1,'Republican governor']]
+    :POL.m==='sen'?[[1,'Two Democrats'],[0,'Split'],[-1,'Two Republicans']]
+    :POL.m==='house'?[[1,'All Democrats'],[.4,'Mostly D'],[0,'Even'],[-.4,'Mostly R'],[-1,'All Republicans']]
+    :[[.9,'Solid D'],[.5,'Leans D'],[0,'Split'],[-.5,'Leans R'],[-.9,'Solid R']];
+  document.getElementById('polKey').innerHTML=keys.map(([v,l])=>`<span><i style="background:${polFill(v)}"></i>${l}</span>`).join('')+'<span>Senators caucusing with a party count with it</span>';
+}
+function polDraw(){ const V=D.GOV_POL; polMap(V); polPanel(V); }
+function polRender(){
+  const V=D.GOV_POL, sec=document.getElementById('govPol'); if(!sec) return;
+  if(!V||!V.gov||!V.cong){ sec.hidden=true; return; } sec.hidden=false;
+  if(!POL.wired){ POL.wired=true;
+    const seg=document.getElementById('polSeg');
+    seg.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; POL.m=b.dataset.m; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); polMap(D.GOV_POL); });
+    const sel=document.getElementById('polSel');
+    sel.innerHTML=Object.keys(V.gov).sort((a,b)=>(ST[a]||a).localeCompare(ST[b]||b)).map(s=>`<option value="${s}">${esc(ST[s]||s)}</option>`).join('');
+    sel.onchange=()=>{ POL.sel=sel.value; polDraw(); };
+  }
+  const nG=Object.values(V.gov), gD=nG.filter(g=>g.p==='D').length, gR=nG.filter(g=>g.p==='R').length;
+  const sen=V.cong.filter(o=>o.ch==='sen'), rep=V.cong.filter(o=>o.ch==='rep'&&V.gov[o.st]);
+  const cnt=(a,p)=>a.filter(o=>o.p===p).length;
+  document.getElementById('polSub').textContent=`Office-holders as of ${META.GOV_POL&&META.GOV_POL.asof?polDate(META.GOV_POL.asof):'the latest update'}. Governors: ${gD} Democrats, ${gR} Republicans. Senate: ${cnt(sen,'R')} Republicans, ${cnt(sen,'D')} Democrats, ${cnt(sen,'I')} independents. House: ${cnt(rep,'R')} Republicans, ${cnt(rep,'D')} Democrats${cnt(rep,'I')?`, ${cnt(rep,'I')} independent`:''}${(V.vac||[]).length?`, ${V.vac.length} vacant`:''}. Click a state for its officials; open a name for a short bio.`;
+  document.getElementById('polNote').innerHTML=`"Overall" combines the governor (1 point), each senator (1 point each) and the House delegation's party split (2 points), so it shows which party holds most of a state's top elected offices, not how its voters lean. Winners of the Nov 3, 2026 elections take office in January 2027 (governors on their state's inauguration date), so the map shows who serves now. Bios are built from official records: congressional terms, birth dates, leadership posts and current committee assignments, and governors' prior public offices. Non-voting delegates (D.C. and territories) are not shown. Sources: ${(V.src||[]).map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join(' · ')}.`;
+  polDraw();
+}
+// ================= STATE LEGISLATION WATCH (ds/LEG_WATCH) =================
+const LEG={st:'all',cat:'all',wired:false};
+const LEG_S={vote:['Vote pending','#C9246A',0],conf:['In negotiation','#B8540B',1],stalled:['Stalled','#586577',3],dead:['Off the table','#586577',4],law:['Law','#0E7C74',2]};
+const LEG_C={rent:'Rent control',zoning:'Zoning & permitting',tenant:'Tenant rules',tax:'Taxes & costs',ballot:'Ballot measure'};
+const LEG_G=[['Decisions coming',['vote','conf']],['Now law',['law']],['Stalled or off the table',['stalled','dead']]];
+function legRender(){
+  const V=D.LEG_WATCH, sec=document.getElementById('govLeg'); if(!sec) return;
+  if(!V||!V.items){ sec.hidden=true; return; } sec.hidden=false;
+  if(!LEG.wired){ LEG.wired=true;
+    const seg=document.getElementById('legStSeg');
+    seg.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; LEG.st=b.dataset.v; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); legRender(); });
+    document.getElementById('legCat').onchange=e=>{ LEG.cat=e.target.value; legRender(); };
+  }
+  const all=V.items, rows=all.filter(x=>(LEG.st==='all'||x.st===LEG.st)&&(LEG.cat==='all'||x.cat===LEG.cat));
+  const n=s=>all.filter(x=>x.s===s).length;
+  document.getElementById('legSub').textContent=`Bills and ballot measures in Massachusetts and New Hampshire that affect what owners and developers can build, charge or buy. Status as of ${META.LEG_WATCH&&META.LEG_WATCH.asof?polDate(META.LEG_WATCH.asof):'the latest update'}.`;
+  document.getElementById('legCounts').innerHTML=[['vote',n('vote')],['conf',n('conf')],['law',n('law')],['stalled',n('stalled')+n('dead')]].map(([k,c])=>`<span><b style="color:${LEG_S[k][1]}">${c}</b>${k==='stalled'?'stalled or off the table':LEG_S[k][0].toLowerCase()}</span>`).join('');
+  let h='';
+  LEG_G.forEach(([g,ss])=>{
+    const r=rows.filter(x=>ss.includes(x.s)).sort((a,b)=>LEG_S[a.s][2]-LEG_S[b.s][2]||String(b.d).localeCompare(String(a.d)));
+    if(!r.length) return;
+    h+=`<div class="leg-grp">${esc(g)} · ${r.length}</div><div class="leg-list">`+r.map(x=>{ const s=LEG_S[x.s]||['',''];
+      return `<article class="leg-card" style="--c:${s[1]}"><div class="leg-top"><span class="leg-pill">${esc(s[0])}</span><span class="leg-tag">${esc(x.st)}</span><span class="leg-tag">${esc(LEG_C[x.cat]||x.cat)}</span><span class="leg-dl">${esc(x.dl||'')}</span></div>
+        <details><summary><h3>${esc(x.t)}</h3></summary><div class="leg-body">${x.b?`<div class="bn">${esc(x.b)}</div>`:''}<p>${esc(x.what||'')}</p>${x.next?`<p class="nx"><b>Next:</b> ${esc(x.next)}</p>`:''}${x.why?`<p><b>Why it matters:</b> ${esc(x.why)}</p>`:''}${x.who?`<p><b>Who:</b> ${esc(x.who)}</p>`:''}
+        ${(x.src||[]).length?`<div class="leg-src">${x.src.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</div>`:''}</div></details></article>`; }).join('')+'</div>';
+  });
+  document.getElementById('legBody').innerHTML=h||'<p class="note">Nothing matches these filters.</p>';
+  document.getElementById('legNote').textContent=(V.notes||'')+' Each card links to the reporting it is based on; bill numbers are given where the sources publish them. Statuses update with the dashboard refresh.';
+}
 function govRender(){
   const G=D.GOV_SPEND, tab=document.getElementById('tab-gov'); if(!tab) return;
-  if(!G||!G.fytd){ tab.querySelectorAll('section').forEach(s=>s.hidden=true); document.getElementById('govSrc').textContent='Government data has not been loaded yet. It is added with the Friday refresh.'; return; }
+  if(!G||!G.fytd){ tab.querySelectorAll('section').forEach(s=>s.hidden=true); document.getElementById('govSrc').textContent='Government data has not been loaded yet. It is added with the weekday refresh.'; return; }
   if(!GOV.wired){ GOV.wired=true;
     const seg=(id,key,attr)=>{ const el=document.getElementById(id); el.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; GOV[key]=b.dataset[attr]; el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); govRender(); }); };
     seg('govBySeg','by','by'); seg('govUnitSeg','u','u'); seg('govGdpSeg','g','g');
@@ -4659,7 +5500,8 @@ function govRender(){
   try{ govCum(G); }catch(e){ console.error(e); }
   try{ govWhere(G); }catch(e){ console.error(e); }
   try{ govTrend(G); }catch(e){ console.error(e); }
-  document.getElementById('govSrc').innerHTML='Sources: '+(G.src||[]).concat((D.GOV_CPI&&D.GOV_CPI.src)||[]).map(s=>`<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ')+`. Data through ${govMonthLabel(G.fytd.months[G.fytd.months.length-1][0])}.`;
+  try{ revRender(); }catch(e){ console.error(e); }
+  document.getElementById('govSrc').innerHTML='Sources: '+(G.src||[]).concat((D.GOV_REV&&D.GOV_REV.srcs)||[],(D.GOV_CPI&&D.GOV_CPI.src)||[]).map(s=>`<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ')+`. Data through ${govMonthLabel(G.fytd.months[G.fytd.months.length-1][0])}.`;
 }
 
 // ================= CONSUMER PRICES (ds/GOV_CPI: BLS CPI charts) =================
@@ -4763,6 +5605,230 @@ function cpiRender(){
   document.getElementById('cpiCatSub').textContent=`${cpiMon(C.m[C.m.length-1],true)}, change from a year earlier. Source: Bureau of Labor Statistics.`;
   [cpiKpis,cpiTree,cpiTimeline,cpiPrices,cpiLocal].forEach(f=>{ try{ f(C); }catch(e){ console.error(e); } });
 }
+
+// ================= CONSUMER TAB (ds/CONSUMER; CPI from ds/GOV_CPI) =================
+const CON={pay:'all',payR:60,saveR:60,evS:'all',evR:'all',nw:'all',wired:false};
+const CON_MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const conYm=(ym,long)=>{ const [y,m]=ym.split('-').map(Number); return long?new Date(y,m-1,15).toLocaleDateString('en-US',{month:'long',year:'numeric'}):CON_MON[m-1]+' '+y; };
+const conAddM=(ym,k)=>{ let [y,m]=ym.split('-').map(Number); m+=k; y+=Math.floor((m-1)/12); m=((m-1)%12+12)%12+1; return y+'-'+String(m).padStart(2,'0'); };
+function conSer(k){ const s=(D.CONSUMER&&D.CONSUMER.ser||{})[k]; if(!s) return {m:[],v:[]}; return {m:s.v.map((_,i)=>conAddM(s.s,i)),v:s.v.map(x=>x==null?null:+x)}; }
+function conLast(S){ for(let i=S.v.length-1;i>=0;i--) if(S.v[i]!=null) return {i,m:S.m[i],v:S.v[i]}; return null; }
+function conAt(S,ym){ const i=S.m.indexOf(ym); return i<0?null:S.v[i]; }
+function conCpi(){ const C=D.GOV_CPI; if(!C||!C.m||!C.ser) return {}; const a=C.ser.find(s=>s[0]==='All items'); if(!a) return {}; const o={}; C.m.forEach((m,i)=>{ if(a[2][i]!=null) o[m]=+a[2][i]; }); return o; }
+function conYoY(S){ return {m:S.m,v:S.v.map((x,i)=>{ if(i<12||x==null||S.v[i-12]==null) return null; return (x/S.v[i-12]-1)*100; })}; }
+const conPct=(v,dp)=>v==null||!isFinite(v)?'–':(v<0?'−':'')+Math.abs(v).toFixed(dp==null?1:dp)+'%';
+const conSgn=(v,dp,u)=>v==null||!isFinite(v)?'–':(v>0?'+':v<0?'−':'±')+Math.abs(v).toFixed(dp==null?1:dp)+(u==null?'%':u);
+const conAvg=(S,a,b)=>{ const xs=S.v.filter((v,i)=>v!=null&&S.m[i]>=a&&S.m[i]<=b); return xs.length?xs.reduce((p,c)=>p+c,0)/xs.length:null; };
+function conSince(S,i,dir){ // most recent earlier month at or beyond the latest value
+  const v=S.v[i]; for(let j=i-1;j>=0;j--){ const x=S.v[j]; if(x==null) continue; if(dir<0?x<=v:x>=v) return S.m[j]; } return null; }
+
+// generic line chart with hover; x = keys, xl(key)=short tick label or '', tl(key)=tooltip label
+function conLine(o){
+  const svg=o.svg, W=760, H=o.H||280, L=46, R=14, T=14, B=26, pw=W-L-R, ph=H-T-B, n=o.x.length;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const vals=o.series.flatMap(s=>s.v.filter(v=>v!=null&&isFinite(v))).concat((o.refs||[]).map(r=>r.v));
+  let lo=Math.min(...vals), hi=Math.max(...vals); if(o.zero){ lo=Math.min(lo,0); hi=Math.max(hi,0); } const pad=(hi-lo)*0.08||1; lo-=pad; hi+=pad;
+  const X=i=>L+(n<=1?0:i*pw/(n-1)), Y=v=>T+ph-(v-lo)/(hi-lo)*ph, line=govVar('--line'), mu=govVar('--muted');
+  let g='';
+  d3.ticks(lo,hi,5).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v===0?mu:line}" stroke-width="${v===0?1.2:1}"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${o.fmt(v,true)}</text>`; });
+  let lastX=-99; o.x.forEach((k,i)=>{ const t=o.xl(k,i,n); if(!t) return; const x=X(i); if(x-lastX<54||x<L+18||x>L+pw-18) return; lastX=x; g+=`<text x="${x}" y="${H-7}" text-anchor="middle" class="gov-ax">${t}</text><line x1="${x}" x2="${x}" y1="${T+ph}" y2="${T+ph+4}" stroke="${line}"/>`; });
+  (o.refs||[]).forEach(r=>{ if(r.v<lo||r.v>hi) return; g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(r.v)}" y2="${Y(r.v)}" stroke="${mu}" stroke-dasharray="4 4"/><text x="${L+6}" y="${Y(r.v)-6}" class="gov-ax">${esc(r.label)}</text>`; });
+  o.series.forEach(s=>{ let d='',pen=false,first=null,last=null; s.v.forEach((v,i)=>{ if(v==null||!isFinite(v)){ pen=false; return; } d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1); pen=true; if(first==null) first=i; last=i; });
+    if(s.area&&first!=null) g+=`<path d="${d} L${X(last).toFixed(1)} ${T+ph} L${X(first).toFixed(1)} ${T+ph} Z" fill="${s.color}" fill-opacity=".10" stroke="none"/>`;
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="${s.w||2.2}" ${s.dash?`stroke-dasharray="${s.dash}"`:''} stroke-linejoin="round" stroke-linecap="round"/>`;
+    if(last!=null) g+=`<circle cx="${X(last)}" cy="${Y(s.v[last])}" r="${s.w>2.5?4.5:3.5}" fill="${s.color}" stroke="${govVar('--paper')}" stroke-width="1.5"/>`; });
+  g+=`<line class="cg-guide" x1="0" x2="0" y1="${T}" y2="${T+ph}" stroke="${mu}" opacity="0"/><rect x="${L}" y="${T}" width="${pw}" height="${ph}" fill="transparent" class="cpi-hit"/>`;
+  svg.innerHTML=g;
+  const guide=svg.querySelector('.cg-guide'), tip=o.tip, hit=svg.querySelector('.cpi-hit');
+  const show=ev=>{ const r=svg.getBoundingClientRect(), sx=(ev.clientX-r.left)/r.width*W, i=Math.max(0,Math.min(n-1,Math.round((sx-L)/pw*(n-1))));
+    guide.setAttribute('x1',X(i)); guide.setAttribute('x2',X(i)); guide.setAttribute('opacity','1');
+    tip.innerHTML=`<b>${esc(o.tl(o.x[i]))}</b>`+o.series.map(s=>`<br><span style="color:${s.color}">●</span> ${esc(s.name)}: ${s.v[i]==null?'not published':o.fmt(s.v[i])}`).join('')+(o.extra?o.extra(i):'');
+    const p=svg.parentElement.getBoundingClientRect(), cx=ev.clientX-p.left; tip.style.left=Math.min(p.width-240,Math.max(0,cx+14))+'px'; tip.style.top=Math.max(0,ev.clientY-p.top-20)+'px'; tip.style.opacity=1; };
+  hit.onmousemove=show; hit.onclick=show; hit.onmouseleave=()=>{ tip.style.opacity=0; guide.setAttribute('opacity','0'); };
+}
+// bar chart around zero
+function conBarChart(o){
+  const svg=o.svg, W=760, H=o.H||220, L=46, R=14, T=12, B=24, pw=W-L-R, ph=H-T-B, n=o.x.length;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const vals=o.v.filter(v=>v!=null); let lo=Math.min(0,...vals), hi=Math.max(0,...vals); const pad=(hi-lo)*0.1||1; lo-=lo<0?pad:0; hi+=pad;
+  const bw=pw/n, X=i=>L+i*bw, Y=v=>T+ph-(v-lo)/(hi-lo)*ph, line=govVar('--line'), mu=govVar('--muted'), pos=govVar('--ok'), neg=govVar('--bad');
+  let g='';
+  d3.ticks(lo,hi,4).forEach(v=>{ g+=`<line x1="${L}" x2="${L+pw}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v===0?mu:line}" stroke-width="${v===0?1.2:1}"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" class="gov-ax">${o.fmt(v,true)}</text>`; });
+  let lastX=-99; o.x.forEach((k,i)=>{ const t=o.xl(k,i,n); if(!t) return; const x=X(i)+bw/2; if(x-lastX<54) return; lastX=x; g+=`<text x="${x}" y="${H-6}" text-anchor="middle" class="gov-ax">${t}</text>`; });
+  o.v.forEach((v,i)=>{ if(v==null) return; const y0=Y(0), y=Y(v), last=i===n-1; g+=`<rect x="${(X(i)+bw*0.14).toFixed(1)}" y="${Math.min(y,y0).toFixed(1)}" width="${(bw*0.72).toFixed(1)}" height="${Math.max(1,Math.abs(y0-y)).toFixed(1)}" rx="1.5" fill="${v>=0?pos:neg}" fill-opacity="${last?1:.7}"/>`; });
+  g+=`<rect x="${L}" y="${T}" width="${pw}" height="${ph}" fill="transparent" class="cpi-hit"/>`;
+  svg.innerHTML=g;
+  const tip=o.tip, hit=svg.querySelector('.cpi-hit');
+  const show=ev=>{ const r=svg.getBoundingClientRect(), sx=(ev.clientX-r.left)/r.width*W, i=Math.max(0,Math.min(n-1,Math.floor((sx-L)/bw)));
+    tip.innerHTML=`<b>${esc(o.tl(o.x[i]))}</b><br>${o.v[i]==null?'not published':esc(o.lab||'')+' '+o.fmt(o.v[i])}`+(o.extra?o.extra(i):'');
+    const p=svg.parentElement.getBoundingClientRect(), cx=ev.clientX-p.left; tip.style.left=Math.min(p.width-240,Math.max(0,cx+14))+'px'; tip.style.top=Math.max(0,ev.clientY-p.top-20)+'px'; tip.style.opacity=1; };
+  hit.onmousemove=show; hit.onclick=show; hit.onmouseleave=()=>{ tip.style.opacity=0; };
+}
+function conSpark(vals,color,ref){
+  const xs=vals.filter(v=>v!=null); if(xs.length<2) return '';
+  const all=ref!=null?xs.concat([ref]):xs, lo=Math.min(...all), hi=Math.max(...all), W=160, H=34, n=vals.length;
+  const X=i=>2+i*(W-6)/(n-1), Y=v=>H-3-(v-lo)/((hi-lo)||1)*(H-6);
+  let d='',pen=false,last=null; vals.forEach((v,i)=>{ if(v==null){ pen=false; return; } d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1); pen=true; last=i; });
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${ref!=null?`<line x1="0" x2="${W}" y1="${Y(ref)}" y2="${Y(ref)}" stroke="var(--muted)" stroke-dasharray="3 3" stroke-width="1" vector-effect="non-scaling-stroke"/>`:''}<path d="${d}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>${last!=null?`<circle cx="${X(last)}" cy="${Y(vals[last])}" r="3" fill="${color}"/>`:''}</svg>`;
+}
+const CON_ST={ok:'Healthy',warn:'Watch',bad:'Strained'};
+const conPill=s=>`<span class="cpill ${s}">${CON_ST[s]}</span>`;
+const conQ=q=>{ const [y,qq]=q.split('-Q'); return `Q${qq} ${y}`; };
+const conMkey=s=>s.length===7?conYm(s):fmtD(s,{month:'short',day:'numeric',year:'numeric'});
+
+function conGauges(){
+  const V=D.CONSUMER, cpi=conCpi(), sav=conSer('sav'), wo=conSer('wo'), rrs=conYoY(conSer('rrs')), sent=conSer('sent');
+  const out=[];
+  const ls=conLast(sav); if(ls){ const ya=conAt(sav,conAddM(ls.m,-12)), since=conSince(sav,ls.i,-1), pre=conAvg(sav,'2018-01','2019-12');
+    const st=ls.v<4?'bad':ls.v<6?'warn':'ok';
+    out.push({k:'sav',sec:'conSave',l:'Personal saving rate',v:conPct(ls.v),d:`${conYm(ls.m)} · ${ya!=null?conSgn(ls.v-ya,1,' pts')+' vs. a year ago':''}`,st,spark:sav.v.slice(-36),ref:pre,
+      m:st==='bad'?`Lowest since ${since?conYm(since):'records began'}. Households have little cushion left.`:st==='warn'?'Below the 2018–19 norm; less room to absorb a shock.':'Near pre-pandemic norms.'}); }
+  const lw=conLast(wo); let real=null;
+  if(lw){ const c=cpi[lw.m]; real=c!=null?lw.v-c:null; const ya=conAt(wo,conAddM(lw.m,-12));
+    out.push({k:'wo',sec:'conPay',l:'Wage growth (median)',v:conPct(lw.v),d:`${conYm(lw.m)} · ${ya!=null?conSgn(lw.v-ya,1,' pts')+' vs. a year ago':''}`,st:real==null?'warn':real>1?'ok':real>=0?'warn':'bad',spark:wo.v.slice(-36),
+      m:'Typical raise for people who kept working, from the Atlanta Fed.'});
+    const rv=wo.v.map((v,i)=>v!=null&&cpi[wo.m[i]]!=null?v-cpi[wo.m[i]]:null).slice(-36);
+    out.push({k:'real',sec:'conPay',l:'Real pay (wages minus inflation)',v:real==null?'–':conSgn(real,1,' pts'),d:c==null?'Inflation for this month not loaded':`${conYm(lw.m)} · inflation ${conPct(c)}`,st:real==null?'warn':real>1?'ok':real>=0?'warn':'bad',spark:rv,ref:0,
+      m:real==null?'Needs the CPI data on the Government tab.':real>1?'Raises are comfortably beating prices.':real>=0?'Raises are barely keeping up with prices.':'Prices are rising faster than paychecks.'}); }
+  const lr=conLast(rrs); if(lr){ const st=lr.v>2?'ok':lr.v>=0?'warn':'bad';
+    out.push({k:'rrs',sec:'conSpend',l:'Real retail sales',v:conSgn(lr.v),d:`${conYm(lr.m)} · vs. a year earlier`,st,spark:rrs.v.slice(-36),ref:0,
+      m:st==='ok'?'Shoppers are buying more, even after inflation.':st==='warn'?'Volumes are flat to slightly up after inflation.':'Shoppers are buying less than a year ago.'}); }
+  const lm=conLast(sent); if(lm){ const pre=conAvg(sent,'2018-01','2019-12'), st=lm.v>=80?'ok':lm.v>=60?'warn':'bad', lowI=sent.v.reduce((a,v,i)=>v!=null&&(a<0||v<sent.v[a])?i:a,-1);
+    out.push({k:'sent',sec:'conMood',l:'Consumer sentiment (Michigan)',v:lm.v.toFixed(1),d:`${conYm(lm.m)} · ${Math.round(pre)} before the pandemic`,st,spark:sent.v.slice(-36),ref:pre,
+      m:st==='bad'?`Near record lows${lowI>=0?` (low ${sent.v[lowI].toFixed(1)}, ${conYm(sent.m[lowI])})`:''}. People feel worse than they spend.`:st==='warn'?'Below normal but not at crisis levels.':'Confidence is healthy.'}); }
+  const cc=V.ccd||[]; if(cc.length){ const l=cc[cc.length-1], ya=cc.length>4?cc[cc.length-5][1]:null, st=l[1]<2.5?'ok':l[1]<=3.2?'warn':'bad';
+    out.push({k:'ccd',sec:'conCredit',l:'Card delinquency (banks)',v:l[1].toFixed(2)+'%',d:`${conQ(l[0])} · ${ya!=null?conSgn(l[1]-ya,2,' pts')+' vs. a year ago':''}`,st,spark:cc.slice(-16).map(x=>x[1]),ref:2.6,
+      m:st==='warn'?(ya!=null&&l[1]<ya?'Above pre-pandemic levels but easing.':'Above pre-pandemic levels and rising.'):st==='bad'?'Well above normal; stress is building.':'Back near normal.'}); }
+  return {cards:out,real};
+}
+function conCtx(){ const g=conGauges(); return {gauges:g.cards.map(c=>({name:c.l,value:c.v,when:c.d,status:CON_ST[c.st],note:c.m})),retailSales:D.CONSUMER.snap.rs,pce:D.CONSUMER.snap.pce,conferenceBoard:D.CONSUMER.snap.cb,nyfed:D.CONSUMER.snap.nyfed,holiday:D.CONSUMER.snap.nrf}; }
+
+function conPulse(){
+  const {cards}=conGauges();
+  document.getElementById('conGauges').innerHTML=cards.map(c=>`<button type="button" class="cg" data-sec="${c.sec}"><div class="cg-top"><span class="cg-l">${esc(c.l)}</span>${conPill(c.st)}</div><div class="cg-v">${esc(c.v)}</div><div class="cg-d">${esc(c.d)}</div>${conSpark(c.spark,govVar(c.st==='ok'?'--ok':c.st==='warn'?'--warn':'--bad'),c.ref)}<div class="cg-m">${esc(c.m)}</div></button>`).join('');
+  document.querySelectorAll('#conGauges .cg').forEach(b=>b.onclick=()=>{ const s=document.getElementById(b.dataset.sec); if(s) s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); });
+  const cnt={ok:0,warn:0,bad:0}; cards.forEach(c=>cnt[c.st]++);
+  const N=cards.length||1, r=34, C=2*Math.PI*r; let off=0, arcs='';
+  ['ok','warn','bad'].forEach(s=>{ const len=cnt[s]/N*C; if(len>0) arcs+=`<circle cx="42" cy="42" r="${r}" fill="none" stroke="${govVar('--'+s)}" stroke-width="9" stroke-dasharray="${Math.max(0,len-2)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 42 42)"/>`; off+=len; });
+  document.getElementById('conDial').innerHTML=`<circle cx="42" cy="42" r="${r}" fill="none" stroke="${govVar('--land')}" stroke-width="9"/>${arcs}<text x="42" y="44" text-anchor="middle">${cnt.ok}/${cards.length}</text><text x="42" y="57" text-anchor="middle" class="dl">HEALTHY</text>`;
+  const h=document.getElementById('conHead'); const doc=(typeof CMDOCS!=='undefined')&&CMDOCS.con_head;
+  if(!(doc&&doc.h)){ const worst=cards.filter(c=>c.st==='bad').map(c=>c.l.toLowerCase().replace(/ \(.*\)/,'')); h.textContent=`${cnt.ok} of ${cards.length} gauges look healthy. ${worst.length?'Most stretched: '+worst.join(', ')+'.':'Nothing is flashing red.'}`; }
+  const vt=document.getElementById('conVt'); if(vt) vt.textContent=doc&&doc.at?'The bottom line · '+fmtD(doc.at,{month:'short',day:'numeric'}):'The bottom line';
+}
+function conPay(){
+  const cpi=conCpi(), keys={all:[['wo','Wage growth, all workers','--gA',3]],move:[['wsw','Job switchers','--gZ',2.6],['wst','Job stayers','--gA',2.6]],half:[['wlo','Lower-paid half','--gB',2.6],['whi','Upper-paid half','--gM',2.6]]}[CON.pay];
+  const wo=conSer('wo'), n=Math.min(CON.payR,wo.m.length), xs=wo.m.slice(-n);
+  const series=keys.map(([k,name,col,w])=>{ const S=conSer(k); return {name,v:xs.map(m=>conAt(S,m)),color:govVar(col),w}; });
+  const cv=xs.map(m=>cpi[m]!=null?cpi[m]:null); const hasCpi=cv.some(v=>v!=null);
+  if(hasCpi) series.push({name:'Inflation (CPI)',v:cv,color:govVar('--muted'),w:2,dash:'5 4'});
+  const xl=(m,i,N)=>{ const mm=+m.slice(5); return N>48?(mm===1?m.slice(0,4):''):(mm===1||mm===7?conYm(m):''); };
+  conLine({svg:document.getElementById('conPayChart'),tip:document.getElementById('conPayTip'),x:xs,xl,tl:m=>conYm(m,true),series,fmt:v=>v.toFixed(1)+'%',zero:false});
+  document.getElementById('conPayLeg').innerHTML=series.map(s=>`<span><i ${s.dash?`class="dash" style="border-color:${s.color}"`:`style="background:${s.color}"`}></i>${esc(s.name)}</span>`).join('');
+  const lw=conLast(wo), c=lw&&cpi[lw.m]; let t='';
+  if(lw){ t=`In <b>${conYm(lw.m,true)}</b> the typical worker's pay was up ${conPct(lw.v)} from a year earlier`+(c!=null?` while prices rose ${conPct(c)}, so real pay ${lw.v-c>=0?'rose':'fell'} about <b>${Math.abs(lw.v-c).toFixed(1)} points</b>.`:'.');
+    if(CON.pay==='move'){ const a=conAt(conSer('wsw'),lw.m), b=conAt(conSer('wst'),lw.m); if(a!=null&&b!=null) t+=` People who changed jobs got ${conPct(a)} vs. ${conPct(b)} for those who stayed, a ${(a-b).toFixed(1)}-point premium${a-b<1?', which is small by historical standards and a sign of a cooler job market':''}.`; }
+    if(CON.pay==='half'){ const a=conAt(conSer('wlo'),lw.m), b=conAt(conSer('whi'),lw.m); if(a!=null&&b!=null) t+=` The lower-paid half got ${conPct(a)} and the upper-paid half ${conPct(b)}. ${Math.abs(a-b)<0.3?'Raises are now about even across the pay scale, unlike 2022 when lower-paid workers led by more than 2 points.':a>b?'Lower-paid workers are still getting bigger raises.':'Higher-paid workers are now getting bigger raises.'}`; }
+  }
+  document.getElementById('conPayCall').innerHTML=t;
+  const rv=xs.map(m=>{ const w=conAt(wo,m); return w!=null&&cpi[m]!=null?w-cpi[m]:null; });
+  conBarChart({svg:document.getElementById('conRealChart'),tip:document.getElementById('conRealTip'),x:xs,v:rv,H:170,xl,tl:m=>conYm(m,true),lab:'Real pay',fmt:(v,ax)=>ax?v.toFixed(0)+' pts':conSgn(v,1,' pts')});
+}
+function conSave(){
+  const S=conSer('sav'), n=Math.min(CON.saveR,S.m.length), xs=S.m.slice(-n), v=S.v.slice(-n), pre=conAvg(S,'2018-01','2019-12');
+  const xl=(m,i,N)=>{ const mm=+m.slice(5); return N>48?(mm===1?m.slice(0,4):''):(mm===1||mm===7?conYm(m):''); };
+  conLine({svg:document.getElementById('conSaveChart'),tip:document.getElementById('conSaveTip'),x:xs,xl,tl:m=>conYm(m,true),series:[{name:'Saving rate',v,color:govVar('--gA'),w:3,area:true}],refs:pre!=null?[{v:pre,label:`2018–19 average ${pre.toFixed(1)}%`}]:[],fmt:v=>v.toFixed(1)+'%',H:280});
+  const l=conLast(S), since=l&&conSince(S,l.i,-1), P=D.CONSUMER.snap.pce, py=D.CONSUMER.snap.pymnts;
+  document.getElementById('conSaveCall').innerHTML=l?`Households saved <b>${conPct(l.v)}</b> of after-tax income in ${conYm(l.m,true)}, the lowest since ${since?conYm(since,true):'the series began'} and well under the ${pre.toFixed(1)}% they saved before the pandemic. Spending is being funded by a smaller savings habit rather than bigger paychecks.`:'';
+  document.getElementById('conSaveSide').innerHTML=(P?`<div class="con-fact"><div class="l">${conYm(P.m,true)} income and spending (BEA)</div>
+    <ul class="con-bars">${[['Personal income',P.inc],['After-tax income',P.dpi],['Spending',P.pce],['Spending after inflation',P.rpce]].map(([k,x])=>`<li><span>${k}</span><span class="tr"><i style="width:${Math.min(100,Math.abs(x)/0.6*100)}%;--c:${govVar(x>=0?'--gA':'--bad')}"></i></span><span class="n">${conSgn(x)}</span></li>`).join('')}</ul>
+    <div class="s">PCE inflation ${conPct(P.pcepi)} over the year, core ${conPct(P.core)}.</div><div class="src">Month-over-month. Released ${fmtD(P.rel,{month:'short',day:'numeric'})}.</div></div>`:'')+
+   (py?`<div class="con-fact"><div class="l">Savings that would last 3 months or less</div><div class="v">${py.short}%</div><div class="s">of consumers, down from ${py.shortPrior}% a month earlier. ${py.delay}% delayed a major purchase in the past 90 days.</div><div class="src">PYMNTS survey, ${conYm(py.m,true)}.</div></div>`:'');
+}
+function conSpend(){
+  const R=conYoY(conSer('rrs')), n=48, xs=R.m.slice(-n), v=R.v.slice(-n);
+  const xl=(m)=>{ const mm=+m.slice(5); return mm===1||mm===7?conYm(m):''; };
+  conBarChart({svg:document.getElementById('conSpendChart'),tip:document.getElementById('conSpendTip'),x:xs,v,H:240,xl,tl:m=>conYm(m,true),lab:'Real retail sales',fmt:(x,ax)=>ax?x.toFixed(0)+'%':conSgn(x)});
+  const l=conLast(R), S=D.CONSUMER.snap, rs=S.rs, bo=S.bofa, nr=S.nrf;
+  document.getElementById('conSpendCall').innerHTML=l?`After inflation, retail and restaurant sales were <b>${conSgn(l.v)}</b> from a year earlier in ${conYm(l.m,true)}. ${l.v>0?'Shoppers are still buying more than a year ago':'Shoppers are buying less than a year ago'}${S.pce&&S.pce.rpce<=0.1?`, but total spending after inflation was flat in ${conYm(S.pce.m,true)}`:''}${rs&&rs.exgas<rs.mom/2?` and much of the latest retail gain went to gasoline`:''}.`:'';
+  const mx=Math.max(...rs.cats.map(c=>c[1]));
+  document.getElementById('conSpendSide').innerHTML=
+   `<div class="con-fact"><div class="l">Retail sales, ${conYm(rs.m,true)}</div><div class="v">${conSgn(rs.mom)}</div><div class="s">month over month; <b>${conSgn(rs.exgas)}</b> excluding gas stations. August revised to ${conSgn(rs.aug)}.</div>
+     <ul class="con-bars">${rs.cats.map(c=>`<li><span>${esc(c[0])}</span><span class="tr"><i style="width:${c[1]/mx*100}%;--c:${govVar('--gX')}"></i></span><span class="n">${conSgn(c[1])}</span></li>`).join('')}</ul><div class="src">Census, released ${fmtD(rs.rel,{month:'short',day:'numeric'})}. Not adjusted for inflation.</div></div>`+
+   (bo?`<div class="con-fact"><div class="l">Card spending per household, ${conYm(bo.m,true)}</div><div class="v">${conSgn(bo.card)}</div><div class="s">vs. a year earlier (${conSgn(bo.exgas)} excluding gas). ${esc(bo.note)}</div><div class="src">Bank of America Institute.</div></div>`:'')+
+   (nr?`<div class="con-fact"><div class="l">${nr.y} holiday forecast (Nov–Dec)</div><div class="v">$${nr.t.toFixed(3)}T</div><div class="s">${conSgn(nr.g)} vs. ${conSgn(nr.prior[0])} last year; ${nr.hire[0]}K–${nr.hire[1]}K seasonal hires.</div><div class="src">National Retail Federation, ${fmtD(nr.rel,{month:'short',day:'numeric'})}.</div></div>`:'');
+}
+function conMood(){
+  const S=conSer('sent'), xs=S.m, pre=conAvg(S,'2018-01','2019-12'), u=D.CONSUMER.snap.um, cb=D.CONSUMER.snap.cb, py=D.CONSUMER.snap.pymnts;
+  conLine({svg:document.getElementById('conMoodChart'),tip:document.getElementById('conMoodTip'),x:xs,xl:m=>+m.slice(5)===1?m.slice(0,4):'',tl:m=>conYm(m,true),series:[{name:'Consumer sentiment',v:S.v,color:govVar('--gM'),w:2.6,area:true}],refs:[{v:pre,label:`2018–19 average ${pre.toFixed(0)}`}],fmt:(v,ax)=>ax?v.toFixed(0):v.toFixed(1),H:260});
+  const l=conLast(S);
+  const m22=Math.min(...S.v.filter((v,i)=>v!=null&&S.m[i].startsWith('2022')));
+  document.getElementById('conMoodCall').innerHTML=l?`Michigan sentiment stood at <b>${l.v.toFixed(1)}</b> in ${conYm(l.m,true)}, ${Math.round(l.v/pre*100)}% of its pre-pandemic average${l.v<m22?` and below the 2022 inflation low of ${m22.toFixed(1)}`:''}. ${l.v<70?'Yet card spending is still growing: people say they feel poor while they keep spending. That gap usually closes when the job market weakens.':''}`:'';
+  document.getElementById('conMoodSide').innerHTML=
+   (cb?`<div class="con-fact"><div class="l">Conference Board confidence, ${conYm(cb.m,true)}</div><div class="v">${cb.v}</div><div class="s">up from ${cb.prior}. Present situation ${cb.ps}; expectations ${cb.exp}${cb.exp<80?', still under the 80 level the Board links to recession risk':''}.</div><div class="src">Released ${fmtD(cb.rel,{month:'short',day:'numeric'})}.</div></div>`:'')+
+   (u?`<div class="con-fact"><div class="l">Inflation consumers expect (Michigan, ${conYm(u.m)})</div><div class="v">${u.inf1}%</div><div class="s">over the next year; ${u.inf5}% over 5–10 years. ${esc(u.note)}</div></div>`:'')+
+   (py?`<div class="con-fact"><div class="l">Big purchases put off</div><div class="v">${py.delay}% / ${py.cancel}%</div><div class="s">delayed / canceled a major purchase in the past 90 days, mostly over high prices.</div><div class="src">PYMNTS, ${conYm(py.m,true)}.</div></div>`:'');
+}
+function conCredit(){
+  const cc=D.CONSUMER.ccd||[], N=D.CONSUMER.snap.nyfed;
+  const pre=cc.filter(x=>x[0]<'2020').map(x=>x[1]), pa=pre.reduce((a,b)=>a+b,0)/(pre.length||1);
+  conLine({svg:document.getElementById('conCreditChart'),tip:document.getElementById('conCreditTip'),x:cc.map(x=>x[0]),xl:(q)=>q.endsWith('Q1')?q.slice(0,4):'',tl:conQ,series:[{name:'Card delinquency',v:cc.map(x=>x[1]),color:govVar('--gZ'),w:2.8,area:true}],refs:[{v:pa,label:`2018–19 average ${pa.toFixed(2)}%`}],fmt:v=>v.toFixed(2)+'%',H:240});
+  const l=cc[cc.length-1], pk=cc.reduce((a,x)=>x[1]>a[1]?x:a,cc[0]);
+  document.getElementById('conCreditCall').innerHTML=l?`Card delinquency at banks was <b>${l[1].toFixed(2)}%</b> in ${conQ(l[0])}, ${pk!==l?`down from a ${pk[1].toFixed(2)}% peak in ${conQ(pk[0])} but `:''}${l[1]>pa?'still above':'back under'} the ${pa.toFixed(2)}% pre-pandemic norm. Card balances keep growing, so a small rate on a bigger base still means more dollars going bad.`:'';
+  if(N){ document.getElementById('conDebt').innerHTML=`<div class="l">Household debt, ${conQ(N.q)}</div><div class="v">$${N.debt.toFixed(1)}T</div><div class="s">Credit card balances $${N.cards.toFixed(2)}T, up $${N.cardsQ}B in the quarter.</div><div class="src">New York Fed, ${fmtD(N.rel,{month:'short',day:'numeric',year:'numeric'})}.</div>`;
+    document.getElementById('conFlowT').textContent=`Newly seriously late, ${conQ(N.q)} vs. a year earlier`;
+    const mx=Math.max(...N.flow.flatMap(f=>[f[1],f[2]]));
+    document.getElementById('conFlow').innerHTML=N.flow.map(f=>`<li><span>${esc(f[0])}</span><span class="tr"><i style="width:${f[1]/mx*100}%;--c:${govVar(f[1]>f[2]?'--bad':'--ok')}"></i><i class="b" style="width:${f[2]/mx*100}%"></i></span><span class="n">${f[1].toFixed(2)}%</span></li>`).join(''); }
+}
+function conK(){
+  const K=D.CONSUMER.kshape; if(!K) return;
+  document.getElementById('conKh').textContent=K.h;
+  const lo=conLast(conSer('wlo')), hi=conLast(conSer('whi'));
+  document.getElementById('conKlede').innerHTML=esc(K.lede)+(lo&&hi?` Wage growth itself is now even across the pay scale (${conPct(lo.v)} for the lower-paid half, ${conPct(hi.v)} for the upper half in ${conYm(lo.m)}), so the split is coming from prices, savings and wealth rather than paychecks.`:'');
+  const cols=['--bad','--ok','--warn','--gA'];
+  document.getElementById('conKcards').innerHTML=K.points.map((p,i)=>`<article style="--c:var(${cols[i%4]})"><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p></article>`).join('');
+  document.getElementById('conKsrc').textContent='Source: '+K.src+'.';
+}
+const CON_RATE={pos:['Positive','▲','--ok'],neg:['Negative','▼','--bad'],mix:['Mixed','~','--warn'],neu:['Neutral','◆','--muted']};
+function conEv(){
+  const E=D.CONSUMER.ev; if(!E) return;
+  document.getElementById('conEvSub').textContent=E.srcName+'. Tap a company for the analyst’s view.';
+  const seg=document.getElementById('conEvSec');
+  if(!seg.dataset.f){ seg.dataset.f='1'; seg.innerHTML=`<button aria-pressed="true" data-v="all">All</button>`+E.sectors.map(s=>`<button aria-pressed="false" data-v="${s.k}">${esc(s.n.split(' & ')[0].replace('Specialty retail','Specialty'))}</button>`).join('');
+    seg.onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CON.evS=b.dataset.v; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); conEv(); };
+    const rs=document.getElementById('conEvRate'); rs.onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CON.evR=b.dataset.v; rs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); conEv(); }; }
+  let h='';
+  E.sectors.filter(s=>CON.evS==='all'||s.k===CON.evS).forEach(s=>{ const it=s.items.filter(x=>CON.evR==='all'||x[1]===CON.evR); if(!it.length) return;
+    const np=s.items.filter(x=>x[1]==='pos').length, nn=s.items.filter(x=>x[1]==='neg').length;
+    h+=`<div class="con-ev-grp">${esc(s.n)} <span>· ${esc(s.a)} · ${np} positive, ${nn} negative</span></div><div class="con-ev">`+it.map(x=>{ const r=CON_RATE[x[1]]||CON_RATE.neu;
+      return `<article class="con-co" style="--c:var(${r[2]})"><details><summary><span class="nm"><span class="rate">${r[1]} ${r[0]}</span><h3>${esc(x[0])}</h3></span></summary><p>${esc(x[2])}</p></details></article>`; }).join('')+'</div>'; });
+  document.getElementById('conEvBody').innerHTML=h||'<p class="note">No companies match these filters.</p>';
+  document.getElementById('conBottom').innerHTML=`<thead><tr><th>Sector</th><th>Conviction longs</th><th>Avoid</th></tr></thead><tbody>`+E.bottom.map(r=>`<tr><td>${esc(r[0])}</td><td class="lg">${esc(r[1])}</td><td class="av">${esc(r[2])}</td></tr>`).join('')+'</tbody>';
+}
+function conRe(){ const R=D.CONSUMER.re||[]; document.getElementById('conReCards').innerHTML=R.map(r=>`<article><h3>${esc(r[0])}</h3><p>${esc(r[1])}</p></article>`).join(''); }
+const CON_NC={retail:['Retail','--gB'],macro:['Spending','--gA'],mood:['Sentiment','--gM'],credit:['Credit','--gZ']};
+function conNews(){
+  const V=D.CONSUMER, seg=document.getElementById('conNewsSeg');
+  if(!seg.dataset.w){ seg.dataset.w='1'; seg.onclick=e=>{ const b=e.target.closest('button'); if(!b) return; CON.nw=b.dataset.v; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); conNews(); }; }
+  const items=(V.news||[]).filter(x=>CON.nw==='all'||x.c===CON.nw).slice().sort((a,b)=>String(b.d).localeCompare(String(a.d)));
+  document.getElementById('conNewsBody').innerHTML=items.map(x=>{ const c=CON_NC[x.c]||['News','--gA'];
+    return `<article class="con-nw"><div class="mt"><span class="con-tag" style="--c:var(${c[1]})">${c[0]}</span><span>${esc(conMkey(x.d))}</span><span>· ${esc(x.s)}</span></div><details><summary><h3>${esc(x.h)}</h3></summary><p>${esc(x.w)}</p><div class="lk"><a href="${esc(x.u)}" target="_blank" rel="noopener">Read the source</a></div></details></article>`; }).join('')||'<p class="note">No stories in this topic.</p>';
+  document.getElementById('conNote').textContent=V.notes||'';
+  document.getElementById('conSrc').innerHTML=(V.src||[]).map(s=>`<li><a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join('');
+}
+function conRender(){
+  const tab=document.getElementById('tab-con'); if(!tab) return;
+  if(!D.CONSUMER||!D.CONSUMER.ser){ tab.querySelectorAll('section').forEach(s=>s.hidden=true); return; }
+  if(!CON.wired){ CON.wired=true;
+    const wire=(id,fn)=>{ const el=document.getElementById(id); el.onclick=e=>{ const b=e.target.closest('button'); if(!b) return; fn(b); el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); }; };
+    wire('conPaySeg',b=>{ CON.pay=b.dataset.v; conPay(); });
+    wire('conPayRange',b=>{ CON.payR=+b.dataset.r; conPay(); });
+    wire('conSaveRange',b=>{ CON.saveR=+b.dataset.r; conSave(); });
+    let t; window.addEventListener('resize',()=>{ if(tab.hidden) return; clearTimeout(t); t=setTimeout(()=>{ try{ conPay(); conSave(); conSpend(); conMood(); conCredit(); }catch(e){} },200); });
+    new MutationObserver(()=>{ if(!tab.hidden) try{ conDraw(); }catch(e){} }).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  }
+  conDraw();
+}
+function conDraw(){ [conPulse,conPay,conSave,conSpend,conMood,conCredit,conK,conEv,conRe,conNews].forEach(f=>{ try{ f(); }catch(e){ console.error(e); } }); }
 
 // ================= READABILITY: long text behind a click =================
 // Intro paragraphs (.lede) show two lines with a "More" link; footnotes (.note, .method)
@@ -5039,7 +6105,7 @@ function monStop(){ if(!MON.on) return; MON.on=false; MON.unsub.splice(0).forEac
 applyLiveCache(LIVE0);
 buildTabMenus();
 buildTicker();
-const HASHOF={pred:'#predictions',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate'};
+const HASHOF={pred:'#predictions',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate',con:'#consumer'};
 const TABOF=Object.fromEntries(Object.entries(HASHOF).map(([k,v])=>[v,k]));
 { const hp=location.hash.split('/'); const t0=TABOF[hp[0]]||'week'; showTab(t0); if(hp[1]) setTimeout(()=>showSection(t0,hp[1]),0); }
 startLiveRates();
@@ -5052,7 +6118,23 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 
 }
 </script>
-<footer class="jam-foot"><b>JAM Capital Markets</b> · Built from public data: U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, company and agency releases, and the news sources linked on each section. Updated automatically. For information only, not investment advice. <span id="jamBuilt"></span></footer>
-<script>fetch('data/build.json',{cache:'no-cache'}).then(r=>r.json()).then(b=>{ const e=document.getElementById('jamBuilt'); if(e&&b.built) e.textContent='Last updated '+new Date(b.built).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'; }).catch(()=>{});</script>
+<footer class="site-foot">
+<div class="sf-inner">
+<div class="sf-brand"><span class="sf-name">JAM Capital Markets</span><p>Rates, capital markets, inflation, federal spending and Boston / New Hampshire real estate in one place, refreshed automatically.</p><p class="sf-stamp" id="sfStamp" data-lock="1"></p></div>
+<div class="sf-col"><h4>Markets</h4><ul><li><a href="#weekly" data-go="week">The wrap</a></li><li><a href="#capital-markets" data-go="cap">Capital markets</a></li><li><a href="#predictions" data-go="pred">Trading</a></li><li><a href="#calendar" data-go="cal">Calendar</a></li><li><a href="#news" data-go="news">News &amp; deals</a></li></ul></div>
+<div class="sf-col"><h4>Real estate</h4><ul><li><a href="#real-estate" data-go="re">Real estate</a></li><li><a href="#local" data-go="local">Local markets</a></li><li><a href="#home-ownership" data-go="home">Home ownership</a></li><li><a href="#migration" data-go="mig">Migration</a></li></ul></div>
+<div class="sf-col"><h4>Economy</h4><ul><li><a href="#consumer" data-go="con">Consumer</a></li><li><a href="#government" data-go="gov">Government</a></li></ul></div>
+</div>
+<div class="sf-legal">Data from the U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, market data providers and the sources listed under each section. Figures can lag their sources and may contain errors. For information only, not investment advice.</div>
+</footer>
+<script>
+(function(){
+  document.querySelectorAll('.site-foot a[data-go]').forEach(a=>a.addEventListener('click',e=>{ if(!window.showTab) return; e.preventDefault(); window.showTab(a.dataset.go); window.scrollTo({top:0,behavior:'smooth'}); }));
+  const st=document.getElementById('tpiStamp'), out=document.getElementById('sfStamp');
+  const sync=()=>{ if(!st||!out||out.dataset.lock) return; const t=(st.innerText||'').split('\n')[0].trim(); if(t) out.textContent=t+'.'; };
+  if(st){ new MutationObserver(sync).observe(st,{childList:true,subtree:true,characterData:true}); sync(); }
+})();
+</script>
+<script>fetch('data/build.json',{cache:'no-cache'}).then(r=>r.json()).then(b=>{ const e=document.getElementById('sfStamp'); if(e&&b.built) e.textContent='Last updated '+new Date(b.built).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'; }).catch(()=>{});</script>
 </body>
 </html>

@@ -50,7 +50,8 @@ rep("bootMsg('Sign in to claude.ai with your Torrington account to load the dash
     "bootMsg('The dashboard data could not be loaded. Reload the page to try again.',true)")
 rep("bootMsg('This dashboard loads its data from claude.ai. Open it from its claude.ai link to see the latest numbers.',true)",
     "bootMsg('The dashboard data could not be loaded. Reload the page to try again.',true)")
-rep("Ask Claude to run the Friday refresh.", "Check back shortly; the data is refreshed automatically.")
+rep("Ask Claude to run the full refresh.", "Check back shortly; the data is refreshed automatically.")
+rep("Ask Claude to refresh the news.", "Check back after the next update.")
 rep("Ask Claude to check the latest refresh.", "Reload the page to try again.")
 
 # ---- owner-only controls off
@@ -58,7 +59,6 @@ rep('</head>', '<style>#rfBox,#ask,#wkDraft,#wkEdit,#wkSave,#wkFinal,#wkStatus,#
     '.jam-mark{width:44px;height:44px;flex:none;color:#fff}\n@media (max-width:760px){.jam-mark{width:36px;height:36px}}\n'
     '.jam-foot{max-width:1280px;margin:0 auto;padding:22px 24px 40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}\n'
     '.jam-foot a{color:inherit}</style>\n</head>')
-rep("const st=dd?(dd.status==='final'?'':' (draft)'):' (not started)';", "const st=dd?'':' (coming Friday)';")
 
 # ---- wording that referred to the private setup
 rep('with a note on why each matters for the portfolio.', 'with a note on why each matters for commercial real estate.')
@@ -101,11 +101,10 @@ rep("'Add the FMP connector in claude.ai Settings → Connectors to load live pr
 rep(",['earn','Earnings']", "")
 rep('</head>', '<style>#earnStatus{display:none!important}\n@media (max-width:600px){.srcs li{white-space:normal}.seg{max-width:100%;overflow-x:auto;scrollbar-width:none}.seg::-webkit-scrollbar{display:none}.seg button{flex:none;white-space:nowrap}}</style>\n</head>')
 
-# ---- footer
-rep('</body>', '<footer class="jam-foot"><b>JAM Capital Markets</b> · Built from public data: U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, '
-    'company and agency releases, and the news sources linked on each section. Updated automatically. For information only, not investment advice. '
-    '<span id="jamBuilt"></span></footer>\n<script>fetch(\'data/build.json\',{cache:\'no-cache\'}).then(r=>r.json()).then(b=>{ '
-    'const e=document.getElementById(\'jamBuilt\'); if(e&&b.built) e.textContent=\'Last updated \'+new Date(b.built).toLocaleString(\'en-US\','
+# ---- footer: the private page carries the site footer; fill its stamp from the publish time
+rep('<p class="sf-stamp" id="sfStamp"></p>', '<p class="sf-stamp" id="sfStamp" data-lock="1"></p>')
+rep('</body>', '<script>fetch(\'data/build.json\',{cache:\'no-cache\'}).then(r=>r.json()).then(b=>{ '
+    'const e=document.getElementById(\'sfStamp\'); if(e&&b.built) e.textContent=\'Last updated \'+new Date(b.built).toLocaleString(\'en-US\','
     '{month:\'short\',day:\'numeric\',year:\'numeric\',hour:\'numeric\',minute:\'2-digit\',timeZoneName:\'short\'})+\'.\'; }).catch(()=>{});</script>\n</body>')
 
 # ---- the public page reads only its own data layer (window.jamData), never a host's hooks
@@ -118,6 +117,7 @@ s = s.replace('TPI Capital Markets Dashboard', 'JAM Capital Markets')
 s = s.replace('an internal market dashboard at Torrington Properties (Boston commercial real estate: multifamily, office, retail, student housing in Massachusetts and New Hampshire)',
               'a public market dashboard focused on Boston and New Hampshire commercial real estate')
 s = s.replace('at Torrington Properties, a Boston commercial', 'for a Boston commercial')
+s = s.replace('that affect what Torrington can build, charge or buy.', 'that affect what owners and developers can build, charge or buy.')
 left = [m.group(0) for m in re.finditer(r'(?i).{0,40}(torrington|jakemullaney|claude\.ai/(?:code/)?artifact).{0,40}', s)]
 if left:
     sys.exit('build_page: private reference left in page:\n' + '\n'.join(left[:10]))
