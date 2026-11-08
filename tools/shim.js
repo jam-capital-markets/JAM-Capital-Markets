@@ -12,7 +12,7 @@
     set:deny, update:deny, delete:deny, acquire:deny
   });
   const empty={get:async()=>({exists:false,data:()=>null}),onSnapshot:()=>()=>{},set:deny,update:deny,delete:deny,acquire:deny};
-  const known=['ds','cm','weekly'];
+  const known=['ds','cm','weekly','daily'];
   const DB={
     collection:n=>({ get:async()=>snap(await load(n)), onSnapshot:(fn)=>{ load(n).then(o=>fn(snap(o))).catch(()=>{}); return ()=>{}; }, doc:id=>docRef(n,id) }),
     doc:p=>{ const i=p.indexOf('/'), c=p.slice(0,i), id=p.slice(i+1); return known.includes(c)?docRef(c,id):empty; }

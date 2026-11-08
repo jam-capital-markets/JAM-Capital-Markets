@@ -1,0 +1,6 @@
+# Cloudflare Pages response headers (GitHub Pages ignores this file).
+# Members pages are behind Cloudflare Access; keep browsers and shared caches from storing them,
+# and keep them out of search results.
+/members/*
+  Cache-Control: private, no-store
+  X-Robots-Tag: noindex, nofollow

@@ -18,6 +18,11 @@ if len(parts) >= 3:
     s = '<!doctype html>' + parts[2]
     s = s[:s.find('</html>') + 7] + '\n'
 
+# Members-only sections leave the public page first, before any other patch, so they can never be published openly.
+sys.path.insert(0, here)
+import members
+s, MEMBER_PAGES = members.split(s)
+
 def rep(old, new, count=1, regex=False):
     global s
     n = len(re.findall(old, s)) if regex else s.count(old)
@@ -35,12 +40,11 @@ DESC = ('Free dashboard of U.S. capital markets, rates, inflation, federal spend
         'built from public data and updated automatically.')
 
 # ---- identity
-rep('<title>TPI Capital Markets Dashboard</title>',
+rep('<title>JAM Capital Markets</title>',
     f'<title>JAM Capital Markets</title>\n<meta name="description" content="{DESC}">\n'
     f'<meta property="og:title" content="JAM Capital Markets">\n<meta property="og:description" content="{DESC}">\n'
     f'<meta property="og:type" content="website">\n<link rel="icon" href="{FAVICON}">')
-rep(r'<img class="tpi-mark" src="data:image/png;base64,[A-Za-z0-9+/=]+" alt="Torrington"><span>Capital Markets</span>',
-    MARK + '<span>JAM Capital Markets</span>', regex=True)
+# (the dashboard header is already JAM-branded, so it is kept as is)
 
 # ---- data layer: static JSON instead of the claude.ai database
 shim = open(os.path.join(here, 'shim.js'), encoding='utf-8').read()
@@ -132,3 +136,4 @@ tmp = os.path.join(site, 'index.html.tmp')
 open(tmp, 'w', encoding='utf-8').write(s)
 os.replace(tmp, os.path.join(site, 'index.html'))
 print('built', os.path.join(site, 'index.html'), len(s), 'bytes')
+members.write(MEMBER_PAGES, site)

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* JAM Capital Markets: build the public data files from a dump of the private dashboard's database.
-   usage: node export.js <dump dir with ds/ cm/ weekly/ subfolders of <id>.json> <site dir>
-   Each dump file is either {v,asof,label,tier} or {id,data:{...},version}. Writes <site>/data/ds.json, cm.json, weekly.json.
+   usage: node export.js <dump dir with ds/ cm/ weekly/ daily/ subfolders of <id>.json> <site dir>
+   Each dump file is either {v,asof,label,tier} or {id,data:{...},version}. Writes <site>/data/ds.json, cm.json, weekly.json, daily.json.
    Rules (keep in sync with the README):
    - Raw stock-index price histories (S&P 500, Nasdaq, Russell 2000) and gold are never published: index providers
      require pre-approval to republish them. The trading model runs here on the private data and only its derived
@@ -18,11 +18,12 @@ const M=require(path.resolve(site,'pred-model.js'));
 const readDir=c=>{ const d=path.join(dump,c), o={}; if(!fs.existsSync(d)) return o;
   for(const f of fs.readdirSync(d)) if(f.endsWith('.json')){ let x=JSON.parse(fs.readFileSync(path.join(d,f),'utf8')); if(x&&x.data&&!('v' in x)) x=x.data; o[f.slice(0,-5)]=x; }
   return o; };
-const ds=readDir('ds'), cm=readDir('cm'), weekly=readDir('weekly');
+const ds=readDir('ds'), cm=readDir('cm'), weekly=readDir('weekly'), daily=readDir('daily');
 const notes=[];
 
 // ---- drop / scrub datasets
-const DROP=['EARNINGS','PRED_PX','PRED_LOG'];
+// HEATMAP: the public page shows TradingView's live heat map, so the vendor snapshot isn't needed
+const DROP=['EARNINGS','PRED_PX','PRED_LOG','HEATMAP'];
 const px=ds.PRED_PX&&ds.PRED_PX.v, log=(ds.PRED_LOG&&ds.PRED_LOG.v)||[];
 DROP.forEach(k=>{ if(ds[k]){ delete ds[k]; notes.push('dropped '+k); } });
 const ICE=/^(IG corporate yield|IG spread|High-yield spread|HY yield)/i;
@@ -37,7 +38,6 @@ if(ds.SRC&&ds.SRC.v){ const S=ds.SRC.v;
   for(const [k,x] of Object.entries(S)) if(/claude|your FMP|FMP connector/i.test(JSON.stringify(x))) S[k]={...x,t:String(x.t).replace(/,? via your FMP connector/i,'')};
 }
 if(ds.RATES) ds.RATES.label='U.S. Treasury constant-maturity yields (Federal Reserve H.15 via FRED, public domain): date,3m,2y,10y,30y';
-if(ds.HEATMAP&&ds.HEATMAP.v){ ds.HEATMAP.v.intraday=false; }
 
 // ---- trading model: run on the private closes, publish derived outputs only
 if(px&&px.d&&px.s){
@@ -64,10 +64,11 @@ const scrub=x=>typeof x==='string'?x.replace(/\s*\((?:via )?FMP\)/g,'').replace(
 for(const k of Object.keys(ds)) if(k!=='PRED_R') ds[k]=scrub(ds[k]);
 for(const k of Object.keys(cm)) cm[k]=scrub(cm[k]);
 for(const k of Object.keys(wk)) wk[k]=scrub(wk[k]);
-{ const left=(JSON.stringify({ds,cm,wk}).match(/.{0,60}\bFMP\b.{0,30}/g)||[]); if(left.length) notes.push('note: FMP still mentioned '+left.length+'x, e.g. '+left[0]); }
+const dy={}; Object.keys(daily).sort().forEach(id=>{ const d=daily[id]; if(d&&(d.summary||d.headline)) dy[id]=scrub(d); });
+{ const left=(JSON.stringify({ds,cm,wk,dy}).match(/.{0,60}\bFMP\b.{0,30}/g)||[]); if(left.length) notes.push('note: FMP still mentioned '+left.length+'x, e.g. '+left[0]); }
 
 // ---- privacy check
-const out={ds,cm,weekly:wk};
+const out={ds,cm,weekly:wk,daily:dy};
 const text=JSON.stringify(out);
 const BAD=[/trig_[A-Za-z0-9]{8,}/,/claude\.ai\/(code\/)?artifact/i,/jakemullaney/i,/requestedBy/];
 const hit=BAD.find(re=>re.test(text)); if(hit){ console.error('privacy check failed: '+hit); process.exit(1); }
@@ -76,4 +77,4 @@ fs.mkdirSync(path.join(site,'data'),{recursive:true});
 for(const [k,v] of Object.entries(out)) fs.writeFileSync(path.join(site,'data',k+'.json'),JSON.stringify(v));
 const stamp=Object.values(ds).map(x=>x&&x.asof).filter(Boolean).sort().pop();
 fs.writeFileSync(path.join(site,'data','build.json'),JSON.stringify({built:new Date().toISOString(),dataThrough:stamp,datasets:Object.keys(ds).length}));
-console.log(notes.join('\n')); console.log(`wrote ${Object.keys(ds).length} datasets, ${Object.keys(cm).length} commentary blocks, ${Object.keys(wk).length} weekly recaps`);
+console.log(notes.join('\n')); console.log(`wrote ${Object.keys(ds).length} datasets, ${Object.keys(cm).length} commentary blocks, ${Object.keys(wk).length} weekly recaps, ${Object.keys(dy).length} daily wraps`);
