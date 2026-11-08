@@ -5,8 +5,8 @@ TradingView's free widgets are served from TradingView's servers under their own
 reach visitors without this site fetching, storing or republishing any market data. Each widget carries
 TradingView's credit link, which is the condition of using them for free.
 
-  - Site-wide ticker: live index, Treasury yield, commodity, currency and bitcoin quotes
-  - Capital markets tab: live 2-, 5-, 10- and 30-year Treasury yields above the Cost of capital chart
+  - Site-wide ticker: live index, commodity, currency and bitcoin quotes, plus daily Treasury yields
+  - Capital markets tab: official daily Treasury yields (3-month to 30-year) above the Cost of capital chart
   - Trading tab: live S&P 500 / Nasdaq-100 / Dow 30 heat map in place of the end-of-day snapshot
 
 usage (standalone): python3 live.py <page.html>        patches the page in place
@@ -18,11 +18,13 @@ MARK = '<!-- jam:live-widgets -->'
 
 TAPE = [  # proName, label
     ('FOREXCOM:SPXUSD', 'S&P 500'), ('FOREXCOM:NSXUSD', 'Nasdaq-100'), ('FOREXCOM:DJI', 'Dow 30'),
-    ('TVC:US02Y', '2-yr Treasury'), ('TVC:US10Y', '10-yr Treasury'), ('TVC:US30Y', '30-yr Treasury'),
+    ('FRED:DGS2', '2-yr Treasury'), ('FRED:DGS10', '10-yr Treasury'), ('FRED:DGS30', '30-yr Treasury'),
     ('TVC:UKOIL', 'Brent crude'), ('TVC:GOLD', 'Gold'), ('FX_IDC:EURUSD', 'EUR/USD'), ('BITSTAMP:BTCUSD', 'Bitcoin'),
 ]
-YIELDS = [('TVC:US02Y', '2-yr Treasury'), ('TVC:US05Y', '5-yr Treasury'),
-          ('TVC:US10Y', '10-yr Treasury'), ('TVC:US30Y', '30-yr Treasury')]
+# TradingView's live yield symbols (TVC:US10Y etc.) are not licensed for free widgets; FRED's official daily
+# H.15 closes are, and TradingView updates them each business day.
+YIELDS = [('FRED:DGS3MO', '3-mo T-bill'), ('FRED:DGS2', '2-yr Treasury'), ('FRED:DGS5', '5-yr Treasury'),
+          ('FRED:DGS10', '10-yr Treasury'), ('FRED:DGS30', '30-yr Treasury')]
 HEAT = {'sp': 'SPX500', 'nq': 'NASDAQ100', 'dj': 'DJDJI'}
 
 CREDIT = ('<p class="tv-credit">Live data by <a href="https://www.tradingview.com/" rel="noopener nofollow" '
@@ -54,7 +56,7 @@ JS = """<script>
     const box=document.createElement('div'); box.className='tradingview-widget-container'; box.style.height='100%%';
     const w=document.createElement('div'); w.className='tradingview-widget-container__widget'; w.style.height='100%%';
     const s=document.createElement('script'); s.src=SRC+kind+'.js'; s.async=true;
-    s.text=JSON.stringify(Object.assign({colorTheme:theme(),locale:'en',isTransparent:true},cfg));
+    s.text=JSON.stringify(Object.assign({colorTheme:theme(),locale:'en',isTransparent:false},cfg));
     box.append(w,s); el.append(box); el.dataset.on=theme();
   }
   const defs={
@@ -108,8 +110,10 @@ def patch(s):
         s = _rep(s, old, old.replace('class="', 'class="tv-old ', 1))
     s = _rep(s, '<p class="tv-old note" id="hmNote"></p>', '<p class="tv-old note" id="hmNote"></p>\n  <div class="tv-heat" id="tvHeat"></div>\n  ' + CREDIT)
     s = _rep(s, "Tile size is the stock's weight in the index", "Tile size is the company's market value")
-    s = _rep(s, '<div class="tv-yields" id="tvYields"></div>', '<div class="tv-yields" id="tvYields"></div>\n  ' + CREDIT.replace('<p class="tv-credit">', '<p class="tv-credit" style="margin:-8px 0 14px">'))
-    s = _rep(s, '<div class="sf-legal">', '<div class="sf-legal">Live quotes, Treasury yields and the index heat map are provided by '
+    s = _rep(s, '<div class="tv-yields" id="tvYields"></div>', '<div class="tv-yields" id="tvYields"></div>\n  '
+             '<p class="tv-credit" style="margin:-8px 0 14px">Official daily Treasury yields (Federal Reserve H.15 via FRED), '
+             'updated each business day by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>.</p>')
+    s = _rep(s, '<div class="sf-legal">', '<div class="sf-legal">Live quotes, the index heat map and daily Treasury yields are provided by '
              '<a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. ')
     s = _rep(s, '</head>', CSS + '</head>')
     s = _rep(s, '</body>', MARK + '\n' + JS % dict(tape=sym(TAPE), yields=sym(YIELDS), heat=json.dumps(HEAT)) + '</body>')

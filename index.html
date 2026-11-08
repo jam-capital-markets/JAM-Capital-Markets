@@ -1670,7 +1670,7 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
 <section class="cblock">
   <h2 data-ds="@rates">Cost of capital</h2>
   <div class="tv-yields" id="tvYields"></div>
-  <p class="tv-credit" style="margin:-8px 0 14px">Live data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Quotes can be delayed by the exchange.</p>
+  <p class="tv-credit" style="margin:-8px 0 14px">Official daily Treasury yields (Federal Reserve H.15 via FRED), updated each business day by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>.</p>
   <p class="lede" data-cm="cap_rates"><span class="cmwait">Updating…</span></p>
   <div class="live" id="liveStatus"><span class="dot"></span><span id="liveText">Loading rates…</span></div>
   <div class="kpis" id="kpis"></div>
@@ -6385,7 +6385,7 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 <div class="sf-col"><h4>Real estate</h4><ul><li><a href="#real-estate" data-go="re">Real estate</a></li><li><a href="#local" data-go="local">Local markets</a></li><li><a href="#home-ownership" data-go="home">Home ownership</a></li><li><a href="#migration" data-go="mig">Migration</a></li></ul></div>
 <div class="sf-col"><h4>Economy</h4><ul><li><a href="#consumer" data-go="con">Consumer</a></li><li><a href="#government" data-go="gov">Government</a></li></ul></div>
 </div>
-<div class="sf-legal">Live quotes, Treasury yields and the index heat map are provided by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Data from the U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, market data providers and the sources listed under each section. Figures can lag their sources and may contain errors. For information only, not investment advice.</div>
+<div class="sf-legal">Live quotes, the index heat map and daily Treasury yields are provided by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Data from the U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, market data providers and the sources listed under each section. Figures can lag their sources and may contain errors. For information only, not investment advice.</div>
 </footer>
 <script>
 (function(){
@@ -6402,7 +6402,7 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 // and re-mounted when the site's light/dark theme changes.
 (function(){
   const SRC='https://s3.tradingview.com/external-embedding/embed-widget-';
-  const TAPE=[{"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}, {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq-100"}, {"proName": "FOREXCOM:DJI", "title": "Dow 30"}, {"proName": "TVC:US02Y", "title": "2-yr Treasury"}, {"proName": "TVC:US10Y", "title": "10-yr Treasury"}, {"proName": "TVC:US30Y", "title": "30-yr Treasury"}, {"proName": "TVC:UKOIL", "title": "Brent crude"}, {"proName": "TVC:GOLD", "title": "Gold"}, {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"}, {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"}], YIELDS=[{"proName": "TVC:US02Y", "title": "2-yr Treasury"}, {"proName": "TVC:US05Y", "title": "5-yr Treasury"}, {"proName": "TVC:US10Y", "title": "10-yr Treasury"}, {"proName": "TVC:US30Y", "title": "30-yr Treasury"}], HEAT={"sp": "SPX500", "nq": "NASDAQ100", "dj": "DJDJI"};
+  const TAPE=[{"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}, {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq-100"}, {"proName": "FOREXCOM:DJI", "title": "Dow 30"}, {"proName": "FRED:DGS2", "title": "2-yr Treasury"}, {"proName": "FRED:DGS10", "title": "10-yr Treasury"}, {"proName": "FRED:DGS30", "title": "30-yr Treasury"}, {"proName": "TVC:UKOIL", "title": "Brent crude"}, {"proName": "TVC:GOLD", "title": "Gold"}, {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"}, {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"}], YIELDS=[{"proName": "FRED:DGS3MO", "title": "3-mo T-bill"}, {"proName": "FRED:DGS2", "title": "2-yr Treasury"}, {"proName": "FRED:DGS5", "title": "5-yr Treasury"}, {"proName": "FRED:DGS10", "title": "10-yr Treasury"}, {"proName": "FRED:DGS30", "title": "30-yr Treasury"}], HEAT={"sp": "SPX500", "nq": "NASDAQ100", "dj": "DJDJI"};
   const mq=matchMedia('(prefers-color-scheme: dark)');
   const theme=()=>{ const t=document.documentElement.getAttribute('data-theme'); return t==='light'||t==='dark'?t:(mq.matches?'dark':'light'); };
   let ix='sp';
@@ -6412,7 +6412,7 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
     const box=document.createElement('div'); box.className='tradingview-widget-container'; box.style.height='100%';
     const w=document.createElement('div'); w.className='tradingview-widget-container__widget'; w.style.height='100%';
     const s=document.createElement('script'); s.src=SRC+kind+'.js'; s.async=true;
-    s.text=JSON.stringify(Object.assign({colorTheme:theme(),locale:'en',isTransparent:true},cfg));
+    s.text=JSON.stringify(Object.assign({colorTheme:theme(),locale:'en',isTransparent:false},cfg));
     box.append(w,s); el.append(box); el.dataset.on=theme();
   }
   const defs={
