@@ -122,6 +122,11 @@ left = [m.group(0) for m in re.finditer(r'(?i).{0,40}(torrington|jakemullaney|cl
 if left:
     sys.exit('build_page: private reference left in page:\n' + '\n'.join(left[:10]))
 
+# ---- live market widgets (TradingView serves the data; nothing is republished from here)
+sys.path.insert(0, here)
+import live
+s = live.patch(s)
+
 os.makedirs(site, exist_ok=True)
 tmp = os.path.join(site, 'index.html.tmp')
 open(tmp, 'w', encoding='utf-8').write(s)

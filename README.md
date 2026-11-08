@@ -22,3 +22,9 @@ and commit the result here. GitHub Pages serves the repository root.
   original publisher on each section.
 
 For information only. Not investment advice.
+
+## Live market widgets
+The site-wide ticker, the live Treasury yields on Capital markets and the Trading tab's index heat map are
+TradingView widgets (`tools/live.py`, applied by `build_page.py`). TradingView serves those prices from its own
+servers under its own licence, so they update live during market hours with no refresh runs and nothing is
+republished from this repository. Their credit links must stay on the page.

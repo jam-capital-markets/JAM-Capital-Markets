@@ -1277,6 +1277,15 @@ h3{font-size:17px;font-weight:600;letter-spacing:-.012em}
 .jam-foot a{color:inherit}</style>
 <style>#earnStatus{display:none!important}
 @media (max-width:600px){.srcs li{white-space:normal}.seg{max-width:100%;overflow-x:auto;scrollbar-width:none}.seg::-webkit-scrollbar{display:none}.seg button{flex:none;white-space:nowrap}}</style>
+<style>
+.tv-tape{flex:1;min-width:0;height:46px;overflow:hidden}
+.tv-yields{min-height:76px;margin:0 0 14px}
+.tv-heat{height:620px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.tv-credit{font-size:12px;color:var(--muted);margin:6px 0 0}
+.tv-credit a{color:inherit}
+.tv-old{display:none!important}
+@media (max-width:700px){.tv-heat{height:520px}}
+</style>
 </head>
 <body>
 <div class="tpi-bar">
@@ -1289,7 +1298,7 @@ h3{font-size:17px;font-weight:600;letter-spacing:-.012em}
     </div>
   </div>
 </div>
-<div class="ticker" id="ticker" aria-label="Market pulse"><div class="tk-label">MARKET PULSE</div><div class="tk-viewport"><div class="tk-track" id="tkTrack"></div></div></div>
+<div class="ticker" id="ticker" aria-label="Market pulse"><div class="tk-label">LIVE</div><div class="tv-tape" id="tvTape"></div><div class="tk-viewport tv-old"><div class="tk-track" id="tkTrack"></div></div></div>
 <div class="wrap">
 <nav class="tabs" role="tablist" aria-label="Sections">
   <button role="tab" aria-selected="true" data-tab="week">Wrap</button>
@@ -1520,6 +1529,8 @@ h3{font-size:17px;font-weight:600;letter-spacing:-.012em}
 
 <section class="cblock">
   <h2 data-ds="@rates">Cost of capital</h2>
+  <div class="tv-yields" id="tvYields"></div>
+  <p class="tv-credit" style="margin:-8px 0 14px">Live data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Quotes can be delayed by the exchange.</p>
   <p class="lede" data-cm="cap_rates"><span class="cmwait">Updating…</span></p>
   <div class="live" id="liveStatus"><span class="dot"></span><span id="liveText">Loading rates…</span></div>
   <div class="kpis" id="kpis"></div>
@@ -2008,19 +2019,21 @@ h3{font-size:17px;font-weight:600;letter-spacing:-.012em}
 </header>
 
 <section class="cblock" id="pdHeat" data-title="Index heat map">
-  <div class="mon-head"><h2 data-ds="HEATMAP">Index heat map</h2><span class="hm-livebar"><span class="mon-status" id="hmStatus"></span><button class="linkbtn" id="hmLiveBtn" type="button" hidden></button></span></div>
+  <div class="mon-head"><h2>Index heat map</h2><span class="hm-livebar"><span class="mon-status tv-old" id="hmStatus"></span><button class="linkbtn" id="hmLiveBtn" type="button" hidden></button></span></div>
   <p class="note hm-livemsg" id="hmLiveMsg" hidden></p>
-  <p class="lede">Every stock in the index as a tile. Tile size is the stock's weight in the index and color is its move on the day, so the big tiles show what actually drove the index. Sector labels carry each sector's weighted move.</p>
+  <p class="lede">Every stock in the index as a tile. Tile size is the company's market value and color is its move on the day, so the big tiles show what actually drove the index. Sector labels carry each sector's weighted move.</p>
   <div class="hm-ctl">
     <div class="seg" id="hmSeg" role="group" aria-label="Index">
       <button aria-pressed="true" data-ix="sp">S&amp;P 500</button><button aria-pressed="false" data-ix="nq">Nasdaq-100</button><button aria-pressed="false" data-ix="dj">Dow 30</button>
     </div>
   </div>
-  <div class="kpis pd-kpis" id="hmKpis"></div>
-  <div class="hm-box" id="hmBox" role="img" aria-label="Heat map of index constituents sized by index weight and colored by daily change"></div>
-  <div class="tip" id="hmTip" role="tooltip"></div>
-  <div class="hm-leg"><span>−3% or worse</span><span class="ramp" id="hmRamp"></span><span>+3% or better</span></div>
-  <p class="note" id="hmNote"></p>
+  <div class="tv-old kpis pd-kpis" id="hmKpis"></div>
+  <div class="tv-old hm-box" id="hmBox" role="img" aria-label="Heat map of index constituents sized by index weight and colored by daily change"></div>
+  <div class="tv-old tip" id="hmTip" role="tooltip"></div>
+  <div class="tv-old hm-leg"><span>−3% or worse</span><span class="ramp" id="hmRamp"></span><span>+3% or better</span></div>
+  <p class="tv-old note" id="hmNote"></p>
+  <div class="tv-heat" id="tvHeat"></div>
+  <p class="tv-credit">Live data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Quotes can be delayed by the exchange.</p>
 </section>
 
 <section class="cblock" id="pdGpu" data-title="GPU rental rates">
@@ -6154,7 +6167,7 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 <div class="sf-col"><h4>Real estate</h4><ul><li><a href="#real-estate" data-go="re">Real estate</a></li><li><a href="#local" data-go="local">Local markets</a></li><li><a href="#home-ownership" data-go="home">Home ownership</a></li><li><a href="#migration" data-go="mig">Migration</a></li></ul></div>
 <div class="sf-col"><h4>Economy</h4><ul><li><a href="#consumer" data-go="con">Consumer</a></li><li><a href="#government" data-go="gov">Government</a></li></ul></div>
 </div>
-<div class="sf-legal">Data from the U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, market data providers and the sources listed under each section. Figures can lag their sources and may contain errors. For information only, not investment advice.</div>
+<div class="sf-legal">Live quotes, Treasury yields and the index heat map are provided by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Data from the U.S. Treasury, Federal Reserve, BLS, BEA, EIA, Freddie Mac, Census, market data providers and the sources listed under each section. Figures can lag their sources and may contain errors. For information only, not investment advice.</div>
 </footer>
 <script>
 (function(){
@@ -6165,5 +6178,46 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 })();
 </script>
 <script>fetch('data/build.json',{cache:'no-cache'}).then(r=>r.json()).then(b=>{ const e=document.getElementById('sfStamp'); if(e&&b.built) e.textContent='Last updated '+new Date(b.built).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'})+'.'; }).catch(()=>{});</script>
+<!-- jam:live-widgets -->
+<script>
+// TradingView widgets: mounted when their tab is first shown (a hidden container renders at zero size)
+// and re-mounted when the site's light/dark theme changes.
+(function(){
+  const SRC='https://s3.tradingview.com/external-embedding/embed-widget-';
+  const TAPE=[{"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}, {"proName": "FOREXCOM:NSXUSD", "title": "Nasdaq-100"}, {"proName": "FOREXCOM:DJI", "title": "Dow 30"}, {"proName": "TVC:US02Y", "title": "2-yr Treasury"}, {"proName": "TVC:US10Y", "title": "10-yr Treasury"}, {"proName": "TVC:US30Y", "title": "30-yr Treasury"}, {"proName": "TVC:UKOIL", "title": "Brent crude"}, {"proName": "TVC:GOLD", "title": "Gold"}, {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"}, {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"}], YIELDS=[{"proName": "TVC:US02Y", "title": "2-yr Treasury"}, {"proName": "TVC:US05Y", "title": "5-yr Treasury"}, {"proName": "TVC:US10Y", "title": "10-yr Treasury"}, {"proName": "TVC:US30Y", "title": "30-yr Treasury"}], HEAT={"sp": "SPX500", "nq": "NASDAQ100", "dj": "DJDJI"};
+  const mq=matchMedia('(prefers-color-scheme: dark)');
+  const theme=()=>{ const t=document.documentElement.getAttribute('data-theme'); return t==='light'||t==='dark'?t:(mq.matches?'dark':'light'); };
+  let ix='sp';
+  function mount(el,kind,cfg){
+    if(!el) return;
+    el.innerHTML='';
+    const box=document.createElement('div'); box.className='tradingview-widget-container'; box.style.height='100%';
+    const w=document.createElement('div'); w.className='tradingview-widget-container__widget'; w.style.height='100%';
+    const s=document.createElement('script'); s.src=SRC+kind+'.js'; s.async=true;
+    s.text=JSON.stringify(Object.assign({colorTheme:theme(),locale:'en',isTransparent:true},cfg));
+    box.append(w,s); el.append(box); el.dataset.on=theme();
+  }
+  const defs={
+    tvTape:()=>mount(document.getElementById('tvTape'),'ticker-tape',{symbols:TAPE,showSymbolLogo:false,displayMode:'adaptive'}),
+    tvYields:()=>mount(document.getElementById('tvYields'),'tickers',{symbols:YIELDS,showSymbolLogo:false}),
+    tvHeat:()=>mount(document.getElementById('tvHeat'),'stock-heatmap',{dataSource:HEAT[ix],grouping:'sector',
+      blockSize:'market_cap_basic',blockColor:'change',exchanges:[],symbolUrl:'',hasTopBar:false,isDataSetEnabled:false,
+      isZoomEnabled:true,hasSymbolTooltip:true,isMonoSize:false,isTransparent:false,width:'100%',height:'100%'})
+  };
+  const visible=el=>el&&el.offsetParent!==null;
+  function sync(force){
+    Object.keys(defs).forEach(id=>{ const el=document.getElementById(id);
+      if(visible(el)&&(force||el.dataset.on!==theme())) defs[id](); });
+  }
+  const seg=document.getElementById('hmSeg');
+  if(seg) seg.addEventListener('click',e=>{ const b=e.target.closest('button[data-ix]'); if(!b||!HEAT[b.dataset.ix]) return;
+    ix=b.dataset.ix; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); defs.tvHeat(); });
+  new MutationObserver(()=>sync(false)).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  document.querySelectorAll('[id^="tab-"]').forEach(t=>new MutationObserver(()=>sync(false)).observe(t,{attributes:true,attributeFilter:['hidden']}));
+  mq.addEventListener('change',()=>sync(false));
+  addEventListener('load',()=>sync(false));
+  sync(false);
+})();
+</script>
 </body>
 </html>
