@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23001C47'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-size='22' font-weight='700' fill='white'%3EJAM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Playfair+Display:wght@500..800&display=swap" rel="stylesheet">
 <style>
 :root{
   --sale:#E06A0E;
@@ -1077,6 +1077,67 @@ details.more:has(> .note:empty){display:none}
 .pd-metric .det{font-size:14px;margin:6px 0 4px}
 .pd-metric .chartbox{margin-top:4px}
 .pd-sub{margin:28px 0 10px}
+/* ===== Forecast engine (v2) ===== */
+.fe-acc{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:13.5px;margin:-4px 0 14px;color:var(--muted)}
+.fe-acc .g{font:600 12px/1 Inter,sans-serif;padding:4px 9px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.fe-acc .g.ok{color:var(--gain)} .fe-acc .g.part{color:var(--gB)} .fe-acc .g.no{color:var(--loss)} .fe-acc .g.info{color:var(--gA)}
+details.wdm{margin:16px 0 0;max-width:80ch;border-top:1px dashed var(--line);padding-top:10px}
+details.wdm>summary{font-size:14px;color:var(--ink)}
+details.wdm .wb{font-size:15px;line-height:1.55;margin-top:8px}
+details.wdm .wb p{margin:0 0 8px}
+details.wdm .wb .now{border-left:3px solid var(--gA);padding:6px 10px;background:var(--surface);border-radius:6px}
+.fe-ok{color:var(--gain);font-weight:700} .fe-x{color:var(--loss);font-weight:700}
+.fe-ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+.fe-h{border:1px solid var(--line);border-top:4px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 13px 11px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.fe-h.good{border-top-color:var(--gain)} .fe-h.bad{border-top-color:var(--loss)} .fe-h.warn{border-top-color:var(--gB)} .fe-h.neutral{border-top-color:var(--gA)}
+.fe-h .hz{font:600 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fe-h .lean{font:600 18px/1.2 Inter,sans-serif}
+.fe-h .big{font:600 30px/1 Inter,sans-serif;font-variant-numeric:tabular-nums}
+.fe-h .big small{font:500 13px Inter,sans-serif;color:var(--muted);margin-left:4px}
+.fe-h .ln{font-size:13px;color:var(--muted);line-height:1.35;font-variant-numeric:tabular-nums}
+.fe-h .ln b{color:var(--ink);font-weight:600}
+.fe-h .src{margin-top:auto;padding-top:6px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line)}
+.fe-rng{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:12px 14px}
+.fe-rng table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.fe-rng th{font:600 12px Inter,sans-serif;color:var(--muted);text-align:right;padding:4px 6px;border-bottom:1px solid var(--line)}
+.fe-rng th:first-child,.fe-rng td:first-child{text-align:left}
+.fe-rng td{text-align:right;padding:7px 6px;border-bottom:1px solid var(--line)}
+.fe-bar{position:relative;height:12px;background:var(--land);border-radius:6px;min-width:90px}
+.fe-bar i{position:absolute;top:0;bottom:0;border-radius:6px;opacity:.45}
+.fe-bar i.s68{opacity:.85}
+.fe-bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+table.fe-st tr.cur td{background:color-mix(in srgb,var(--gA) 16%,var(--surface))}
+table.fe-st td small{display:block;color:var(--muted);font-size:12px}
+.fe-tone{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--muted)}
+.fe-tone.good{background:var(--gain)} .fe-tone.bad{background:var(--loss)} .fe-tone.warn{background:var(--gB)} .fe-tone.neutral{background:var(--gA)}
+.fe-quad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fe-q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface);font-size:13.5px}
+.fe-q.on{border-color:var(--gA);box-shadow:inset 0 4px 0 var(--gA)}
+.fe-q h4{margin:0 0 2px;font:600 16px Inter,sans-serif}
+.fe-q .ax{color:var(--muted);font-size:12px;margin-bottom:8px}
+.fe-q dl{display:grid;grid-template-columns:1fr auto;gap:3px 10px;margin:0;font-variant-numeric:tabular-nums}
+.fe-q dt{color:var(--muted)} .fe-q dd{margin:0;text-align:right;font-weight:600}
+.fe-trail{display:flex;gap:3px;margin:10px 0 4px;flex-wrap:wrap}
+.fe-trail span{font:600 11px/1 Inter,sans-serif;padding:5px 6px;border-radius:5px;background:var(--land);color:var(--muted)}
+.fe-trail span.Goldilocks{background:color-mix(in srgb,var(--gain) 30%,var(--surface));color:var(--ink)}
+.fe-trail span.Reflation{background:color-mix(in srgb,var(--gB) 32%,var(--surface));color:var(--ink)}
+.fe-trail span.Stagflation{background:color-mix(in srgb,var(--loss) 30%,var(--surface));color:var(--ink)}
+.fe-trail span.Deflation{background:color-mix(in srgb,var(--gA) 30%,var(--surface));color:var(--ink)}
+.fe-gauge{font:600 54px/1 Inter,sans-serif;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.fe-gauge small{font:500 15px Inter,sans-serif;color:var(--muted);margin-left:6px}
+.fe-val{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px;align-items:start}
+.fe-cape{position:relative;height:34px;margin:28px 6px 30px;background:linear-gradient(90deg,color-mix(in srgb,var(--gain) 40%,var(--surface)),var(--land) 45%,color-mix(in srgb,var(--loss) 45%,var(--surface)));border-radius:6px}
+.fe-cape i{position:absolute;top:-6px;bottom:-6px;width:3px;background:var(--ink);border-radius:2px}
+.fe-cape span{position:absolute;font-size:11.5px;color:var(--muted);transform:translateX(-50%);white-space:nowrap}
+.fe-cape span.t{top:-22px;font-weight:600;color:var(--ink);font-size:13px}
+.fe-cape span.b{bottom:-20px}
+.fe-ev{list-style:none;margin:0;padding:0}
+.fe-ev li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.fe-ev li .k{font-weight:600} .fe-ev li .v{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.fe-ev li .w{grid-column:1/3;font-size:12.5px;color:var(--muted)}
+@media (max-width:1100px){.fe-ladder{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.fe-ladder,.fe-quad,.fe-val{grid-template-columns:1fr}}
+
 @media (max-width:900px){.pd-sigtop,.pd-metrics{grid-template-columns:1fr}.pd-meter{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tsy-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px;align-items:stretch;margin:16px 0 8px}
 .tsy-top .pd-verdict{margin:0}
@@ -1330,13 +1391,14 @@ p.lede.open .lede-rest{display:inline}
 
 
 .tabs button[data-tab]::before{content:"";display:inline-block;width:.92em;height:.92em;margin-right:.26em;vertical-align:-.17em;background:currentColor;-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain;opacity:.85}
-:is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred)>header h1::before{content:"";display:inline-block;width:.72em;height:.72em;margin-right:.32em;vertical-align:-.04em;background:var(--focus);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
-html.term #tab-pred>header h1::before{background:#F5A623}
-:is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred)>header h1::before{content:none!important;display:none!important}
+:is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port)>header h1::before{content:"";display:inline-block;width:.72em;height:.72em;margin-right:.32em;vertical-align:-.04em;background:var(--focus);-webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
+html.term :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port)>header h1::before{background:#F5A623}
+.tabs button[data-tab="port"]::before,#tab-port>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-9-9v9z'/%3E%3Cpath d='M15 3.5A9 9 0 0 1 20.5 9H15z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-9-9v9z'/%3E%3Cpath d='M15 3.5A9 9 0 0 1 20.5 9H15z'/%3E%3C/svg%3E")}
+:is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port)>header h1::before{content:none!important;display:none!important}
 .tabs .tabwrap>button.tbtn{padding-left:5px!important;padding-right:1px!important}
 .tabs .caret{padding-left:1px!important;padding-right:5px!important}
 .tabs{gap:0!important}
-@media (min-width:1241px){.tabs .tabwrap>button.tbtn{font-size:14px!important}}
+@media (min-width:1241px){.tabs .tabwrap>button.tbtn{font-size:13px!important;padding-left:3px!important}.tabs .caret{padding-right:3px!important}.tabs{flex-wrap:wrap!important}}
 @media (max-width:1240px) and (min-width:601px){.tabs .tabwrap>button.tbtn{font-size:13.5px!important}.tabs{flex-wrap:wrap!important}}
 .tabs button[data-tab="week"]::before,#tab-week>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3v4a1 1 0 0 0 1 1h4 M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z M9 9h1 M9 13h6 M9 17h6'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 3v4a1 1 0 0 0 1 1h4 M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z M9 9h1 M9 13h6 M9 17h6'/%3E%3C/svg%3E")}
 .tabs button[data-tab="cap"]::before,#tab-cap>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19h16 M4 15l4-6 4 2 4-5 4 4'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19h16 M4 15l4-6 4 2 4-5 4 4'/%3E%3C/svg%3E")}
@@ -1349,6 +1411,7 @@ html.term #tab-pred>header h1::before{background:#F5A623}
 .tabs button[data-tab="mig"]::before,#tab-mig>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 19a2 2 0 1 0 4 0a2 2 0 1 0-4 0 M19 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4 M11 19h5.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H13'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 19a2 2 0 1 0 4 0a2 2 0 1 0-4 0 M19 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4 M11 19h5.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H13'/%3E%3C/svg%3E")}
 .tabs button[data-tab="gov"]::before,#tab-gov>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21h18 M3 10h18 M5 6l7-3 7 3 M4 10v11 M20 10v11 M8 14v3 M12 14v3 M16 14v3'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21h18 M3 10h18 M5 6l7-3 7 3 M4 10v11 M20 10v11 M8 14v3 M12 14v3 M16 14v3'/%3E%3C/svg%3E")}
 .tabs button[data-tab="pred"]::before,#tab-pred>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5-5 5 M12 19h7'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 7l5 5-5 5 M12 19h7'/%3E%3C/svg%3E")}
+.tabs button[data-tab="mkt"]::before,#tab-mkt>header h1::before{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 17l5-6 4 3 7-8 M15 6h4v4 M3 21h18'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 17l5-6 4 3 7-8 M15 6h4v4 M3 21h18'/%3E%3C/svg%3E")}
 
 @media (max-width:600px){
   .glance,.kpis,.cards,.wkgrid,.gpu-cards{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:10px}
@@ -1367,8 +1430,9 @@ html.term #tab-pred>header h1::before{background:#F5A623}
 /* trading tab: terminal theme */
 html.term:root{color-scheme:dark;--paper:#000000;--surface:#0A0D12;--card:#0A0D12;--ink:#E6EDF3;--muted:#8B949E;--line:#1F252E;--land:#141920;--land-edge:#000000;--brand:#F5A623;--accent:#F5A623;--focus:#F5A623;--gA:#F5A623;--gB:#F0883E;--gX:#39C5CF;--gM:#A371F7;--gZ:#FF7B72;--gain:#3FB950;--loss:#F85149;--sale:#F0883E;--ok:#3FB950;--warn:#D29922;--bad:#F85149;--okbg:rgba(63,185,80,.14);--warnbg:rgba(210,153,34,.14);--badbg:rgba(248,81,73,.14);--shadow-sm:none;--shadow-md:0 8px 24px rgba(0,0,0,.6)}
 html.term:root body{background-color:#000;background-image:radial-gradient(rgba(245,166,35,.075) 1px,transparent 1.2px);background-size:22px 22px;color:#E6EDF3}
-html.term:root body,html.term:root body *:not(.tpi-title):not(.tpi-title *){font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif!important}
-html.term:root :is(.kpi .v,.kpi .d,.big,.med,.gpu-card dd,.score td,.pd-comp .v,.tk-item b,.tk-item .up,.tk-item .dn,.hm-t .p,.hm-sec>span b,.mon-status,#tpiStamp,.rangeText,.pd-metric .v,svg text){font-family:"IBM Plex Mono",ui-monospace,monospace!important;letter-spacing:-.01em}
+html.term:root body,html.term:root body *{font-family:Inter,"Segoe UI",system-ui,sans-serif!important}
+html.term:root :is(h1,h2,h3,.tpi-title,.tpi-title *){font-family:"Playfair Display",Georgia,"Times New Roman",serif!important;letter-spacing:0!important}
+html.term:root :is(.kpi .v,.kpi .d,.big,.med,.gpu-card dd,.score td,.pd-comp .v,.tk-item b,.tk-item .up,.tk-item .dn,.hm-t .p,.hm-sec>span b,.mon-status,#tpiStamp,.rangeText,.pd-metric .v,svg text){font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.01em}
 html.term:root .tpi-bar{background:#000;border-bottom:1px solid #F5A623}
 html.term:root .tpi-meta{color:#8B949E}
 html.term:root .ticker{background:#05070A;border-bottom:1px solid #1F252E}
@@ -1380,9 +1444,9 @@ html.term:root .seg button[aria-pressed="true"]{background:#F5A623;color:#0D1117
 html.term:root :is(.askrow button,.cal-cd.soon,.ntag,.chip,.cal-type){color:#0D1117}
 html.term:root .askrow button{background:#F5A623}
 html.term:root .cblock{border-top:1px solid #1F252E}
-html.term:root #tab-pred .cblock>h2::before,html.term:root #tab-pred .mon-head h2::before{content:"";display:inline-block;width:.42em;height:.42em;background:#F5A623;margin-right:.45em;vertical-align:.2em}
-html.term:root #tab-pred h1{color:#E6EDF3;letter-spacing:-.02em}
-html.term:root #tab-pred .kpis,html.term:root #tab-pred .gpu-card,html.term:root #tab-pred .pd-metric,html.term:root #tab-pred .pd-verdict{border-color:#1F252E;background:#0A0D12}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .cblock>h2::before,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .mon-head h2::before{content:"";display:inline-block;width:.42em;height:.42em;background:#F5A623;margin-right:.45em;vertical-align:.2em}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) h1{color:#E6EDF3;letter-spacing:-.02em}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .kpis,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .gpu-card,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .pd-metric,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .pd-verdict{border-color:#1F252E;background:#0A0D12}
 html.term:root :is(.bighead,.bigout){background:#0A0D12;box-shadow:none;border:1px solid #1F252E}
 html.term:root a{color:inherit}
 
@@ -1391,19 +1455,136 @@ html.term:root .tabs{border-bottom-color:#1F252E}
 html.term:root .tpi-bar,html.term:root .ticker,html.term:root .tabs{background-color:#000}
 html.term:root .site-foot{background:#000!important;border-top:1px solid #F5A623}
 html.term:root .sv,html.term:root .secbar{background:#0A0D12;border-color:#1F252E;box-shadow:none}
-html.term:root #tab-pred .cblock{background:rgba(10,13,18,.92);border:1px solid #1F252E;box-shadow:none;transition:border-color .2s}
-html.term:root #tab-pred .cblock:hover{border-color:rgba(245,166,35,.45)}
-html.term:root #tab-pred .kpi .v,html.term:root #tab-pred .gpu-card .big{text-shadow:0 0 14px rgba(245,166,35,.22)}
-html.term:root #tab-pred>header h1::after{content:"";display:inline-block;width:.42em;height:.82em;margin-left:.18em;vertical-align:-.06em;background:#F5A623;animation:termblink 1.1s steps(1) infinite}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .cblock{background:rgba(10,13,18,.92);border:1px solid #1F252E;box-shadow:none;transition:border-color .2s}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .cblock:hover{border-color:rgba(245,166,35,.45)}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .kpi .v,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .gpu-card .big{text-shadow:0 0 14px rgba(245,166,35,.22)}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port)>header h1::after{content:"";display:inline-block;width:.42em;height:.82em;margin-left:.18em;vertical-align:-.06em;background:#F5A623;animation:termblink 1.1s steps(1) infinite}
 @keyframes termblink{50%{opacity:0}}
-@media (prefers-reduced-motion:reduce){html.term:root #tab-pred>header h1::after{animation:none}}
-html.term:root #tab-pred .lede{color:#8B949E}
-html.term:root #tab-pred .cblock>h2,html.term:root #tab-pred .mon-head h2{letter-spacing:-.01em}
+@media (prefers-reduced-motion:reduce){html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port)>header h1::after{animation:none}}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .lede{color:#8B949E}
+html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .cblock>h2,html.term:root :is(#tab-week,#tab-cap,#tab-re,#tab-con,#tab-local,#tab-news,#tab-cal,#tab-home,#tab-mig,#tab-gov,#tab-pred,#tab-mkt,#tab-port) .mon-head h2{letter-spacing:-.01em}
 html.term:root ::selection{background:rgba(245,166,35,.35);color:#fff}
+
+/* ---- Market predictions: plain-language layout (Nov 2026 rework) ---- */
+.mp-toc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:-6px 0 18px}
+.mp-toc-l{font:600 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:4px}
+.mp-toc button{font:600 13px Inter,sans-serif;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.mp-toc button i{font-style:normal;font:700 11px/1 Inter,sans-serif;width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;background:var(--gA);color:#0D1117}
+.mp-toc button:hover{border-color:var(--gA)}
+#tab-mkt h3.mp-h3{margin:28px 0 6px!important}
+#feRecChartWrap .chartbox{max-width:820px}
+.mp-story{margin:4px 0 14px}
+.mp-bl{font:600 19px/1.4 Inter,sans-serif;margin:0 0 12px;padding:12px 16px;border-radius:10px;border:1px solid var(--line);border-left:5px solid var(--gA);background:var(--surface)}
+.mp-bl span{display:block;font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:3px}
+.mp-story3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mp-story3>div{border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:var(--surface)}
+.mp-story3 .k{font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.mp-story3 p{margin:4px 0 0;font-size:14.5px;line-height:1.5}
+.mp-rows{display:flex;flex-direction:column;gap:8px;margin:6px 0 10px}
+.mp-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.35fr);gap:18px;align-items:start;border:1px solid var(--line);border-left:5px solid var(--gA);border-radius:12px;background:var(--surface);padding:14px 16px}
+.mp-row.good{border-left-color:var(--gain)} .mp-row.bad{border-left-color:var(--loss)} .mp-row.warn{border-left-color:var(--gB)}
+.mp-row .hz,.mp-row .k{display:block;font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+.mp-q h3{margin:0;font:600 17px/1.3 Inter,sans-serif}
+.mp-a .big{display:inline-block;font:600 32px/1 Inter,sans-serif;margin-right:6px}
+.mp-a .lab{font-size:13px;color:var(--muted)}
+.mp-a .vd{display:block;font-weight:600;font-size:14.5px;margin-top:6px}
+.mp-a .cmp{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:3px}
+.mp-r b{display:block;font:600 16px/1.3 Inter,sans-serif;margin-bottom:3px}
+.mp-r>span:last-child{font-size:13px;color:var(--muted);line-height:1.4}
+.mp-b{font-size:13.5px;line-height:1.45}
+.mp-b>span:nth-child(2){display:block}
+.mp-rel{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 4px}
+.mp-rel i,.mp-tag,.mp-trust .g{font:600 11.5px/1 Inter,sans-serif;font-style:normal;padding:4px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.mp-rel .ok,.mp-trust .g.ok{color:var(--gain)} .mp-rel .part,.mp-trust .g.part{color:var(--gB)} .mp-rel .no,.mp-trust .g.no{color:var(--loss)}
+.mp-b .linkbtn,.mp-feed .linkbtn,.fe-ev .linkbtn{font-size:12.5px;padding:0;margin-top:2px}
+.mp-feed{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 6px}
+.mp-feed-h,.mp-feed-r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr) minmax(0,1fr);gap:0}
+.mp-feed-h span{font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:8px 14px;background:var(--surface);border-bottom:1px solid var(--line)}
+.mp-feed-r>div{padding:11px 14px;font-size:13.5px;line-height:1.45;border-bottom:1px solid var(--line);position:relative}
+.mp-feed-r:last-child>div{border-bottom:0}
+.mp-feed-r>div:not(:last-child)::after{content:"→";position:absolute;right:-7px;top:12px;color:var(--gA);font-weight:700;z-index:1}
+.mp-feed-r b{display:block;font-size:14px;margin-bottom:2px}
+.mp-feed-r small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.mp-feed-r>div:nth-child(2){color:var(--muted)}
+.mp-top{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:start;margin:4px 0 6px}
+.mp-top .pd-verdict{margin:0}
+.mp-kick{display:block;font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:2px}
+.mp-trust{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:12px 14px;font-size:13.5px;line-height:1.45}
+.mp-trust .k{font:600 11.5px Inter,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.mp-trust .g{display:inline-block;font-size:12.5px;padding:5px 10px}
+.mp-trust p{margin:8px 0 0;color:var(--muted)}
+.mp-trust details.more{margin-top:6px}
+.mp-sigs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:8px 0;align-items:start}
+.mp-sigs2{grid-template-columns:repeat(2,minmax(0,1fr))}
+#feTacInputs.mp-sigs2{grid-template-columns:repeat(4,minmax(0,1fr))}
+#feCapeWhy.mp-sigs2{grid-template-columns:1fr}
+.mp-sig{border:1px solid var(--line);border-top:3px solid var(--line);border-radius:10px;background:var(--surface);padding:11px 13px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.mp-sig.bad{border-top-color:var(--loss)} .mp-sig.good{border-top-color:var(--gain)} .mp-sig.warn{border-top-color:var(--gB)}
+.mp-sig header{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.mp-sig h4{margin:0;font:600 14.5px/1.3 Inter,sans-serif}
+.mp-tag{color:var(--muted)} .mp-tag.bad{color:var(--loss)} .mp-tag.good{color:var(--gain)} .mp-tag.warn{color:var(--gB)}
+.mp-what{font-size:12.5px;color:var(--muted);line-height:1.4}
+.mp-now b{display:block;font:600 20px/1.2 Inter,sans-serif}
+.mp-now span{font-size:13px;line-height:1.4}
+.mp-bar{position:relative;height:8px;background:var(--land);border-radius:4px}
+.mp-bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--muted)}
+.mp-bar i{position:absolute;top:0;bottom:0;border-radius:4px}
+.mp-sig details.more{margin-top:2px;padding-top:4px}
+.mp-sig details.more>summary{color:var(--gA)}
+.mp-wb{font-size:13.5px;line-height:1.5;margin-top:6px}
+.mp-wb p{margin:0 0 8px}
+.mp-qd{font-size:13px;margin:0 0 8px;line-height:1.4}
+.fe-q dt.sub2,.fe-q dd.sub2{font-size:11.5px;font-weight:400;color:var(--muted);padding-left:10px}
+.mp-tree{margin:8px 0 0;padding-left:20px;font-size:14px;line-height:1.5;max-width:90ch}
+.mp-tree li{margin-bottom:6px}
+.fe-ev .k .linkbtn{display:block;margin-top:3px}
+.mp-part{border-top:3px solid var(--gA)!important;margin-top:34px}
+html.term:root #tab-mkt :is(.mp-row,.mp-feed,.mp-sig,.mp-trust,.mp-bl,.mp-story3>div,.mp-toc button){border-color:#1F252E;background:#0D1117}
+html.term:root #tab-mkt .mp-feed-h span{background:#0A0D12;border-color:#1F252E}
+html.term:root #tab-mkt .mp-feed-r>div{border-color:#1F252E}
+html.term:root #tab-mkt .mp-row{border-left-color:#58A6FF}
+html.term:root #tab-mkt .mp-row.good{border-left-color:var(--gain)} html.term:root #tab-mkt .mp-row.bad{border-left-color:var(--loss)} html.term:root #tab-mkt .mp-row.warn{border-left-color:#F5A623}
+html.term:root #tab-mkt .mp-bl{border-left-color:#F5A623}
+html.term:root #tab-mkt .mp-toc button i{background:#F5A623}
+html.term:root #tab-mkt .mp-feed-r>div:not(:last-child)::after{color:#F5A623}
+html.term:root #tab-mkt .mp-sig details.more>summary{color:#F5A623}
+html.term:root #tab-mkt .mp-part{border-top-color:#F5A623!important}
+@media (max-width:1100px){.mp-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.mp-sigs{grid-template-columns:repeat(2,minmax(0,1fr))}#feTacInputs.mp-sigs2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.mp-row,.mp-story3,.mp-top,.mp-sigs,.mp-sigs2,#feTacInputs.mp-sigs2{grid-template-columns:1fr}.mp-feed-h{display:none}.mp-feed-r{grid-template-columns:1fr}.mp-feed-r>div{border-bottom:0;padding:6px 14px}.mp-feed-r>div:first-child{padding-top:12px}.mp-feed-r>div:last-child{border-bottom:1px solid var(--line);padding-bottom:12px}.mp-feed-r>div:not(:last-child)::after{content:none}.mp-feed-r:last-child>div:last-child{border-bottom:0}}
+
+.mp-hero{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:20px 22px 30px;margin:6px 0 14px;position:relative;overflow:hidden}
+.mp-hero-kick{font:600 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.09em;color:var(--gA)}
+.mp-hero-main{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:6px 0 4px}
+.mp-hero-main .n{font:600 96px/.9 Inter,sans-serif;letter-spacing:-.04em}
+.mp-hero-main .t{font:600 22px/1.25 Inter,sans-serif;max-width:30ch;padding-bottom:6px}
+.mp-hero-main .t small{display:block;font:500 14px/1.4 Inter,sans-serif;color:var(--muted);margin-top:6px}
+.mp-hero-head{font:500 17px/1.45 Inter,sans-serif;margin:10px 0 16px;max-width:70ch}
+.mp-meter{position:relative;height:12px;border-radius:6px;background:var(--land);margin-top:22px}
+.mp-meter .z{position:absolute;top:0;bottom:0;opacity:.35}
+.mp-meter .z0{background:var(--gain);border-radius:6px 0 0 6px}.mp-meter .z15{background:var(--gA)}.mp-meter .z30{background:var(--gB)}.mp-meter .z50{background:var(--loss);border-radius:0 6px 6px 0}
+.mp-meter .z.on{opacity:1}
+.mp-meter .z em{position:absolute;bottom:16px;left:4px;font:600 11px Inter,sans-serif;font-style:normal;color:var(--muted);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}
+.mp-meter .z.on em{color:var(--ink)}
+.mp-meter b{position:absolute;top:-6px;width:4px;height:24px;margin-left:-2px;border-radius:2px;background:var(--ink);box-shadow:0 0 0 3px var(--surface)}
+.mp-meter-ax{position:relative;height:14px;margin-top:6px;font:500 11px Inter,sans-serif;color:var(--muted)}
+.mp-meter-ax span{position:absolute;transform:translateX(-50%)} .mp-meter-ax span:first-child{transform:none} .mp-meter-ax span:last-child{transform:translateX(-100%)}
+html.term:root #tab-mkt .mp-hero{background:radial-gradient(120% 140% at 0% 0%,rgba(245,166,35,.10),transparent 55%),#0D1117;border-color:rgba(245,166,35,.45)}
+html.term:root #tab-mkt .mp-hero-kick{color:#F5A623}
+html.term:root #tab-mkt .mp-hero-main .n{color:#F5A623;text-shadow:0 0 24px rgba(245,166,35,.25)}
+html.term:root #tab-mkt .mp-meter b{background:#E6EDF3;box-shadow:0 0 0 3px #0D1117}
+@media (max-width:760px){.mp-hero{padding:16px 16px 24px}.mp-hero-main .n{font-size:68px}.mp-hero-main .t{font-size:18px}.mp-meter .z em{display:none}.mp-meter .z.on em{display:block;font-size:10px}}
+
+/* terminal style everywhere: override leftover midnight-navy pieces */
+html.term :is(.bigout,.scen.a){background:#0A0D12!important;border:1px solid #F5A623!important}
+html.term .bighead{background:#0A0D12!important;border-color:#1F252E!important}
+html.term :is(.ptype button[aria-pressed="true"],.wkbar button:first-child,.fwbtn,#tmMetric button[aria-pressed="true"],.askrow button,.tk-label){background:#F5A623!important;color:#0D1117!important;border-color:#F5A623!important}
+html.term .tmenu button[aria-current="true"]{background:#1F252E!important;color:#E6EDF3!important}
+html.term .sl input[type=range]{accent-color:#F5A623}
+html.term :is(.cblock){background:rgba(10,13,18,.92);border:1px solid #1F252E;box-shadow:none}
 </style>
 <script>
-(function(){var t='dark';try{var x=localStorage.getItem('tpi.theme');if(x==='light'||x==='dark')t=x;}catch(e){}document.documentElement.setAttribute('data-theme',t);
-document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('thBtn');if(!b)return;
+(function(){var t='dark';document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('term');
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('thBtn');if(!b)return;b.style.display='none';return;
 function lab(){b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'Light mode':'Dark mode';}lab();
 b.addEventListener('click',function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('tpi.theme',n);}catch(e){}lab();});});})();
 </script>
@@ -1451,6 +1632,8 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
   <button role="tab" aria-selected="false" data-tab="mig">Migration</button>
   <button role="tab" aria-selected="false" data-tab="gov">Government</button>
   <button role="tab" aria-selected="false" data-tab="pred">Trading</button>
+  <button role="tab" aria-selected="false" data-tab="mkt">Market predictions</button>
+  <button role="tab" aria-selected="false" data-tab="port">Portfolio Builder</button>
 </nav>
 <div class="secbar" id="secbar"></div>
 <div class="ask" id="ask" hidden>
@@ -2153,8 +2336,8 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
 <div id="tab-pred" hidden>
 <header class="cap-head">
   <div>
-    <h1>Predictions &amp; trading</h1>
-    <p class="lede">A daily rules-based read on where markets are leaning, built from stock indexes, volatility, Treasuries, credit, oil and the dollar. Each rule makes a testable call, and every call is graded when it comes due. Not investment advice.</p>
+    <h1>Trading</h1>
+    <p class="lede">Live index heat maps, the TQQQ / SQQQ signals, the market conditions score, open calls and the AI compute rental market. The recession odds, forecasts and the scorecard that grades every call are on the <button class="linkbtn xlink" onclick="showTab('mkt')">Market predictions tab →</button></p>
   </div>
 </header>
 
@@ -2174,43 +2357,6 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
   <p class="tv-old note" id="hmNote"></p>
   <div class="tv-heat" id="tvHeat"></div>
   <p class="tv-credit">Live data by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Quotes can be delayed by the exchange.</p>
-</section>
-
-<section class="cblock" id="pdGpu" data-title="GPU rental rates">
-  <h2 data-ds="GPU">GPU rental rates</h2>
-  <p class="lede">What it costs to rent AI chips by the hour on Vast.ai, an open marketplace where anyone with spare GPUs can list them. If the AI build-out is getting ahead of real demand, this is one of the first places it shows: idle capacity gets listed and rental prices slide. Rising or steady prices mean the compute is still being used.</p>
-  <div class="gpu-top">
-    <div class="pd-verdict pd-state" id="gpuVerdict"></div>
-    <div class="pd-verdict" id="gpuHow" style="font-size:14px"></div>
-  </div>
-  <div class="gpu-cards" id="gpuCards"></div>
-  <h3>Price trend, indexed to the first reading</h3>
-  <div class="chartbox"><svg class="pd-chart" id="gpuChart" viewBox="0 0 560 240" role="img" aria-label="Lowest hourly rental price for each GPU, indexed to 100 at the first reading"></svg></div>
-  <div class="gpu-legend" id="gpuLegend"></div>
-  <p class="note" id="gpuNote"></p>
-</section>
-
-<section class="cblock" id="pdRead" data-title="Today's read">
-  <h2 data-ds="PRED_PX">Today's read</h2>
-  <p class="pd-summary" id="pdSummary"></p>
-  <div class="kpis pd-kpis" id="pdKpis"></div>
-  <p class="note" id="pdReadNote"></p>
-</section>
-
-<section class="cblock" id="pdRegime" data-title="Market regime">
-  <h2>Market regime</h2>
-  <p class="lede">How supportive the backdrop is for owning stocks. Eight market inputs, each scored from −1 (stress) to +1 (healthy), weighted into one 0–100 score. 65 and up is <b>Supportive</b>: trend, credit and volatility favor stocks. 50–64 is <b>Mixed</b>: some inputs healthy, some warning. 35–49 is <b>Fragile</b>: more warnings than support. Below 35 is <b>Stressed</b>: broad strain across trend, fear and credit.</p>
-  <div class="duo2">
-    <div>
-      <h3>Regime score, last 6 months</h3>
-      <div class="chartbox"><svg class="pd-chart" id="pdRegChart" viewBox="0 0 560 240" role="img" aria-label="Regime score over the last six months"></svg></div>
-      <p class="note">The chart starts once every input has three months of history. Past points use the latest high-yield spread, since only the current weekly reading is stored.</p>
-    </div>
-    <div>
-      <h3>What's driving it</h3>
-      <ul class="pd-comp" id="pdComp"></ul>
-    </div>
-  </div>
 </section>
 
 <section class="cblock" id="pdSignals" data-title="TQQQ / SQQQ signals">
@@ -2274,21 +2420,260 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
   <p class="note">Signals use the Nasdaq Composite as a stand-in for QQQ, which the current data plan does not include. The two track closely, but levels and crossover dates can differ slightly. "Turning down" means the 21-day EMA is lower than it was five sessions ago.</p>
 </section>
 
-<section class="cblock" id="pdRecession" data-title="Recession odds">
-  <h2>Recession odds</h2>
+<section class="cblock" id="pdRegime" data-title="Market conditions score">
+  <h2>Market conditions score (0–100)</h2>
+  <p class="lede">How supportive the backdrop is for owning stocks. Eight market inputs, each scored from −1 (stress) to +1 (healthy), weighted into one 0–100 score. 65 and up is <b>Supportive</b>: trend, credit and volatility favor stocks. 50–64 is <b>Mixed</b>: some inputs healthy, some warning. 35–49 is <b>Fragile</b>: more warnings than support. Below 35 is <b>Stressed</b>: broad strain across trend, fear and credit.</p>
   <div class="duo2">
     <div>
-      <h3>10-year minus 3-month Treasury spread</h3>
+      <h3>Regime score, last 6 months</h3>
+      <div class="chartbox"><svg class="pd-chart" id="pdRegChart" viewBox="0 0 560 240" role="img" aria-label="Regime score over the last six months"></svg></div>
+      <p class="note">The chart starts once every input has three months of history. Past points use the latest high-yield spread, since only the current weekly reading is stored.</p>
+    </div>
+    <div>
+      <h3>What's driving it</h3>
+      <ul class="pd-comp" id="pdComp"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="cblock" id="pdHyp" data-title="Open calls">
+  <h2 data-ds="PRED_LOG">Open calls</h2>
+  <p class="lede">What the rules expect next. Each call names an asset, a direction and a deadline in trading days, so it can be scored.</p>
+  <div class="pd-cards" id="pdCards"></div>
+</section>
+
+<section class="cblock" id="pdGpu" data-title="GPU rental rates">
+  <h2 data-ds="GPU">GPU rental rates</h2>
+  <p class="lede">What it costs to rent AI chips by the hour on Vast.ai, an open marketplace where anyone with spare GPUs can list them. If the AI build-out is getting ahead of real demand, this is one of the first places it shows: idle capacity gets listed and rental prices slide. Rising or steady prices mean the compute is still being used.</p>
+  <div class="gpu-top">
+    <div class="pd-verdict pd-state" id="gpuVerdict"></div>
+    <div class="pd-verdict" id="gpuHow" style="font-size:14px"></div>
+  </div>
+  <div class="gpu-cards" id="gpuCards"></div>
+  <h3>Price trend, indexed to the first reading</h3>
+  <div class="chartbox"><svg class="pd-chart" id="gpuChart" viewBox="0 0 560 240" role="img" aria-label="Lowest hourly rental price for each GPU, indexed to 100 at the first reading"></svg></div>
+  <div class="gpu-legend" id="gpuLegend"></div>
+  <p class="note" id="gpuNote"></p>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div id="tab-mkt" hidden>
+<header class="cap-head">
+  <div>
+    <h1>Market predictions</h1>
+    <p class="lede" id="mpLede" data-tidy="1">It starts with the question that matters most for every investment: is a recession coming? Then what we expect for stocks from next week to the next ten years, and exactly which data each forecast is built on. Not investment advice.</p>
+  </div>
+</header>
+
+<nav class="mp-toc" aria-label="On this page">
+  <span class="mp-toc-l">On this page</span>
+  <button type="button" data-go="pdRecession"><i>1</i>Recession odds</button>
+  <button type="button" data-go="pdFE"><i>2</i>Full forecast</button>
+  <button type="button" data-go="pdMacroReg"><i>3</i>Growth &amp; inflation</button>
+  <button type="button" data-go="pdTac"><i>4</i>Next 3 months</button>
+  <button type="button" data-go="pdCape"><i>5</i>Next 10 years</button>
+  <button type="button" data-go="pdResearch"><i>6</i>Track record</button>
+  <button type="button" data-go="pdRules"><i>7</i>Trading rules</button>
+</nav>
+
+<section class="cblock" id="pdRecession" data-title="Recession odds">
+  <h2>1 · Will the U.S. fall into a recession in the next 12 months?</h2>
+  <p class="lede" id="recLede" data-tidy="1">Recessions are what turn an ordinary market into a bad one, so this is where we start. The answer comes from six economic warning signs that have each turned before past recessions.</p>
+  <div class="mp-hero" id="feRecP"></div>
+  <div class="mp-top">
+    <div class="pd-verdict pd-state" id="feRecV"></div>
+    <div class="mp-trust" id="feAccRec"></div>
+  </div>
+
+  <h3 class="mp-h3">The six warning signs, and what each says today</h3>
+  <p class="sub">Each sign is compared with its normal level since 1960. A bar to the right means it is pushing recession odds <b>up</b>; to the left, pulling them <b>down</b>. Open "Why it matters" on any sign for the reasoning and research behind it.</p>
+  <div class="mp-sigs" id="feRecComp"></div>
+  <p class="note" id="feRecAsof"></p>
+
+  <div id="feRecChartWrap">
+    <div>
+      <h3 class="mp-h3">Has this model worked before?</h3>
+      <div class="chartbox"><svg class="pd-chart" id="feRecChart" viewBox="0 0 560 240" role="img" aria-label="Model recession probability since 1985 with recessions shaded"></svg></div>
+      <p class="note" id="feRecStats"></p>
+    </div>
+    <div>
+      <h3 class="mp-h3">What it has meant for stocks</h3>
+      <p class="sub">What the S&amp;P 500 did over the next 12 months, grouped by what the model read at the time (1985–2026).</p>
+      <div class="scroll"><table class="score fe-st" id="feRecBuckets"></table></div>
+      <p class="note">Higher odds have not meant lower <i>average</i> returns so much as a much worse bad year: the typical dip and the 1-in-10 outcome get far deeper as the odds rise.</p>
+    </div>
+  </div>
+  <details class="more"><summary>More: compare with the New York Fed's yield-curve-only model</summary>
+  <p class="note">The best-known recession model, published by the Federal Reserve Bank of New York, uses only the yield curve. It is shown here for comparison. Our six-sign model is the headline number because it was more accurate on unseen data and reacts to jobs, credit and oil, which the curve alone misses.</p>
+  <div class="duo2">
+    <div>
+      <h3>10-year minus 3-month Treasury spread, last year</h3>
       <div class="chartbox"><svg class="pd-chart" id="pdCurveChart" viewBox="0 0 560 240" role="img" aria-label="10-year minus 3-month Treasury spread over the last year"></svg></div>
       <p class="note">Below zero means the curve is inverted, the classic recession warning.</p>
     </div>
     <div>
-      <h3>Chance of recession within 12 months</h3>
+      <h3>Curve-only chance of recession within 12 months</h3>
       <div class="pd-rec" id="pdRecP"></div>
       <div id="pdRecText"></div>
     </div>
   </div>
+  </details>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmRec"></div></details>
 </section>
+
+<section class="cblock" id="pdFE" data-title="The forecast">
+  <h2 data-ds="PRED_PX">2 · The full forecast, every horizon</h2>
+  <p class="lede" id="feLede" data-tidy="1">Five questions about the economy and the S&amp;P 500, our answer to each, and the data behind it. Sections 1 and 3 to 5 show the evidence for each answer.</p>
+  <div class="mp-story" id="feStance"></div>
+  <div class="mp-rows" id="feLadder"></div>
+  <details class="more"><summary>More: how to read the odds and ranges</summary>
+    <p class="note"><b>"Chance it ends higher"</b> is how often the S&amp;P 500 was actually higher at the end of the window, in past periods that looked like today. It is always compared with the <b>normal odds</b>: how often stocks were higher over the same window on any day at all. Stocks rise more often than they fall, so even "normal" is above 50%. The difference between the two numbers is what today's conditions add, and it is usually a few points, not a sure thing.</p>
+    <p class="note"><b>"Where it should land"</b> is the range the S&amp;P 500 should finish in two times out of three. It comes from the VIX (the market's own estimate of how much stocks will move), adjusted for how often past ranges actually held. Size of moves is far easier to predict than direction, so the range is the most trustworthy number in the short-term rows.</p>
+    <p class="note"><b>"How reliable"</b> comes from testing each method on years of history it was not built from. "Reliable" means it held up on those unseen years. "Small tilt" means it only nudges the odds. "Rough guide" means it points the right way over long periods but with a wide margin of error.</p>
+  </details>
+
+  <h3 class="mp-h3">What feeds each forecast</h3>
+  <p class="sub">Every forecast on this page starts from public data, runs through one method, and produces one answer. This is the whole pipeline.</p>
+  <div class="mp-feed">
+    <div class="mp-feed-h"><span>Data we use</span><span>How it becomes a forecast</span><span>What it predicts</span></div>
+    <div class="mp-feed-r">
+      <div><b>Six economic warning signs</b>Yield curve · unemployment trend · credit spreads · building permits · S&amp;P 500 six-month change · oil shocks <small>FRED (St. Louis Fed), monthly; yield curve and stocks daily</small></div>
+      <div>A statistical model fitted on 1960–2026 weighs the six signs and turns them into a probability. <button class="linkbtn" type="button" data-go="pdRecession">Section 1 ↑</button></div>
+      <div><b>Recession odds, next 12 months</b>and what similar readings meant for stocks over the following year</div>
+    </div>
+    <div class="mp-feed-r">
+      <div><b>Growth and inflation</b>Industrial production · consumer prices (CPI) <small>FRED, monthly</small></div>
+      <div>Is growth above or below its trend, and is inflation speeding up or slowing? The two answers place the economy in one of four backdrops. <button class="linkbtn" type="button" data-go="pdMacroReg">Section 3 ↓</button></div>
+      <div><b>The economic backdrop</b>which shifts recession risk up or down</div>
+    </div>
+    <div class="mp-feed-r">
+      <div><b>Market mood</b>S&amp;P 500 vs its 200-day average · VIX · VIX vs actual volatility · size of the latest drop <small>Daily closes</small></div>
+      <div>Today is sorted into one of six market moods. We look up what stocks did after the same mood on every day since 2007, and size the range from the VIX. <button class="linkbtn" type="button" data-go="pdTac">Section 4 ↓</button></div>
+      <div><b>Odds and ranges for 1 week, 1 month and 3 months</b></div>
+    </div>
+    <div class="mp-feed-r">
+      <div><b>Valuation</b>Shiller CAPE: price vs ten years of inflation-adjusted earnings <small>Shiller data since 1881, updated monthly</small></div>
+      <div>A line fitted on 1900–2016 links the starting CAPE to the return over the next decade. <button class="linkbtn" type="button" data-go="pdCape">Section 5 ↓</button></div>
+      <div><b>Yearly stock return over the next 10 years</b>after inflation</div>
+    </div>
+  </div>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmFE"></div></details>
+</section>
+
+<section class="cblock" id="pdMacroReg" data-title="Growth & inflation">
+  <h2>3 · The economic backdrop: growth and inflation</h2>
+  <p class="lede" id="regLede" data-tidy="1">Two questions place the economy in one of four backdrops: is growth running above or below its usual pace, and is inflation speeding up or slowing down? The backdrop matters mostly for recession risk.</p>
+  <div class="mp-top">
+    <div class="pd-verdict pd-state" id="feRegV"></div>
+    <div class="mp-trust" id="feAccReg"></div>
+  </div>
+  <h3 class="mp-h3">The two measures</h3>
+  <div class="mp-sigs mp-sigs2" id="feRegInputs"></div>
+  <h3 class="mp-h3">The four backdrops, and what followed each since 1960</h3>
+  <p class="sub">Average change over the next 12 months whenever the economy was in each box. The recession line is the most dependable part; the asset returns changed a lot between eras (shown as 1960–92 / 1993–2026).</p>
+  <div class="fe-quad" id="feQuad"></div>
+  <h3 class="mp-h3" style="margin-top:16px">The last 12 months</h3>
+  <div class="fe-trail" id="feTrail"></div>
+  <p class="note" id="feRegNote"></p>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmReg"></div></details>
+</section>
+
+<section class="cblock" id="pdTac" data-title="Next 3 months">
+  <h2>4 · The next week to three months: market mood</h2>
+  <p class="lede" id="tacLede" data-tidy="1">Over weeks and months, the economy matters less than the market's own trend and nerves. Each day the S&amp;P 500 is sorted into one of six moods from four readings, and we look up what stocks did after the same mood since 2007.</p>
+  <div class="mp-top">
+    <div class="pd-verdict pd-state" id="feState"></div>
+    <div class="mp-trust" id="feAccTac"></div>
+  </div>
+  <h3 class="mp-h3">The four readings behind the mood</h3>
+  <div class="mp-sigs mp-sigs2" id="feTacInputs"></div>
+  <details class="more"><summary>More: how the four readings decide the mood</summary>
+    <ol class="mp-tree">
+      <li><b>Is the index below its 200-day average?</b> If yes, it is in a downtrend. With VIX at 25 or higher it is <b>Capitulation</b> (fear-driven break); otherwise it is a <b>Quiet downtrend</b> (slow slide without panic).</li>
+      <li><b>Above the average, but just had a sharp drop?</b> A fall of 3% or more in five days, an RSI under 30, or VIX at 25 or higher makes it a <b>Washout in an uptrend</b>.</li>
+      <li><b>Is VIX at least 6 points above the volatility stocks are actually showing?</b> Then it is <b>Uptrend, fear priced in</b>.</li>
+      <li><b>More than 8% above the 200-day average?</b> Then it is <b>Stretched</b>.</li>
+      <li>Otherwise it is a <b>Steady uptrend</b>, the most common mood.</li>
+    </ol>
+  </details>
+
+  <h3 class="mp-h3">Where the index should land</h3>
+  <div class="seg tsy-seg" id="feSeg" role="group" aria-label="Index"><button aria-pressed="true" data-sym="GSPC">S&amp;P 500</button><button aria-pressed="false" data-sym="IXIC">Nasdaq Composite</button></div>
+  <div class="fe-rng" id="feRange"></div>
+
+  <h3 class="mp-h3">All six moods, and what followed each</h3>
+  <p class="sub">S&amp;P 500 daily closes. "Higher" is the share of days the index was up at the end of the window, with the average move underneath. The mood was built from 2007–2026; the last column checks it on 1991–2006, years that played no part in building it.</p>
+  <div class="scroll"><table class="score fe-st" id="feStates"></table></div>
+  <details class="more"><summary>More: what the testing found (read before trusting a short-term call)</summary>
+    <p class="note">A full machine-learning model using ten price and volatility inputs, retrained every year and scored on the year after (2012–2026), did <b>worse than a coin flip</b>: patterns that worked through 2008 reversed in the buy-the-dip market that followed. That matches the academic record: most predictors that look good in hindsight fail on new data (Welch and Goyal, 2008). So the moods are kept simple, and each has a published reason to exist.</p>
+    <p class="note">Only three moods pointed the same way in all three periods tested (1991–2006, 2007–16, 2017–26): <b>Washout</b> (better than normal), <b>Fear priced in</b> (slightly better) and <b>Quiet downtrend</b> (worse). The others carry no reliable edge. Because overlapping windows share the same moves, none of the edges is large enough to be statistically certain. Treat them as tilts in the odds.</p>
+    <p class="note">The ranges are the strongest part: built on 2007–2026, the "2 in 3" range held 68–72% of the time on 1991–2006 and the "9 in 10" range 89–91%. The Nasdaq uses the same moods with the S&amp;P 500's odds and a wider range.</p>
+  </details>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmTac"></div></details>
+</section>
+
+<section class="cblock" id="pdCape" data-title="Next 10 years">
+  <h2>5 · The next ten years: valuation</h2>
+  <p class="lede" id="capeLede" data-tidy="1">Over a decade, the price you pay up front matters more than anything else that can be measured. We gauge that price with the Shiller CAPE and translate it into an expected yearly return.</p>
+  <div class="mp-top">
+    <div>
+      <div class="kpis pd-kpis" id="feCapeKpis"></div>
+      <div class="fe-cape" id="feCapeBar"></div>
+    </div>
+    <div class="mp-trust" id="feAccCape"></div>
+  </div>
+  <div class="mp-sigs mp-sigs2" id="feCapeWhy"></div>
+  <div class="duo2" style="margin-top:14px">
+    <div id="feCapeText"></div>
+    <div>
+      <h3 class="mp-h3" style="margin-top:0">Starting CAPE vs the next ten years, since 1900</h3>
+      <div class="scroll"><table class="score fe-st" id="feCapeTable"></table></div>
+    </div>
+  </div>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmCape"></div></details>
+</section>
+
+<section class="cblock" id="pdResearch" data-title="Track record">
+  <h2>6 · Track record: how much to trust each forecast</h2>
+  <p class="lede" id="resLede" data-tidy="1">Every method on this page was tested on years of data it was not built from. Here is what held up and what did not, in one place.</p>
+  <ul class="fe-ev" id="feEvidence"></ul>
+  <details class="more"><summary>More: the research this is built on</summary><div id="feRefs"></div></details>
+  <details class="more"><summary>More: data sources and refresh schedule</summary><div id="feData"></div></details>
+  <details class="more wdm"><summary>What does this mean?</summary><div class="wb" id="feWdmRes"></div></details>
+</section>
+
+<section class="cblock mp-part" id="pdRules" data-title="Trading rules">
+  <h2>7 · Trading rules: the original daily model</h2>
+  <p class="lede" id="rulesLede" data-tidy="1">Separate from the forecasts above: a set of fixed trading rules (the TQQQ / SQQQ signals and a few dip-buying rules) checked at every close. The live signals, the market conditions score and the open calls are on the Trading tab; each time a rule fires it logs a call with a deadline, and the scorecard below grades it. <button class="linkbtn xlink" type="button" onclick="showTab('pred')">Trading tab →</button></p>
+  <h3 class="mp-h3">Accuracy check: the original rules</h3>
+  <p class="sub">Each rule's signals on the S&amp;P 500 from 1991 to 2026 (the Nasdaq history needed for the exact rules is not in the free data, so the S&amp;P stands in). "By chance" is how often the call would have been right on any day.</p>
+  <div class="scroll"><table class="score" id="feV1Table"></table></div>
+  <p class="note" id="feV1Note"></p>
+</section>
+
+<section class="cblock" id="pdRead" data-title="Today's read">
+  <h2 data-ds="PRED_PX">Today's trading read</h2>
+  <p class="pd-summary" id="pdSummary"></p>
+  <div class="kpis pd-kpis" id="pdKpis"></div>
+  <p class="note" id="pdReadNote"></p>
+</section>
+
+
+
+
 
 <section class="cblock" id="pdRates" data-title="10-year outlook">
   <h2>Where the 10-year is leaning</h2>
@@ -2298,11 +2683,7 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
   </div>
 </section>
 
-<section class="cblock" id="pdHyp" data-title="Open calls">
-  <h2 data-ds="PRED_LOG">Open calls</h2>
-  <p class="lede">What the rules expect next. Each call names an asset, a direction and a deadline in trading days, so it can be scored.</p>
-  <div class="pd-cards" id="pdCards"></div>
-</section>
+
 
 <section class="cblock" id="pdScore" data-title="Scorecard">
   <h2>Scorecard</h2>
@@ -2313,16 +2694,26 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
   <div class="scroll"><table class="score" id="pdRulesTable"></table></div>
 </section>
 
+<section class="cblock" id="pdMethod" data-title="How it works">
+  <h2>How it works</h2>
+  <div class="pd-method" id="pdMethodText"></div>
+</section>
+</div>
+
+<div id="tab-port" hidden>
+<header class="cap-head">
+  <div>
+    <h1>Portfolio Builder</h1>
+    <p class="lede">The JAM model portfolio: an equity sleeve and a fixed income sleeve solved for a target income return with BXSL and TLT. Enter the dollars in each sleeve and everything below updates. Not investment advice.</p>
+  </div>
+</header>
+
 <section class="cblock" id="portOv" data-title="JAM Portfolio">
   <h2>JAM Portfolio</h2>
   <p class="sub">The JAM model portfolio, with an equity sleeve and a fixed income sleeve solved for a target income return, is available to members.</p>
   <a class="fwbtn" href="members/portfolio/">Open JAM Portfolio &rarr;</a>
 </section>
 
-<section class="cblock" id="pdMethod" data-title="How it works">
-  <h2>How it works</h2>
-  <div class="pd-method" id="pdMethodText"></div>
-</section>
 </div>
 
 <div id="tab-gov" hidden>
@@ -2676,7 +3067,7 @@ b.addEventListener('click',function(){var n=document.documentElement.getAttribut
 <button type="button" class="totop" id="toTop" aria-label="Back to top" title="Back to top">↑</button>
 <script>(function(){const b=document.getElementById('toTop');addEventListener('scroll',()=>b.classList.toggle('on',scrollY>1400),{passive:true});b.onclick=()=>scrollTo({top:0,behavior:'smooth'});})();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="pred-model.js"></script>
+<script src="pred-model.js"></script><script src="pred-cal.js"></script><script src="pred-macro-seed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
 // JAM Capital Markets: read-only data layer for the public site.
@@ -2891,13 +3282,11 @@ function showTip(ev, html){
 function hideTip(){ tip.style.opacity = 0; }
 
 function shadeStates(g, extra){
-  const s = stateScores(g); const max = d3.max(Object.values(s)) || 1;
-  const base = col(g), land = getComputedStyle(document.documentElement).getPropertyValue('--land').trim();
-  const ip = d3.interpolateRgb(land, base);
+  const net = stateNet(g), fill = netFill(net);
   gStates.selectAll('path')
-    .attr('fill', d=>{ const c = NAME2CODE[d.properties.name]; const v = s[c]||0; return v? ip(0.12 + 0.78*Math.sqrt(v/max)) : land; })
-    .on('mousemove', (ev,d)=>{ const c=NAME2CODE[d.properties.name]; const v=s[c]||0;
-      showTip(ev, `<b>${d.properties.name}</b><br>${GNAME[g]} state score: ${v}${v?'':' (not a top-5 state for any metro)'}${extra?extra(c):''}`); })
+    .attr('fill', d=>fill(NAME2CODE[d.properties.name]))
+    .on('mousemove', (ev,d)=>{ const c=NAME2CODE[d.properties.name];
+      showTip(ev, netTip(c,net[c])+(extra?extra(c):'')); })
     .on('mouseleave', hideTip);
 }
 
@@ -2923,7 +3312,7 @@ function renderNational(){
   if (colorMode==='rent') gStates.selectAll('path').attr('fill',cssv('--land')).on('mousemove',null); else shadeStates(gen);
   gArcs.selectAll('*').remove();
   const ms = Object.values(metroScores(gen)).filter(e=>P[e.k]).sort((a,b)=>b.s-a.s);
-  const max = ms[0].s, c = col(gen);
+  const max = ms[0].s, c = cssv('--gain');
   const r = d3.scaleSqrt().domain([0,max]).range([0,22]);
   gDots.selectAll('circle').data(ms, d=>d.k).join('circle')
     .attr('class','metro').attr('cx',d=>P[d.k][0]).attr('cy',d=>P[d.k][1]).attr('r',d=>Math.max(2.5,r(d.s)))
@@ -2937,7 +3326,7 @@ function renderNational(){
   const lab = ms.slice(0,12);
   gLbl.selectAll('text').data(lab,d=>d.k).join('text').attr('class','lbl')
     .attr('x',d=>P[d.k][0]+Math.max(2.5,r(d.s))+3).attr('y',d=>P[d.k][1]+4).style('font-size',null).style('stroke-width',null).text(d=>short(d.k));
-  document.getElementById('mapCaption').textContent = colorMode==='rent' ? `Circles sized by migration pull, colored by rent change over the past year (blue rising, red falling; Zillow where available, else Apartment List or Zumper; grey = no rent data).` : `States shaded and metros sized by how often and how high they rank as a ${gen==='A'?'':GNAME[gen]+' '}destination. Hover for detail, click a circle to see its flows.`;
+  document.getElementById('mapCaption').textContent = colorMode==='rent' ? `Circles sized by migration pull, colored by rent change over the past year (blue rising, red falling; Zillow where available, else Apartment List or Zumper; grey = no rent data).` : `States in green gain more ${gen==='A'?'':GNAME[gen]+' '}movers than they lose; red states lose more than they gain. Green circles are sized by how often and how high each metro ranks as a destination. Hover for detail, click a circle to see its flows.`;
 
   const ss = Object.entries(stateScores(gen)).sort((a,b)=>b[1]-a[1]);
   const ms10 = ms.slice(0,10), sm = ss[0][1];
@@ -2958,7 +3347,7 @@ function renderMetro(){
   // shade states by this origin's state lists
   if (o){
     const s={}; for (const gg of gs) o.g[gg].s.forEach((c,i)=>{ if(!o.home.includes(c)) s[c]=(s[c]||0)+5-i; });
-    const max=d3.max(Object.values(s))||1, land=getComputedStyle(document.documentElement).getPropertyValue('--land').trim(), ip=d3.interpolateRgb(land,col(gen));
+    const max=d3.max(Object.values(s))||1, land=getComputedStyle(document.documentElement).getPropertyValue('--land').trim(), ip=d3.interpolateRgb(land,cssv('--gain'));
     gStates.selectAll('path').attr('fill',d=>{const v=s[NAME2CODE[d.properties.name]]||0; return v&&showOut?ip(.15+.6*(v/max)):land;})
       .on('mousemove',(ev,d)=>{const c=NAME2CODE[d.properties.name]; const ranks=gs.map(gg=>{const i=o.g[gg].s.indexOf(c);return i>=0?`<span style="color:var(--g${gg})">${GNAME[gg]} #${i+1}</span>`:''}).filter(Boolean);
         showTip(ev,`<b>${d.properties.name}</b><br>${ranks.length?ranks.join('<br>'):'Not a top-5 state from '+short(k)}`);})
@@ -2974,7 +3363,7 @@ function renderMetro(){
   if (showIn) for (const f of inb) if (P[f.o]) arcs.push({id:`i${f.g}${f.o}`,a:P[f.o],b:P[k],g:f.g,r:f.r,dir:'in',d:f.o});
   gArcs.selectAll('path').data(arcs,d=>d.id).join('path').attr('class','arc')
     .attr('d',d=>arcPath(d.a,d.b, gen==='A'?off[d.g]:.12))
-    .attr('stroke',d=>col(d.g)).attr('stroke-width',d=>d.dir==='out'?0.8+(6-d.r)*0.75:1.4)
+    .attr('stroke',d=>d.dir==='out'?cssv('--loss'):cssv('--gain')).attr('stroke-width',d=>d.dir==='out'?0.8+(6-d.r)*0.75:1.4)
     .attr('stroke-dasharray',d=>d.dir==='in'?'4 4':null).attr('stroke-opacity',d=>d.dir==='out'?.85:.7);
   // dots: selected + endpoints
   const pts = new Map(); pts.set(k,{k,role:'sel'});
@@ -2994,7 +3383,7 @@ function renderMetro(){
   gLbl.selectAll('text').data(pd,d=>d.k).join('text').attr('class','lbl')
     .attr('x',d=>P[d.k][0]+(d.role==='sel'?11:6)*z).attr('y',d=>P[d.k][1]+4*z)
     .style('font-size',d=>(d.role==='sel'?15:11.5)*z+'px').style('stroke-width',3*z+'px').text(d=>short(d.k));
-  document.getElementById('mapCaption').textContent = `Solid lines: where people leaving ${short(k)} go (thicker = higher rank). Dashed lines: metros whose movers list ${short(k)} as a top destination.${o?'':' This metro is under 1M people, so U-Haul does not report where its own residents go.'}`;
+  document.getElementById('mapCaption').textContent = `Red lines: where people leaving ${short(k)} go (thicker = higher rank). Green dashed lines: metros whose movers list ${short(k)} as a top destination.${o?'':' This metro is under 1M people, so U-Haul does not report where its own residents go.'}`;
 
   // panel
   let html = `<h3>${nm(k)}</h3>` + rentCard(k);
@@ -4809,7 +5198,7 @@ function wkAuto(fri){
 }
 function wkOptions(){ const cur=ymd(fridayOf(new Date())), ids=new Set([cur,...Object.keys(WKDOCS)]); return [...ids].sort().reverse(); }
 function dyOptions(){ const ids=Object.keys(DYDOCS).sort().reverse(); if(ids.length) return ids; const d=new Date(); while(d.getDay()===0||d.getDay()===6) d.setDate(d.getDate()-1); return [ymd(d)]; }
-const WRC={cap:'--gA',re:'--gB',con:'--gZ',local:'--gM',news:'--gX',cal:'--sale',home:'--gB',mig:'--gM',gov:'--gZ',pred:'--gA',week:'--muted'};
+const WRC={mkt:'--gA',cap:'--gA',re:'--gB',con:'--gZ',local:'--gM',news:'--gX',cal:'--sale',home:'--gB',mig:'--gM',gov:'--gZ',pred:'--gA',week:'--muted'};
 const WRORDER=['cap','re','con','local','news','cal','home','mig','gov','pred'];
 function wrSecOk(tab,sec){ try{ return !!sec&&navSections(tab).some(s=>s.id===sec); }catch(e){ return false; } }
 function wrSecName(tab,sec){ if(!wrSecOk(tab,sec)) return ''; const el=document.getElementById(sec); return (el&&el.dataset.title)||''; }
@@ -4939,8 +5328,8 @@ function askInit(){
 }
 
 // ================= TAB DROPDOWN NAVIGATION =================
-const TABIDS={pred:'tab-pred',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov',re:'tab-re',con:'tab-con'};
-const TABNAMES={pred:'Trading',week:'Wrap',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government',re:'Real estate',con:'Consumer'};
+const TABIDS={pred:'tab-pred',mkt:'tab-mkt',port:'tab-port',week:'tab-week',bonds:'tab-bonds',cap:'tab-cap',cal:'tab-cal',local:'tab-local',news:'tab-news',home:'tab-home',mig:'tab-mig',gov:'tab-gov',re:'tab-re',con:'tab-con'};
+const TABNAMES={pred:'Trading',mkt:'Market predictions',port:'Portfolio Builder',week:'Wrap',bonds:'Bonds',cap:'Capital markets',cal:'Calendar',local:'Local markets',news:'News & deals',home:'Home ownership',mig:'Migration',gov:'Government',re:'Real estate',con:'Consumer'};
 let curSec=null;
 function navSections(tab){
   const root=document.getElementById(TABIDS[tab]); if(!root) return [];
@@ -4952,7 +5341,6 @@ function navSections(tab){
 }
 function showSection(tab,secId){
   if(tab==='bonds') tab='cap';
-  if(tab==='port'){ tab='pred'; if(!secId) secId='portOv'; }
   const go=()=>{
     const secs=navSections(tab); curSec=secId||null;
     secs.forEach(s=>s.el.classList.toggle('navhide', !!secId && s.id!==secId));
@@ -4970,7 +5358,7 @@ function showSection(tab,secId){
       document.getElementById('secall').onclick=()=>showSection(tab,null);
     } else { bar.classList.remove('on'); bar.innerHTML=''; }
     document.querySelectorAll('.tmenu button[data-sec]').forEach(b=>b.setAttribute('aria-current', b.dataset.sec===secId));
-    try{ const base={pred:'#predictions',week:'#weekly',bonds:'#bonds',cap:'#capital-markets',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate',con:'#consumer'}[tab]; history.replaceState(null,'',base+(secId?'/'+secId:'')); }catch(e){}
+    try{ const base={pred:'#trading',mkt:'#predictions',week:'#weekly',bonds:'#bonds',cap:'#capital-markets',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate',con:'#consumer'}[tab]; history.replaceState(null,'',base+(secId?'/'+secId:'')); }catch(e){}
     window.scrollTo({top:0});
     if(tab==='local'&&typeof renderTownMap==='function'&&secId==='locMap'){ renderTownMap(); }
   };
@@ -4999,12 +5387,377 @@ function closeMenus(){ document.querySelectorAll('.tabwrap.open').forEach(w=>w.c
 window.showSection=showSection; window.showTab=showTab;
 
 
+// ================= FORECAST ENGINE (v2) =================
+// Market predictions tab. Each section answers one question in plain words, shows the data behind the answer,
+// and explains every measure behind a "Why it matters" dropdown. Numbers come from pred-model.js (PredModel.compute)
+// and the calibration in pred-cal.js.
+let FE_SYM='GSPC';
+const feP=(v,dp=1)=>{ if(v==null||!isFinite(v)) return '—'; const r=+v.toFixed(dp); return (r>0?'+':r<0?'−':'')+Math.abs(r).toFixed(dp)+'%'; };
+const feN=v=>v==null||!isFinite(v)?'—':Math.round(v).toLocaleString('en-US');
+const feCal=()=>D.PRED_CAL||window.PRED_CAL_STATIC||{};
+function feTone(up,base){ if(up==null||base==null) return 'neutral'; const d=up-base; return d>=5?'good':d<=-8?'bad':d<=-2?'warn':'neutral'; }
+function feGo(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+function feWire(){
+  const root=document.getElementById('tab-mkt'); if(!root||root.dataset.goWired) return; root.dataset.goWired='1';
+  root.addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(!b) return; e.preventDefault(); feGo(b.dataset.go); });
+}
+// "How reliable" box: a plain grade, one sentence, and the details behind a More toggle.
+function feTrust(grade,cls,line,more){
+  return `<div class="k">How reliable</div><div class="g ${cls}">${grade}</div><p>${line}</p>${more?`<details class="more"><summary>More: the test results</summary><p class="note">${more}</p></details>`:''}`;
+}
+// One measure: name, what it is, today's reading, optional push bar, and a "Why it matters" dropdown.
+function feSig(o){
+  const bar=o.c==null?'':(()=>{ const w=Math.min(50,Math.abs(o.c)/o.mx*50), left=o.c<0?50-w:50, col=o.tone==='bad'?'var(--loss)':o.tone==='good'?'var(--gain)':'var(--muted)';
+    return `<div class="mp-bar" title="Push on the odds"><i style="left:${left}%;width:${w}%;background:${col}"></i></div>`; })();
+  return `<article class="mp-sig ${o.tone||''}">
+    <header><h4>${o.name}</h4><span class="mp-tag ${o.tone||''}">${o.status}</span></header>
+    <div class="mp-what">${o.what}</div>
+    <div class="mp-now"><b>${o.val}</b><span>${o.today}</span></div>${bar}
+    <details class="more mp-why"><summary>Why it matters</summary><div class="mp-wb">${o.why}</div></details>
+  </article>`;
+}
+
+// ---------- the six recession signs: what each is and why it predicts recessions
+const FE_WHY={
+  curve:{ name:'Yield curve (10-year minus 3-month)',
+    what:'How much more the U.S. government pays to borrow for 10 years than for 3 months.',
+    why:`<p><b>What it is.</b> Normally a 10-year loan pays more interest than a 3-month loan, because lenders want extra pay for tying money up longer. When the 3-month rate rises above the 10-year rate, the curve is "inverted" and the spread goes below zero.</p>
+      <p><b>Why it predicts recessions.</b> An inversion says two things at once. The 3-month rate tracks the Federal Reserve's policy rate, so a high short rate means the Fed is squeezing the economy to fight inflation. A low 10-year rate means bond investors expect growth and inflation to weaken and the Fed to cut later. It also hits lending directly: banks borrow short and lend long, so when that gap shrinks or turns negative, lending pays less and credit gets tighter.</p>
+      <p><b>Track record.</b> The 10-year minus 3-month spread went negative before every U.S. recession since the late 1960s, usually 6 to 18 months ahead. Its big miss was 2022–2024, when it stayed inverted for about two years with no recession. Research at the New York Fed (Estrella and Mishkin, 1998) found this pair of maturities had the best record, which is why the Fed's own recession model uses it rather than the 10-year minus 2-year.</p>
+      <p><b>How we use it.</b> The model compares the spread with its 1960–2026 average of about +1.4 points. The flatter the curve, the higher the odds. Recessions often begin after the curve has turned positive again, once the Fed starts cutting in response to weakness, so a curve that has just "un-inverted" is not an all-clear.</p>`,
+    today:(v,mu)=>v<0?`Inverted: the 3-month bill pays more than the 10-year. This is the classic warning sign.`:v<mu?`Positive, but flatter than its long-run average of +${mu.toFixed(1)}, so it adds some risk.`:`Steeper than its long-run average of +${mu.toFixed(1)}, which usually means lower risk.`,
+    fmt:v=>(v>0?'+':'')+v.toFixed(2)+' pts' },
+  sahm:{ name:'Unemployment trend (Sahm rule)',
+    what:'How far the 3-month average unemployment rate has risen above its lowest point of the past year.',
+    why:`<p><b>What it is.</b> Take the average unemployment rate of the last three months and compare it with the lowest such average in the prior 12 months. The gap is how much joblessness has crept up.</p>
+      <p><b>Why it predicts recessions.</b> Job losses feed on themselves. People who lose work spend less, which costs other people their jobs. So unemployment tends to rise slowly at first and then snowball, and even a small, steady rise is one of the most reliable signs that a downturn has started or is close.</p>
+      <p><b>Track record.</b> Economist Claudia Sahm showed in 2019 that a rise of 0.5 points or more lined up with the start of every U.S. recession since 1970. It gave a false signal in mid-2024, when unemployment rose partly because more people joined the workforce, not because of layoffs.</p>
+      <p><b>How we use it.</b> As a sliding scale, not an on/off switch: the bigger the gap, the higher the odds.</p>`,
+    today:v=>v>=0.5?`At or above the 0.5-point level that has marked the start of past recessions.`:v>=0.3?`Rising, but below the 0.5-point level that has marked past recessions.`:`Small. Unemployment is close to its low of the past year.`,
+    fmt:v=>'+'+v.toFixed(2)+' pts' },
+  dcredit:{ name:'Credit spreads (6-month change)',
+    what:'The extra interest medium-grade (Baa-rated) companies pay over the 10-year Treasury, and how much that gap has changed in six months.',
+    why:`<p><b>What it is.</b> When a company borrows, it pays the Treasury rate plus a premium for the chance it won't pay back. Moody's tracks that premium for Baa-rated companies, the lowest rung of investment grade.</p>
+      <p><b>Why it predicts recessions.</b> The premium is the price of credit risk. When lenders get nervous about the economy, they demand more, the gap widens, and borrowing gets expensive just when businesses need it. Companies respond by cutting investment and hiring, which can tip a slowdown into a recession.</p>
+      <p><b>Track record.</b> Gilchrist and Zakrajšek (2012, <i>American Economic Review</i>) found that the part of credit spreads reflecting lenders' appetite for risk, rather than actual defaults, is one of the best early warnings of recessions. A fast widening matters more than the level, which is why we use the six-month change.</p>`,
+    today:v=>v>0.3?`Widening: lenders are asking for more to lend to companies.`:v<-0.3?`Narrowing: lenders are relaxed.`:`About steady over six months.`,
+    fmt:v=>(v>0?'+':'')+v.toFixed(2)+' pts' },
+  permits:{ name:'Building permits (12-month change)',
+    what:'New homes authorized by permit, compared with a year earlier.',
+    why:`<p><b>What it is.</b> Builders must get a permit before they break ground, so permits show construction plans months before the work shows up in the economy.</p>
+      <p><b>Why it predicts recessions.</b> Housing is the part of the economy most sensitive to interest rates. When mortgage rates bite or buyers pull back, builders file fewer permits first. A new home also pulls in furniture, appliances, materials and local jobs, so a housing slowdown spreads.</p>
+      <p><b>Track record.</b> Economist Edward Leamer's 2007 paper "Housing Is the Business Cycle" showed housing weakness came before most U.S. recessions since World War II. Permits are one of the ten Leading Economic Indicators the Conference Board uses.</p>`,
+    today:v=>v<-0.1?`Falling sharply from a year ago: builders are pulling back.`:v<0?`Slightly lower than a year ago.`:`Higher than a year ago: builders are still adding.`,
+    fmt:v=>(v>0?'+':'')+(v*100).toFixed(1)+'%' },
+  spx6:{ name:'Stock market (S&P 500, 6-month change)',
+    what:'How much the S&P 500 has moved over the past six months.',
+    why:`<p><b>What it is.</b> The S&amp;P 500's change over six months.</p>
+      <p><b>Why it predicts recessions.</b> Stock prices are investors' collective bet on future profits, so they often fall before a slowdown shows up in jobs or output data. A falling market also makes households feel poorer and makes it harder for companies to raise money.</p>
+      <p><b>Track record.</b> It is a noisy signal. Economist Paul Samuelson joked that the stock market has predicted nine of the last five recessions. That is why it is one input among six rather than a forecast on its own. Stock prices are also one of the Conference Board's leading indicators.</p>`,
+    today:(v,mu)=>v<-0.1?`Down sharply: markets may be pricing a slowdown.`:v<0?`Slightly lower over six months.`:v<mu?`Up, but by less than its usual six-month gain of about +${(mu*100).toFixed(1)}%.`:`Up more than its usual six-month gain of about +${(mu*100).toFixed(1)}%.`,
+    fmt:v=>(v>0?'+':'')+(v*100).toFixed(1)+'%' },
+  oil:{ name:'Oil shock (WTI vs its 3-year high)',
+    what:'How far the oil price is above its highest level of the previous three years. Zero when it is below that high.',
+    why:`<p><b>What it is.</b> Economist James Hamilton's "net oil price increase": it only counts oil breaking out above its 3-year high, because ordinary up-and-down swings don't hurt the economy the way a sudden new high does.</p>
+      <p><b>Why it predicts recessions.</b> An oil spike works like a tax on consumers and businesses. Money spent at the pump isn't spent elsewhere, and costs jump for airlines, trucking and manufacturing all at once.</p>
+      <p><b>Track record.</b> Hamilton found that all but one of the U.S. recessions after World War II were preceded by a jump in oil prices, including 1973, 1980, 1990 and 2008.</p>`,
+    today:v=>v>0?`Above its 3-year high: an active oil shock.`:`Below its 3-year high: no shock, so no added risk.`,
+    fmt:v=>v>0?'+'+(v*100).toFixed(1)+'%':'No shock' }
+};
+
+function feRender(R){
+  feWire();
+  const fe=R.fe, root=document.getElementById('pdFE'); if(!root) return;
+  if(!fe||fe.error){ document.getElementById('feLadder').innerHTML=`<div class="pd-empty">${fe&&fe.error?'The forecast engine hit an error: '+esc(fe.error):'The forecast engine needs its calibration data (pred-cal.js). Reload the page.'}</div>`; return; }
+  const L=fe.ladder||[], g=fe.tac.GSPC, C=feCal(), A=C.audit||{};
+  const word={h5:'one week',h21:'one month',h63:'three months'};
+  // ---------- the five questions
+  document.getElementById('feLadder').innerHTML=L.map(x=>{
+    if(x.src==='state'){ const tone=feTone(x.up,x.baseUp), edge=Math.round(x.up)-Math.round(x.baseUp), r=g.ranges[x.key];
+      const verdict=edge>=5?'Better than normal odds':edge<=-8?'Worse than normal odds':edge<=-2?'Slightly below normal odds':'About normal odds';
+      return `<article class="mp-row ${tone}">
+        <div class="mp-q"><span class="hz">Next ${word[x.key]}</span><h3>Will the S&amp;P 500 be higher ${word[x.key]} from now?</h3></div>
+        <div class="mp-a"><span class="big">${Math.round(x.up)}%</span><span class="lab">chance it ends higher</span><span class="vd">${verdict}</span>
+          <span class="cmp">Normal odds for ${word[x.key]}: ${Math.round(x.baseUp)}%. Today's setup ${edge===0?'adds nothing':edge>0?`adds ${edge} point${edge===1?'':'s'}`:`takes away ${-edge} point${edge===-1?'':'s'}`}${edge!==0&&Math.abs(edge)<5&&edge>-2?', a small difference':''}.</span></div>
+        <div class="mp-r"><span class="k">Where it should land (2 in 3 chance)</span><b>${feN(x.lo68)} – ${feN(x.hi68)}</b><span>±${(x.s68*100).toFixed(1)}% from ${feN(g.inputs.p)} · 9 in 10: ${feN(r.lo90)} – ${feN(r.hi90)}</span></div>
+        <div class="mp-b"><span class="k">Based on</span><span>Today's market mood, <b>${esc(g.info.label.toLowerCase())}</b>, and what the S&amp;P 500 did after the same mood on ${x.n.toLocaleString()} past days since 2007. Range from the VIX.</span>
+          <span class="mp-rel"><i class="ok">Range: reliable</i><i class="part">Up/down call: small tilt</i></span><button class="linkbtn" type="button" data-go="pdTac">Evidence: section 4 ↓</button></div>
+      </article>`; }
+    if(x.src==='rec'){ const p=fe.rec.p, tone=p<0.15?'good':p<0.3?'neutral':p<0.5?'warn':'bad', top=fe.rec.contrib.slice().sort((a,b)=>b.c-a.c)[0];
+      const cal=(((A.rec||{}).calib)||[]).find(c=>{ const m=String(c[0]).match(/[\d.]+/g); return m&&p>=+m[0]&&p<+m[1]; });
+      return `<article class="mp-row ${tone}">
+        <div class="mp-q"><span class="hz">Next 12 months</span><h3>Will a U.S. recession start in the next year?</h3></div>
+        <div class="mp-a"><span class="big">${Math.round(p*100)}%</span><span class="lab">chance of a recession</span><span class="vd">${p<0.15?'Low: normal times':p<0.3?'Moderate: worth watching':p<0.5?'Elevated: late-cycle warning':'High: recession signs lining up'}</span>
+          <span class="cmp">Under 15% is normal times; over 50% means most warning signs are flashing.${cal?` When the model has read ${esc(fe.rec.bucket.label.toLowerCase())} before, a recession followed ${cal[3]}% of the time.`:''}</span></div>
+        <div class="mp-r"><span class="k">What similar readings meant for stocks</span><b>Higher a year later ${x.up}% of the time</b><span>Average ${feP(x.avg)}. Typical dip along the way ${feP(x.dd)}; a bad year (1 in 10) ${feP(x.p10)}.</span></div>
+        <div class="mp-b"><span class="k">Based on</span><span>Six economic warning signs: the yield curve, unemployment trend, credit spreads, building permits, stock prices and oil.${top&&top.c>0.15?` Biggest push up right now: <b>${esc(FE_WHY[top.key].name.split(' (')[0].toLowerCase())}</b>.`:''}</span>
+          <span class="mp-rel"><i class="ok">Reliable</i></span><button class="linkbtn" type="button" data-go="pdRecession">Evidence: section 1 ↑</button></div>
+      </article>`; }
+    if(x.src==='cape'){ const r=x.real*100, tone=r>=5?'good':r>=2?'neutral':r>=0?'warn':'bad';
+      return `<article class="mp-row ${tone}">
+        <div class="mp-q"><span class="hz">Next 10 years</span><h3>What yearly return should U.S. stocks deliver over the next decade, after inflation?</h3></div>
+        <div class="mp-a"><span class="big">${feP(r)}</span><span class="lab">a year, after inflation</span><span class="vd">${r>=5?'Attractive: above-average returns likely':r>=2?'Fair: roughly average returns':r>=0?'Expensive: below-average returns likely':'Very expensive: returns may not beat inflation'}</span>
+          <span class="cmp">For comparison, U.S. stocks have returned roughly 6–7% a year after inflation over the long run.</span></div>
+        <div class="mp-r"><span class="k">Likely band (2 in 3 chance)</span><b>${feP(x.lo*100)} to ${feP(x.hi*100)}</b><span>a year, after inflation</span></div>
+        <div class="mp-b"><span class="k">Based on</span><span>Valuation: stocks cost <b>${fe.cape.cape.toFixed(1)} times</b> their average inflation-adjusted earnings of the past 10 years (the Shiller CAPE), vs a long-run median of ${fe.cape.q['50']}.</span>
+          <span class="mp-rel"><i class="part">Rough guide for 10 years</i><i class="no">No use for timing</i></span><button class="linkbtn" type="button" data-go="pdCape">Evidence: section 5 ↓</button></div>
+      </article>`; }
+    return '';
+  }).join('');
+  // ---------- the story in three lines + bottom line
+  const st=[], m1=L.find(x=>x.key==='h21');
+  if(fe.rec&&fe.rec.p!=null){ const p=fe.rec.p, top=fe.rec.contrib.slice().sort((a,b)=>b.c-a.c)[0], rg=fe.regime;
+    st.push(['The economy',`Recession odds are <b>${Math.round(p*100)}%</b> for the next 12 months, ${p<0.15?'in the normal range':p<0.3?'a little above normal times':p<0.5?'well above normal':'higher than not'}${top&&top.c>0.15?`, pushed up most by the ${esc(FE_WHY[top.key].name.split(' (')[0].toLowerCase())}`:''}.${rg?` Growth is ${rg.growth>rg.gtrend?'above':'below'} its trend and inflation is ${rg.infl>rg.itrend?'speeding up':'slowing'}, a backdrop called <b>${rg.name}</b>.`:''}`]); }
+  if(g&&m1){ const e=Math.round(m1.up)-Math.round(m1.baseUp);
+    st.push(['The next few months',`The S&amp;P 500 is in a <b>${esc(g.info.label.toLowerCase())}</b>. After this mood, stocks were higher a month later ${Math.round(m1.up)}% of the time, ${e>=5?'better than':e<=-2?'worse than':'close to'} the normal ${Math.round(m1.baseUp)}%. A month from now the index should be between <b>${feN(m1.lo68)} and ${feN(m1.hi68)}</b> (2 in 3 chance).`]); }
+  if(fe.cape){ const r=fe.cape.real10*100;
+    st.push(['The long run',`Stocks are ${r<0?'very expensive':r<2?'expensive':r<5?'fairly priced':'cheap'} (CAPE ${fe.cape.cape.toFixed(0)} vs a median of ${fe.cape.q['50']}). From prices like these, the following decade has historically returned about <b>${feP(r)} a year</b> after inflation.`]); }
+  const bl=[]; if(fe.rec&&fe.rec.p!=null){ const p=fe.rec.p; bl.push(p<0.15?'no broad sign of a recession':p<0.3?'some recession risk but no warning':p<0.5?'recession warnings are building':'a recession looks more likely than not'); }
+  if(m1){ const e=m1.up-m1.baseUp; bl.push(e>=5?'short-term odds tilt higher':e<=-2?'short-term odds tilt lower':'normal short-term odds'); }
+  if(fe.cape){ const r=fe.cape.real10*100; bl.push(r<2?'low expected returns over the long run':r<5?'average long-run returns':'strong long-run returns'); }
+  const blTxt=bl.join('; ');
+  document.getElementById('feStance').innerHTML=(blTxt?`<p class="mp-bl"><span>Bottom line</span>${blTxt.charAt(0).toUpperCase()+blTxt.slice(1)}.</p>`:'')+`<div class="mp-story3">${st.map(([k,v])=>`<div><span class="k">${k}</span><p>${v}</p></div>`).join('')}</div>`;
+  feTac(fe); feRec(fe); feReg(fe); feCape(fe); feResearch(fe,R);
+  try{ feAudit(fe,R); }catch(e){ console.error(e); }
+}
+
+// ---------- 4 · market mood
+function feTac(fe){
+  const seg=document.getElementById('feSeg');
+  if(seg&&!seg.dataset.wired){ seg.dataset.wired='1'; seg.addEventListener('click',e=>{ const b=e.target.closest('button[data-sym]'); if(!b) return; FE_SYM=b.dataset.sym; seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); if(PRED&&PRED.fe) feTac(PRED.fe); }); }
+  const t=fe.tac[FE_SYM]||fe.tac.GSPC, gs=fe.tac.GSPC; if(!t){ document.getElementById('feState').innerHTML='<b>Not enough history</b>The 200-day average needs more stored closes.'; return; }
+  const nm=FE_SYM==='IXIC'?'Nasdaq':'S&P 500', h21=gs.stats.h21.all, h63=gs.stats.h63.all, b21=gs.base.h21, b63=gs.base.h63, G=gs.inputs;
+  const v=document.getElementById('feState'); v.className='pd-verdict pd-state '+({good:'go',bad:'',warn:'watch',neutral:'hold'})[gs.info.tone];
+  v.style.borderLeftColor=gs.info.tone==='bad'?'var(--loss)':'';
+  v.innerHTML=`<span class="mp-kick">Today's mood (S&amp;P 500)</span><b>${esc(gs.info.label)}</b>${esc(gs.info.what)}
+    <span class="act">After this mood since 2007: higher a month later <strong>${Math.round(h21.up)}%</strong> of the time (normal ${Math.round(b21.up)}%), average ${feP(h21.avg)}; higher three months later <strong>${Math.round(h63.up)}%</strong> (normal ${Math.round(b63.up)}%), average ${feP(h63.avg)}. In this mood for ${gs.streak} session${gs.streak===1?'':'s'}.</span>`;
+  // the four readings (always the S&P 500, which sets the odds)
+  const T=PredModel.TAC||{fear:25,vrp:6,wash5:-0.03,rsiLo:30,stretch:0.08};
+  const tr=G.trend, vx=G.vix, gap=G.vrp, r5=G.ret5;
+  document.getElementById('feTacInputs').innerHTML=[
+    feSig({name:'Trend: S&amp;P 500 vs its 200-day average', what:'The average closing price of the last 200 trading days, about ten months. Above it is an uptrend; below it, a downtrend.',
+      val:feP(tr*100), status:tr<0?'Downtrend':tr>T.stretch?'Stretched':'Uptrend', tone:tr<0?'bad':tr>T.stretch?'warn':'good',
+      today:tr<0?'Below its long-term trend line.':tr>T.stretch?`More than ${T.stretch*100}% above the trend line: strong but extended.`:'Above its long-term trend line by a normal margin.',
+      why:`<p><b>Why it matters.</b> Price trends tend to persist for months before reversing, a pattern found across stocks, bonds and commodities going back a century (Moskowitz, Ooi and Pedersen, 2012, on "time-series momentum"). Most deep bear markets have played out below the 200-day average, and daily swings are larger there.</p>
+        <p><b>What our testing found.</b> Being above or below this line said more about <i>how big</i> the next moves would be than about their direction. That is why it splits the moods into uptrend and downtrend families rather than giving a forecast by itself.</p>`}),
+    feSig({name:'Fear: the VIX', what:'The market\'s expected volatility for the S&amp;P 500 over the next 30 days, read from option prices. Often called the fear gauge.',
+      val:vx!=null?vx.toFixed(1):'—', status:vx>=T.fear?'Stressed':vx>=20?'Elevated':'Calm', tone:vx>=T.fear?'bad':vx>=20?'warn':'good',
+      today:vx>=T.fear?`At or above ${T.fear}, a level that signals real stress.`:vx>=20?'Above its long-run average of about 19–20.':'Below its long-run average of about 19–20.',
+      why:`<p><b>Why it matters.</b> When investors rush to buy protection against a fall, option prices rise and so does the VIX. Readings of 25 and up mean fear is high. Inside an uptrend, high fear has often marked a better-than-normal time to own stocks, because the nervous sellers have already sold.</p>
+        <p><b>It also sets the range.</b> The VIX is the market's own estimate of how far stocks will move, and volatility is far more predictable than direction (Moreira and Muir, 2017). We scale it down by about a quarter, because the VIX has overstated actual moves by that much since 2007, and use it for the "where it should land" ranges.</p>`}),
+    feSig({name:'Fear premium: VIX minus actual volatility', what:'How much higher the VIX is than the volatility the S&amp;P 500 has actually shown over the last month.',
+      val:gap!=null?(gap>0?'+':'')+gap.toFixed(1)+' pts':'—', status:gap>=T.vrp?'Fear priced in':'Normal', tone:gap>=T.vrp?'good':'',
+      today:gap>=T.vrp?`At least ${T.vrp} points: options are charging an unusually high price for protection.`:`Under ${T.vrp} points: a normal premium for protection.`,
+      why:`<p><b>Why it matters.</b> The VIX is usually a few points above the volatility the market actually delivers, because investors pay a premium for insurance, the way home insurance costs more than the average claim. When that premium is unusually wide, investors are paying for more fear than the market is showing.</p>
+        <p><b>The research.</b> Bollerslev, Tauchen and Zhou (2009) showed this "variance risk premium" predicts stock returns over the following months: a high premium has tended to be paid back to people holding stocks. In our tests the "fear priced in" mood had slightly better odds than normal in every period.</p>`}),
+    feSig({name:'Recent drop: 5-day change and RSI', what:'The S&amp;P 500\'s move over five days, and its 14-day RSI, a 0–100 gauge of recent gains vs losses (under 30 is oversold).',
+      val:`${feP(r5*100)} · RSI ${G.rsi!=null?G.rsi.toFixed(0):'—'}`, status:(r5<T.wash5||(G.rsi!=null&&G.rsi<T.rsiLo))?'Sharp drop':'No shakeout', tone:(r5<T.wash5||(G.rsi!=null&&G.rsi<T.rsiLo))?'good':'',
+      today:(r5<T.wash5||(G.rsi!=null&&G.rsi<T.rsiLo))?'A fall of 3% or more in five days, or an oversold RSI.':'No fall of 3% or more in five days, and RSI is not oversold.',
+      why:`<p><b>Why it matters.</b> A quick fall inside a healthy uptrend is usually a shakeout: forced or panicky selling that runs out of sellers. Combined with the trend, it separates a dip worth buying from the start of a real breakdown.</p>
+        <p><b>What our testing found.</b> The "washout in an uptrend" mood, a sharp drop while the index is still above its 200-day average, was the only mood that beat normal odds in every period tested since 1991, by the most at three months.</p>`})
+  ].join('');
+  // ranges
+  const I=t.inputs, rows=[['1 week','h5'],['1 month','h21'],['3 months','h63']].map(([lab,k])=>{ const r=t.ranges[k], p=I.p, lo=r.lo90, hi=r.hi90, span=hi-lo, x=v2=>((v2-lo)/span*100).toFixed(1);
+    return `<tr><td>${lab}</td><td>${feN(r.lo90)}</td><td><b>${feN(r.lo68)}</b></td><td><div class="fe-bar"><i style="left:0;width:100%;background:var(--gA)"></i><i class="s68" style="left:${x(r.lo68)}%;width:${(x(r.hi68)-x(r.lo68)).toFixed(1)}%;background:var(--gA)"></i><b style="left:${x(p)}%"></b></div></td><td><b>${feN(r.hi68)}</b></td><td>${feN(r.hi90)}</td></tr>`; }).join('');
+  document.getElementById('feRange').innerHTML=`<table><thead><tr><th>From ${feN(I.p)} at the last close</th><th>9 in 10 low</th><th>2 in 3 low</th><th></th><th>2 in 3 high</th><th>9 in 10 high</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="note" style="margin:8px 0 0">The ${nm} should finish inside the bold range two times in three, and inside the outer range nine times in ten. Built from today's VIX of ${I.vix!=null?I.vix.toFixed(1):(gs.inputs.vix||0).toFixed(1)}. On 1991–2006 data never used to build it, the 2-in-3 range held 68–72% of the time.${FE_SYM==='IXIC'&&t.volMult>1.02?` Widened ${((t.volMult-1)*100).toFixed(0)}% because the Nasdaq has been more volatile than the S&amp;P 500 over the last three months.`:''}</p>`;
+  // states table
+  const S=PredModel.TAC_INFO, order=['washout','fear_priced','steady','stretched','capitulation','quiet_downtrend'], CAL=feCal(), cal=CAL.tac||null;
+  const cell=x=>`${Math.round(x.up)}%<small>avg ${feP(x.avg)}</small>`;
+  document.getElementById('feStates').innerHTML=`<thead><tr><th>Mood</th><th>Share of days</th><th>Higher 1 month later<br><small>2007–16 / 2017–26</small></th><th>Higher 1 month later<br><small>all, 2007–26</small></th><th>Higher 3 months later<br><small>all, 2007–26</small></th><th>Bad 3 months<br><small>1 in 10</small></th><th>Check on 1991–2006<br><small>1 month · held up?</small></th></tr></thead><tbody>`+
+    order.map(k=>{ const s2=cal&&cal.states[k]; if(!s2) return ''; return `<tr class="${k===gs.state?'cur':''}"><td><span class="fe-tone ${S[k].tone}"></span><b>${esc(S[k].label)}</b>${k===gs.state?' <span class="pd-chip on">Now</span>':''}<small>${esc(S[k].short)}</small></td><td>${s2.share}%</td><td>${Math.round(s2.h21.a.up)}% / ${Math.round(s2.h21.b.up)}%</td><td>${cell(s2.h21.all)}</td><td>${cell(s2.h63.all)}</td><td>${feP(s2.h63.all.p10)}</td><td>${(()=>{ const a=CAL.audit&&CAL.audit.tac&&CAL.audit.tac[k]&&CAL.audit.tac[k].h21; if(!a) return '—'; const held=Math.sign(a.edgeH)===Math.sign(a.edgeI)&&Math.abs(a.edgeH)>=2&&Math.abs(a.edgeI)>=2; return `${Math.round(a.upH)}%<small>${a.edgeH>0?'+':''}${Math.round(a.edgeH)} vs normal · ${held?'<span class="fe-ok">✓ held</span>':'<span class="fe-x">no edge</span>'}</small>`; })()}</td></tr>`; }).join('')+
+    (cal?`<tr><td><b>Any day</b><small>normal odds, for comparison</small></td><td>100%</td><td></td><td>${cell(cal.base.h21)}</td><td>${cell(cal.base.h63)}</td><td>${feP(cal.base.h63.p10)}</td><td>${CAL.audit?Math.round(CAL.audit.tac.base_h21.H)+'%':''}</td></tr>`:'')+`</tbody>`;
+}
+
+// ---------- 2 · recession odds
+function feRecChart(svg,rec){
+  if(!svg) return; const H=rec.hist||[]; if(!H.length){ svg.innerHTML=''; return; }
+  const W=560,Ht=240,L=40,R=14,T=12,B=26,pw=W-L-R,ph=Ht-T-B, n=H.length;
+  const xi=i=>L+i*pw/(n-1), y=v=>T+ph-v*ph, idx={}; H.forEach((h,i)=>idx[h[0]]=i);
+  let g='';
+  (rec.recessions||[]).forEach(([a,b])=>{ const i0=idx[a], i1=idx[b]; if(i0==null) return; g+=`<rect x="${xi(i0).toFixed(1)}" y="${T}" width="${Math.max(2,xi(i1!=null?i1:n-1)-xi(i0)).toFixed(1)}" height="${ph}" fill="var(--loss)" opacity=".2"/>`; });
+  [0,.25,.5,.75,1].forEach(v=>{ g+=`<line class="grid" x1="${L}" x2="${L+pw}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v*100}%</text>`; });
+  H.forEach((h,i)=>{ if(h[0].endsWith('-01')&&(+h[0].slice(0,4))%5===0) g+=`<text x="${xi(i)}" y="${Ht-8}" text-anchor="middle">${h[0].slice(0,4)}</text>`; });
+  g+=`<path d="${H.map((h,i)=>(i?'L':'M')+xi(i).toFixed(1)+' '+y(h[1]).toFixed(1)).join('')}" fill="none" stroke="var(--gB)" stroke-width="1.6"/>`;
+  if(rec.p!=null){ g+=`<circle cx="${L+pw}" cy="${y(rec.p)}" r="4.5" fill="var(--ink)" stroke="var(--paper)" stroke-width="2"/><text x="${L+pw-8}" y="${y(rec.p)-9}" text-anchor="end" class="lbl" style="fill:var(--ink)">Now ${Math.round(rec.p*100)}%</text>`; }
+  svg.innerHTML=g;
+}
+function feRec(fe){
+  const r=fe.rec; if(!r||r.p==null){ document.getElementById('feRecP').textContent='—'; document.getElementById('feRecV').innerHTML='<b>Waiting on economic data</b>The monthly inputs (unemployment, permits, credit spreads, oil) are missing or incomplete.'; return; }
+  const p=r.p, C=feCal(), Rc=C.rec||{}, A=(C.audit||{}).rec||{};
+  { // hero: the hook at the top of the page
+    const pc=Math.round(p*100), oneIn=Math.max(1,Math.round(1/Math.max(p,0.01))), H=r.hist||[];
+    const recent=H.slice(-36); let pk=null; recent.forEach(h=>{ if(!pk||h[1]>pk[1]) pk=h; });
+    const lastH=H[H.length-1];
+    const raise=r.contrib.filter(c=>c.c>0.15).sort((a,b)=>b.c-a.c).map(c=>FE_WHY[c.key].name.split(' (')[0].toLowerCase());
+    const calm=r.contrib.filter(c=>c.c<-0.15).length;
+    const head=p<0.15?(raise.length?`Low risk. Only the ${raise[0]} is flashing, and ${calm} of six signs say the economy is healthy.`:`Low risk. None of the six warning signs is flashing.`)
+      :p<0.3?(raise.length===1?`Above normal, but no alarm. The ${raise[0]} is the only sign pushing the odds up; the other five are neutral or point to a healthy economy.`:raise.length?`Above normal, but no alarm. The ${raise.slice(0,2).join(' and the ')} are pushing the odds up; the rest are neutral or healthy.`:`Above normal, but no single sign is flashing.`)
+      :p<0.5?`Warning signs are building: ${raise.slice(0,3).join(', ')}.`:`Most warning signs are flashing: ${raise.slice(0,3).join(', ')}.`;
+    const zones=[[0,15,'Normal'],[15,30,'Watch'],[30,50,'Elevated'],[50,100,'High']];
+    document.getElementById('feRecP').innerHTML=`<div class="mp-hero-kick">The big question · updated ${fmtD(fe.asof||'',{month:'short',day:'numeric',year:'numeric'})}</div>
+      <div class="mp-hero-main"><span class="n">${pc}%</span><span class="t">chance the U.S. economy falls into a recession in the next 12 months<small>Roughly 1 in ${oneIn}.${pk&&pk[1]>p+0.1?` Down from a peak of ${Math.round(pk[1]*100)}% in ${fmtD(pk[0]+'-01',{month:'short',year:'numeric'})}.`:''}${lastH?` It read ${Math.round(lastH[1]*100)}% in ${fmtD(lastH[0]+'-01',{month:'short',year:'numeric'})}.`:''}</small></span></div>
+      <p class="mp-hero-head">${esc(head)}</p>
+      <div class="mp-meter">${zones.map(([a,b2,l])=>`<span class="z z${a} ${pc>=a&&pc<b2?'on':''}" style="left:${a}%;width:${b2-a}%"><em>${l}</em></span>`).join('')}<b style="left:${Math.min(99,pc)}%"></b></div>
+      <div class="mp-meter-ax"><span style="left:0">0%</span><span style="left:15%">15%</span><span style="left:30%">30%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></div>`; }
+  const v=document.getElementById('feRecV'); v.className='pd-verdict pd-state '+(p<0.15?'go':p<0.3?'hold':'watch'); v.style.borderLeftColor=p>=0.5?'var(--loss)':'';
+  const b=r.bucket, cal=(A.calib||[]).find(c=>{ const m=String(c[0]).match(/[\d.]+/g); return m&&p>=+m[0]&&p<+m[1]; });
+  const up=r.contrib.filter(c=>c.c>0.15).map(c=>FE_WHY[c.key].name.split(' (')[0].toLowerCase()), dn=r.contrib.filter(c=>c.c<-0.15).map(c=>FE_WHY[c.key].name.split(' (')[0].toLowerCase());
+  const list=a=>a.length>1?a.slice(0,-1).join(', ')+' and '+a[a.length-1]:a[0];
+  v.innerHTML=`<b>${p<0.15?'Low: normal times':p<0.3?'Moderate: worth watching':p<0.5?'Elevated: late-cycle warning':'High: recession signs lining up'}</b>${up.length?`Pushing the odds up: ${esc(list(up))}. `:''}${dn.length?`Holding them down: ${esc(list(dn))}. `:''}${cal?`In the past, when this model read ${esc(b.label.toLowerCase())}, a recession followed ${cal[3]}% of the time.`:''}
+    <span class="act">For comparison, the New York Fed's yield-curve-only model reads ${Math.round(r.curveOnly*100)}% (details at the bottom of this section).</span>`;
+  // the six signs
+  const mx=Math.max(0.6,...r.contrib.map(c=>Math.abs(c.c)));
+  document.getElementById('feRecComp').innerHTML=r.contrib.map((c,k)=>{ const W=FE_WHY[c.key], mu=(Rc.mu||[])[Rc.feats?Rc.feats.indexOf(c.key):k];
+    const tone=c.c>0.15?'bad':c.c<-0.15?'good':'';
+    const rel=c.key==='curve'?'':c.c>0.15?' Compared with normal, this raises the odds.':c.c<-0.15?' Compared with normal, this lowers the odds.':' Close to normal, so it barely moves the odds.';
+    return feSig({name:W.name, what:W.what, val:W.fmt(c.value), today:W.today(c.value,mu)+rel, c:c.c, mx, tone, status:c.c>0.15?'Raising risk':c.c<-0.15?'Lowering risk':'Neutral', why:W.why}); }).join('');
+  const am=r.asofMacro||{};
+  document.getElementById('feRecAsof').textContent=`Latest monthly data: unemployment ${fmtD(am.UNRATE+'-01',{month:'long',year:'numeric'})}, building permits ${fmtD(am.PERMIT+'-01',{month:'long',year:'numeric'})}, credit spreads ${fmtD(am.BAA+'-01',{month:'long',year:'numeric'})}, oil ${fmtD(am.WTI+'-01',{month:'long',year:'numeric'})}. The yield curve and the S&P 500 use the latest close.`;
+  feRecChart(document.getElementById('feRecChart'),r);
+  const loro=(A.loro||[]);
+  document.getElementById('feRecStats').innerHTML=`Orange line: what the model would have said each month, using only data available at the time. Red bands: recessions. It rose ahead of 1990, 2001, 2008 and 2020, and gave false alarms in 2019 and 2022–2024. Sorting months into higher and lower risk, it was right ${Math.round((r.oos.auc||0)*100)}% of the time, vs ${Math.round((r.oosCurve.auc||0)*100)}% for the yield curve alone (50% would be a coin flip).`;
+  document.getElementById('feRecBuckets').innerHTML=`<thead><tr><th>Model said</th><th>Months</th><th>Recession followed</th><th>Stocks higher a year later</th><th>Average return</th><th>Typical dip</th><th>Bad year (1 in 10)</th></tr></thead><tbody>`+
+    r.buckets.map((x,i)=>{ const cb=(A.calib||[])[i]; return `<tr class="${b&&b.label===x.label?'cur':''}"><td>${esc(x.label)}${b&&b.label===x.label?' <span class="pd-chip on">Now</span>':''}</td><td>${x.n}</td><td>${cb?cb[3]+'%':'—'}</td><td>${x.up}%</td><td>${feP(x.avg)}</td><td>${feP(x.dd)}</td><td>${feP(x.p10)}</td></tr>`; }).join('')+`</tbody>`;
+}
+
+// ---------- 3 · growth and inflation
+function feReg(fe){
+  const r=fe.regime, T=feCal().regimes||{}, A=(feCal().audit||{}).reg||{};
+  const Q=[['Goldilocks','Growth above trend · inflation cooling','The best mix: the economy is strong and the Fed has room to ease.'],['Reflation','Growth above trend · inflation rising','A strong economy that is heating up. Fine for now, but rising inflation keeps the Fed tight.'],['Deflation','Growth below trend · inflation cooling','Everything is slowing. Often seen around and just after downturns, when rates are falling.'],['Stagflation','Growth below trend · inflation rising','The worst mix: a slowing economy the Fed can\'t rescue because prices are still rising.']];
+  const all=T.__all||{}, dlt=v=>v==null?'—':`${v>0?'+':''}${v.toFixed(1)}%`;
+  document.getElementById('feQuad').innerHTML=Q.map(([k,ax,dsc])=>{ const t=T[k]||{}, a=A['1960-92']&&A['1960-92'][k], b2=A['1993-26']&&A['1993-26'][k];
+    return `<div class="fe-q ${r&&r.name===k?'on':''}"><h4>${k}${r&&r.name===k?' <span class="pd-chip on">Now</span>':''}</h4><div class="ax">${ax} · ${t.n||0} months</div><p class="mp-qd">${dsc}</p>
+      <dl><dt>Recession within 12 months</dt><dd>${t.recnext!=null?Math.round(t.recnext*100)+'%':'—'}</dd>${a&&b2?`<dt class="sub2">1960–92 / 1993–2026</dt><dd class="sub2">${a.rec}% / ${b2.rec}%</dd>`:''}
+      <dt>Stocks, next 12 months</dt><dd>${dlt(t.stocks)}</dd>${a&&b2?`<dt class="sub2">1960–92 / 1993–2026</dt><dd class="sub2">${dlt(a.stocks)} / ${dlt(b2.stocks)}</dd>`:''}
+      <dt>10-year Treasuries</dt><dd>${dlt(t.bonds)}</dd><dt>Oil</dt><dd>${dlt(t.oil)}</dd><dt>Cash</dt><dd>${dlt(t.cash)}</dd></dl></div>`; }).join('');
+  const v=document.getElementById('feRegV');
+  if(!r){ v.innerHTML='<b>Waiting on economic data</b>Industrial production and CPI history are needed.'; document.getElementById('feRegInputs').innerHTML=''; return; }
+  const t=T[r.name]||{}, hot=r.infl>r.itrend, strong=r.growth>r.gtrend;
+  v.className='pd-verdict pd-state '+({Goldilocks:'go',Reflation:'watch',Stagflation:'',Deflation:'hold'})[r.name]; v.style.borderLeftColor=r.name==='Stagflation'?'var(--loss)':'';
+  v.innerHTML=`<span class="mp-kick">Today's backdrop</span><b>${r.name}</b>Growth is ${strong?'above':'below'} its trend and inflation is ${hot?'speeding up':'slowing down'}. ${(Q.find(q=>q[0]===r.name)||[])[2]||''}
+    <span class="act">Since 1960, a recession followed within a year ${Math.round((t.recnext||0)*100)}% of the time in ${r.name}, vs ${Math.round((all.recnext||0)*100)}% across all months.</span>`;
+  document.getElementById('feRegInputs').innerHTML=[
+    feSig({name:'Growth: industrial production', what:'Monthly output of U.S. factories, mines and utilities, from the Federal Reserve. We compare its pace over the last six months with its average pace of the last five years.',
+      val:`${feP(r.growth)} vs ${feP(r.gtrend)}`, status:strong?'Above trend':'Below trend', tone:strong?'good':'warn',
+      today:`Growing at a ${feP(r.growth)} yearly pace over six months, vs a five-year trend of ${feP(r.gtrend)}. Data through ${fmtD(r.month+'-01',{month:'long',year:'numeric'})}.`,
+      why:`<p><b>Why this measure.</b> It is the longest-running monthly gauge of real economic activity (data back to 1919), it comes out every month instead of every quarter like GDP, and it rises and falls closely with the business cycle.</p>
+        <p><b>Its limit.</b> It covers goods, not services, so it is a smaller slice of today's economy than it once was. It is used here for the direction of growth, not its size.</p>`}),
+    feSig({name:'Inflation: consumer prices (CPI)', what:'The price of a basket of goods and services households buy, from the Bureau of Labor Statistics. We compare inflation over the last six months with the last twelve.',
+      val:`${feP(r.infl)} vs ${feP(r.itrend)}`, status:hot?'Speeding up':'Slowing', tone:hot?'warn':'good',
+      today:`Running at a ${feP(r.infl)} yearly pace over six months, vs ${feP(r.itrend)} over the past year. Data through ${fmtD(r.cpiMonth+'-01',{month:'long',year:'numeric'})}.`,
+      why:`<p><b>Why this measure.</b> Whether inflation is speeding up or slowing down drives what the Federal Reserve does next. Rising inflation keeps rates high or pushes them higher, which weighs on both stocks and bonds and makes a downturn harder to fix. Cooling inflation gives the Fed room to cut.</p>
+        <p><b>Why direction, not level.</b> Markets and the Fed react to the change. Inflation of 3% that is falling is a very different backdrop from 3% that is rising.</p>`})
+  ].join('');
+  document.getElementById('feTrail').innerHTML=(r.trail||[]).map(([m,k])=>`<span class="${k}" title="${k}">${fmtD(m+'-01',{month:'short'})} · ${k}</span>`).join('');
+  document.getElementById('feRegNote').textContent=`Monthly readings, oldest first. Treasury returns are estimated from changes in the 10-year yield.`;
+}
+
+// ---------- 5 · valuation
+function feCape(fe){
+  const c=fe.cape; if(!c) return; const A=(feCal().audit||{}).cape||[];
+  const pct=(()=>{ const q=c.q, ks=[10,25,50,75,90,95,99]; for(let i=ks.length-1;i>=0;i--) if(c.cape>=q[ks[i]]) return ks[i]; return 5; })();
+  document.getElementById('feCapeKpis').innerHTML=[['Shiller CAPE today',c.cape.toFixed(1),`median since 1881: ${c.q['50']}`],['Expected return',feP(c.real10*100),'a year after inflation, next 10 years'],['Likely band',`${feP(c.lo*100)} to ${feP(c.hi*100)}`,'a year, 2 in 3 chance']]
+    .map(([l,v2,d])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v2}</div><div class="d">${d}</div></div>`).join('');
+  const lo=5, hi=46, x=v2=>Math.max(0,Math.min(100,(v2-lo)/(hi-lo)*100));
+  document.getElementById('feCapeBar').innerHTML=`<i style="left:${x(c.cape)}%"></i><span class="t" style="left:${x(c.cape)}%">Now ${c.cape.toFixed(1)}</span>`+
+    [['Median',c.q['50']],['Top 10%',c.q['90']],['1999 peak',c.max[0]]].map(([l,v2])=>`<span class="b" style="left:${x(v2)}%">${l} ${v2}</span>`).join('');
+  document.getElementById('feCapeWhy').innerHTML=feSig({name:'Valuation: the Shiller CAPE', what:'The S&amp;P 500\'s price divided by its average inflation-adjusted earnings over the past ten years.',
+    val:c.cape.toFixed(1), status:pct>=90?'Very expensive':pct>=75?'Expensive':pct>=25?'Normal':'Cheap', tone:pct>=75?'bad':pct>=25?'':'good',
+    today:`Higher than ${pct>=99?'99':pct}% of all monthly readings since 1881${c.cape>=c.max[0]?', above even the 1999 peak':''}. Estimated from the ${fmtD(c.anchor.m+'-01',{month:'long',year:'numeric'})} reading of ${c.anchor.cape}, moved with the index since.`,
+    why:`<p><b>What it is.</b> A price-to-earnings ratio that uses ten years of profits instead of one. Averaging over a decade smooths out booms and busts in earnings, so a recession that crushes one year's profits doesn't make stocks look artificially expensive. The idea goes back to Benjamin Graham; Robert Shiller made it famous and keeps the data back to 1881.</p>
+      <p><b>Why it predicts long-run returns.</b> The more you pay for each dollar of earnings, the less return that dollar gives you, unless prices keep rising faster than profits forever. Very high valuations have also tended to come back toward normal eventually, and that slide subtracts from returns along the way (Campbell and Shiller, 1988 and 1998).</p>
+      <p><b>Its limit.</b> It says almost nothing about the next year. Markets can stay expensive for years: high readings in 1996–1999 were followed by more big gains before the 2000–2002 payback. Use it to set long-run expectations, for example against the yield on bonds or real estate, not to time the market.</p>`});
+  document.getElementById('feCapeText').innerHTML=`<p>At ${c.cape.toFixed(1)}, history points to about <b>${feP(c.real10*100)} a year</b> after inflation over the next decade, give or take about ${((feCal().cape||{}).sd*100||4.4).toFixed(1)} points. That estimate comes from a straight line fitted to every starting month from 1900 to 2016 (the last start with ten full years of results).</p>
+    <p class="sub">The fit is loose: valuation explained about ${Math.round(c.r2*100)}% of the differences in decade returns in the data it was fitted on, and ${Math.round(c.r2oos*100)}% when tested on years it wasn't. The table shows the raw history behind it: the higher the starting CAPE, the lower the following decade, in every bracket.</p>`;
+  document.getElementById('feCapeTable').innerHTML=A.length?`<thead><tr><th>Starting CAPE</th><th>Months</th><th>Average a year</th><th>Worst</th><th>Best</th></tr></thead><tbody>`+
+    A.map(([k,n,avg,w,bst])=>{ const m=k.match(/[\d.]+/g)||[], lo2=+m[0], hi2=m[1]!=null?+m[1]:1e9, on=c.cape>=lo2&&c.cape<hi2; return `<tr class="${on?'cur':''}"><td>${k.replace('-','–')}${on?' <span class="pd-chip on">Now</span>':''}</td><td>${n}</td><td>${feP(avg)}</td><td>${feP(w)}</td><td>${feP(bst)}</td></tr>`; }).join('')+`</tbody>`:'';
+}
+
+// ---------- 6 · track record, references and data
+function feResearch(fe,R){
+  const c=feCal(), r=fe.rec||{};
+  document.getElementById('feRefs').innerHTML=`<ul class="tsy-facts">
+    <li>Estrella &amp; Mishkin (1998) and the New York Fed's recession model on the 10-year minus 3-month spread: the classic yield-curve model, shown as the comparison in section 1.</li>
+    <li>Sahm (2019): a 0.5-point rise in the 3-month average jobless rate above its 12-month low marks the start of recessions. Used as a sliding-scale input.</li>
+    <li>Gilchrist &amp; Zakrajšek (2012, <i>American Economic Review</i>) and Favara et al. (2016, Federal Reserve): widening credit spreads, especially the risk-appetite part, lead recessions.</li>
+    <li>Leamer (2007), "Housing Is the Business Cycle": housing weakness leads most postwar recessions. Basis for the building-permits input.</li>
+    <li>Hamilton (2003): oil price spikes above their 3-year high precede downturns.</li>
+    <li>Moskowitz, Ooi &amp; Pedersen (2012, <i>Journal of Financial Economics</i>): price trends persist for months. Basis for the 200-day trend split.</li>
+    <li>Bollerslev, Tauchen &amp; Zhou (2009): the gap between implied and actual volatility predicts stock returns. Basis for the "fear priced in" mood.</li>
+    <li>Moreira &amp; Muir (2017, <i>Journal of Finance</i>): volatility is highly predictable and only weakly tied to returns. Basis for the ranges.</li>
+    <li>Neely, Rapach, Tu &amp; Zhou (2014, <i>Management Science</i>): market signals catch turns near peaks, economic data near troughs. Why the page pairs market moods with an economic model.</li>
+    <li>Welch &amp; Goyal (2008): most return predictors fail on new data. Why everything here is tested on years it was not built from.</li>
+    <li>Campbell &amp; Thompson (2008) and Rapach, Strauss &amp; Zhou (2010): the best-known fixes for return prediction. Tested here; they did not beat the historical average for 12-month S&amp;P 500 returns, so no 12-month point forecast is shown.</li>
+    <li>Campbell &amp; Shiller (1988, 1998) and Shiller's CAPE data: starting valuation drives 10-year returns.</li></ul>`;
+  document.getElementById('feData').innerHTML=`<p class="note"><b>Built from (pred-cal.js, ${esc(c.built||'')}):</b> S&amp;P 500 daily closes 2007–2026 (FMP) and VIX (CBOE) for the moods and ranges; FRED-MD, the St. Louis Fed's monthly economic database, 1960–2026, for the recession model and backdrops; NBER recession dates; Shiller's long-run S&amp;P data for the CAPE.</p>
+    <p class="note"><b>Updated:</b> prices, VIX and Treasury yields every night. Unemployment, building permits, Moody's Baa yield, the 10-year and 3-month Treasury yields, CPI, industrial production and oil from FRED, plus the latest CAPE reading, every Saturday. The daily 10-year minus 3-month spread is adjusted by its average gap to FRED's monthly series (${r.curveBasis!=null?(r.curveBasis>0?'+':'')+r.curveBasis.toFixed(2)+' pts':'n/a'}) so it matches what the model was fitted on.</p>
+    <p class="note"><b>Scored calls:</b> a washout in an uptrend (S&amp;P 500 higher in 21 trading days) feeds the scorecard in section 7, since it is the only mood whose edge held in every period tested.</p>`;
+}
+
+// ---------- "How reliable" boxes + "What does this mean?" dropdowns + track record list + original-rules table
+function feAudit(fe,R){
+  const C=feCal(), A=C.audit; if(!A) return;
+  const set=(id,h)=>{ const el=document.getElementById(id); if(el) el.innerHTML=h; };
+  const rec=fe.rec||{}, ar=A.rec||{}, cal=ar.calib||[], hi=cal[cal.length-1]||[], lo=cal[0]||[], rg=A.rng||{};
+  set('feAccRec',feTrust('Reliable','ok',`Built only on 1960–1991, it still separated higher- from lower-risk months correctly ${Math.round((ar.auc_split||0)*100)}% of the time in 1993–2026, against ${Math.round((ar.auc_split_curve||0)*100)}% for the yield curve alone. And its percentages have meant what they say: under 15%, a recession followed ${lo[3]!=null?lo[3]:1}% of the time; over 50%, ${hi[3]!=null?hi[3]:51}%.`,
+    `Out-of-sample test: every monthly reading since 1985 was produced using only data available at that month. Ranking skill (AUC) ${rec.oos?rec.oos.auc:'—'} vs ${rec.oosCurve?rec.oosCurve.auc:'—'} for the curve alone, where 0.5 is a coin flip and 1 is perfect. Leaving each recession out of the fit in turn, the odds still climbed to 34% or more in the year before every recession since 1970 (1990 and the 2020 COVID shock were the faintest). False alarms: 2019 and 2022–2024.`));
+  const RG=A.reg||{}, s1=(RG['1960-92']||{}).Stagflation||{}, s2=(RG['1993-26']||{}).Stagflation||{}, g1=(RG['1960-92']||{}).Goldilocks||{}, g2=(RG['1993-26']||{}).Goldilocks||{};
+  set('feAccReg',feTrust('Reliable for recession risk · not for returns','part',`Stagflation had the highest recession rate and Goldilocks the lowest in both 1960–92 and 1993–2026. The average asset returns per box changed a lot between those eras, so treat them as background.`,
+    `Recession within a year: Stagflation ${s1.rec}% (1960–92) and ${s2.rec}% (1993–2026); Goldilocks ${g1.rec}% and ${g2.rec}%. Stocks in Stagflation: ${feP(s1.stocks)} a year in 1960–92 vs ${feP(s2.stocks)} in 1993–2026.`));
+  set('feAccTac',feTrust('Ranges reliable · direction a small tilt','part',`The "where it should land" ranges held as often as promised on years never used to build them. The up-or-down odds only move a few points from normal, and only three of the six moods kept the same tilt in every period.`,
+    `Ranges on 1991–2006: the 2-in-3 range held ${rg.h5?Math.round(rg.h5.c68):68}–${rg.h63?Math.round(rg.h63.c68):72}% of the time (target 68%) and the 9-in-10 range ${rg.h63?Math.round(rg.h63.c90):90}–${rg.h21?Math.round(rg.h21.c90):91}% (target 90%). Moods that held in 1991–2006, 2007–16 and 2017–26: washout, fear priced in, quiet downtrend. A machine-learning alternative did worse than a coin flip and was dropped.`));
+  const cp=A.cape||[], top=cp[cp.length-1]||[], low=cp[0]||[];
+  set('feAccCape',feTrust('Rough guide for 10 years · no use for 1 year','part',`Since 1900, starting from a CAPE above 30 the next decade averaged ${feP(top[2])} a year after inflation; from below 12 it averaged ${feP(low[2])}. The direction is dependable; the exact number is not.`,
+    `Valuation explained ${Math.round(((C.cape||{}).r2||0.3)*100)}% of the variation in 10-year returns in sample (1900–2016 starts) and ${Math.round(((C.cape||{}).r2oos||0.11)*100)}% out of sample since 1950. Over one year it explains close to nothing.`));
+  // ---- "What does this mean?"
+  const p=rec.p, pct=p==null?'—':Math.round(p*100)+'%';
+  set('feWdmRec',`<p>This is the chance the U.S. economy falls into a recession sometime in the next 12 months. Under 15% is normal times. Above 50% means most of the classic warning signs are flashing at once.</p>
+    <p>It does not say stocks will fall. What changes is the downside: when the odds were high, the bad years for stocks were much deeper.</p>
+    <p class="now"><b>Right now: ${pct}.</b> ${p==null?'':p<0.15?'Normal times. No broad warning signs.':p<0.3?'A few warning signs, but most of the economy still looks healthy.':p<0.5?'Several warning signs. Worth being more careful with risk.':'Most warning signs are on. Historically about a coin flip that a recession follows.'}</p>`);
+  const g=fe.tac&&fe.tac.GSPC, L=fe.ladder||[], m1=L.find(x=>x.key==='h21');
+  set('feWdmFE',`<p>Read the bottom line first, then the five rows: next week, next month and next three months are about the stock market's mood; the next 12 months is about the economy; the next 10 years is about how expensive stocks are.</p>
+    <p>In the short-term rows, compare the big percentage with the normal odds underneath. The gap is the real edge, and it is usually small. Trust the "where it should land" range more than the up-or-down call.</p>
+    ${m1?`<p class="now"><b>Right now:</b> over the next month, stocks rose ${Math.round(m1.up)}% of the time after similar conditions vs ${Math.round(m1.baseUp)}% normally, so ${Math.abs(m1.up-m1.baseUp)<4?'about normal odds':m1.up>m1.baseUp?'slightly better odds than usual':'worse odds than usual'}. Likely range: ${feN(m1.lo68)} to ${feN(m1.hi68)}.</p>`:''}`);
+  set('feWdmTac',`<p>Every day the market gets sorted into one of six moods based on its trend and how nervous investors are. Some moods have led to better or worse months than normal.</p>
+    <p>Only three held up on years the model had never seen: a <b>washout</b> (sharp drop in an uptrend) was usually followed by gains, <b>fear priced in</b> was slightly positive, and a <b>quiet downtrend</b> (slow slide, no panic) was the worst. The rest are close to normal odds.</p>
+    ${g?`<p class="now"><b>Right now: ${esc(g.info.label)}.</b> ${({washout:'Historically a better-than-normal time to own stocks.',quiet_downtrend:'Historically the weakest setup. Be cautious.',fear_priced:'Slightly better odds than normal.',capitulation:'Big swings either way, no reliable edge.',stretched:'Extended but no reliable edge. Pullbacks are common.',steady:'Normal odds. Nothing unusual.'})[g.state]}</p>`:''}`);
+  const r=fe.regime;
+  set('feWdmReg',`<p>Two simple questions: is the economy growing faster or slower than usual, and is inflation heating up or cooling down? The answers put us in one of four boxes.</p>
+    <p>The box matters most for recession risk. <b>Stagflation</b> (slow growth, rising inflation) has led to recessions most often; <b>Goldilocks</b> (solid growth, cooling inflation) the least.</p>
+    ${r?`<p class="now"><b>Right now: ${r.name}.</b> ${({Reflation:'Growth is strong but inflation is picking up. Recessions have been uncommon here, but rate pressure is a risk.',Goldilocks:'The best backdrop: solid growth, cooling inflation.',Stagflation:'The riskiest backdrop for a recession.',Deflation:'Growth and inflation are both cooling, often around downturns.'})[r.name]}</p>`:''}`);
+  const c=fe.cape;
+  set('feWdmCape',`<p>This compares stock prices with ten years of company profits. A high number means stocks are expensive relative to what they earn.</p>
+    <p>Expensive markets have usually delivered weak returns over the following decade. But this says nothing about next month or next year: markets can stay expensive for years.</p>
+    ${c?`<p class="now"><b>Right now:</b> CAPE is ${c.cape.toFixed(1)}, about ${(c.cape/c.q['50']).toFixed(1)}× its long-run median. History points to roughly ${feP(c.real10*100)} a year after inflation over the next 10 years.</p>`:''}`);
+  set('feWdmRes',`<p>Every method here was tested on data it had never seen. "Reliable" means it worked on those unseen years. "Small tilt" or "not reliable" means it didn't hold up well enough to lean on, and the page says so instead of hiding it.</p>
+    <p>Bottom line: recession odds, the short-term ranges and long-run valuation are dependable. Short-term up-or-down calls, including most of the original trading rules, are only small tilts in the odds.</p>`);
+  // ---- track record list
+  const v=A.v1||{}, ev=[
+    ['Recession odds, next 12 months','Reliable',`Built on 1960–91 only, it ranked 1993–2026 risk correctly ${Math.round((ar.auc_split||0)*100)}% of the time vs ${Math.round((ar.auc_split_curve||0)*100)}% for the yield curve alone. False alarms: 2019 and 2022–24.`,'ok','pdRecession'],
+    ['Short-term ranges (where the index should land)','Reliable',`On untouched 1991–2006 data the 2-in-3 range held ${rg.h5?Math.round(rg.h5.c68):'—'}–${rg.h63?Math.round(rg.h63.c68):'—'}% of the time and the 9-in-10 range ${rg.h63?Math.round(rg.h63.c90):'—'}–${rg.h21?Math.round(rg.h21.c90):'—'}%.`,'ok','pdTac'],
+    ['Economic backdrop → recession risk','Reliable',`Stagflation had the highest recession rate and Goldilocks the lowest in both 1960–92 and 1993–2026.`,'ok','pdMacroReg'],
+    ['10-year return from valuation','Rough guide',`Higher CAPE meant lower decade returns in every bracket since 1900, but valuation explains only ${Math.round(((C.cape||{}).r2oos||0)*100)}–${Math.round(((C.cape||{}).r2||0)*100)}% of the variation. Useless for timing.`,'part','pdCape'],
+    ['Short-term direction (market moods)','Small tilt',`Three of six moods kept the same tilt in 1991–2006, 2007–16 and 2017–26; none is statistically certain. A machine-learning model did worse than a coin flip.`,'part','pdTac'],
+    ['Economic backdrop → asset returns','Not reliable',`Average returns per box flipped between eras (Stagflation: ${feP(s1.stocks)} a year for stocks in 1960–92, ${feP(s2.stocks)} in 1993–2026).`,'no','pdMacroReg'],
+    ['12-month stock return (a single number)','Not reliable, not shown',`Eight classic predictors combined the way the research recommends scored ${C.eq12?(C.eq12.oosR2*100).toFixed(1)+'%':'about 0%'} out-of-sample R² (1975–2026): no better than the long-run average. The 12-month row shows the range of outcomes instead.`,'no','pdFE'],
+    ['Original trading rules','Mostly no edge',`Only the pullback-in-an-uptrend rule beat chance by a meaningful margin on 1991–2026 data. The 0–100 conditions score uses judgment-call weights and can't be backtested.`,'info','pdRules']
+  ];
+  set('feEvidence',ev.map(([k,v2,w,gr,go])=>`<li><span class="k">${esc(k)}<button class="linkbtn" type="button" data-go="${go}">Section ${({pdRecession:1,pdFE:2,pdMacroReg:3,pdTac:4,pdCape:5,pdRules:7})[go]} ${go==='pdRules'?'↓':'↑'}</button></span><span class="v"><span class="fe-acc" style="margin:0"><span class="g ${gr}">${esc(v2)}</span></span></span><span class="w">${esc(w)}</span></li>`).join(''));
+  const rows=[['dip','Pullback inside the uptrend','Higher in 20 days'],['vixspike','Volatility spike inside an uptrend','Higher in 10 days'],['os','Oversold: RSI below 30','Higher in 10 days'],['ob','SQQQ trigger: RSI above 77','Lower in 15 days'],['tqqq','TQQQ entry: all four conditions','Higher in 20 days']];
+  const verdict=a=>a.p<0.05&&a.hit>a.base?'<span class="fe-ok">Beats chance</span>':a.hit>a.base+2?'Slight edge, not proven':a.hit<a.base-2?'<span class="fe-x">Worse than chance</span>':'No edge';
+  set('feV1Table',`<thead><tr><th>Rule</th><th>Call</th><th>Signals</th><th>Right</th><th>By chance</th><th>1991–2006 / 2007–26</th><th>Verdict</th></tr></thead><tbody>`+
+    rows.map(([k,n,c2])=>{ const a=v[k]; if(!a) return ''; return `<tr><td>${esc(n)}</td><td>${c2}</td><td>${a.n}</td><td>${Math.round(a.hit)}%</td><td>${Math.round(a.base)}%</td><td>${a.hitA!=null?Math.round(a.hitA)+'%':'—'} / ${a.hitB!=null?Math.round(a.hitB)+'%':'—'}</td><td>${verdict(a)}</td></tr>`; }).join('')+
+    `</tbody>`);
+  set('feV1Note',v.tqqq6m?`TQQQ entry signals measured six months out instead: the S&amp;P 500 was higher ${Math.round(v.tqqq6m.up)}% of the time (avg ${feP(v.tqqq6m.avg)}) vs about 75% on any day. Most signals came in 2000–02 and 2008, when the market kept falling for months after all four conditions lined up.`:'');
+}
+
 // ================= PREDICTIONS & TRADING =================
 let PRED=null;
 function predInputs(){
   const px=D.PRED_PX; if(!px||!px.d||!px.s) return null;
   const bk=D.BOND_KPI;
-  return { PX:px, ext:{ hy: window.PredModel? PredModel.parseHy(bk):null, hyAsof: META.BOND_KPI&&META.BOND_KPI.asof, fw: D.FW_PATH }, log: Array.isArray(D.PRED_LOG)?D.PRED_LOG:[] };
+  return { PX:px, ext:{ hy: window.PredModel? PredModel.parseHy(bk):null, hyAsof: META.BOND_KPI&&META.BOND_KPI.asof, fw: D.FW_PATH, cal: D.PRED_CAL||window.PRED_CAL_STATIC||null, macro: (()=>{ const a=D.PRED_MACRO, b=window.PRED_MACRO_SEED; if(!a||!a.m) return b||null; if(!b||!b.m) return a; return a.m[a.m.length-1]>=b.m[b.m.length-1]?a:b; })() }, log: Array.isArray(D.PRED_LOG)?D.PRED_LOG:[] };
 }
 const pdPct=(v,dp=1,sign=true)=> v==null||!isFinite(v)?'—':(sign&&v>0?'+':'')+(v*100).toFixed(dp)+'%';
 const pdBp=v=> v==null||!isFinite(v)?'—':(v>0?'+':'')+v+' bp';
@@ -5101,7 +5854,7 @@ function renderSignals(R){
     :`<b>SQQQ trigger is off</b>14-day RSI is ${r==null?'—':r.toFixed(0)}, below the ${cfg.rsiHot} trigger. When it fires, the position is capped at two to three weeks and never held as a core position.`;
 }
 function renderPred(){
-  const root=document.getElementById('tab-pred'); if(!root) return;
+  const root=document.getElementById('tab-mkt'); if(!root) return;
   const inp=D.PRED_R?{ext:{hyAsof:META.BOND_KPI&&META.BOND_KPI.asof},log:[]}:predInputs();
   if(!D.PRED_R&&(!window.PredModel||!inp)){
     document.getElementById('pdSummary').className='pd-summary empty';
@@ -5115,7 +5868,8 @@ function renderPred(){
   const openN=R.log.filter(h=>h.status==='open'||h.status==='pending').length;
   const k=[
     ['Regime score', `${reg.score}`, `${reg.label} · out of 100`],
-    ['Recession odds, 12 mo', `${Math.round(rec.p*100)}%`, `10y−3m spread ${rec.spread>0?'+':''}${rec.spread.toFixed(2)} pts`],
+    ...(R.fe&&R.fe.tac&&R.fe.tac.GSPC?[['Market state', R.fe.tac.GSPC.info.label, `S&P 500 · higher a month later ${Math.round(R.fe.tac.GSPC.stats.h21.all.up)}% of the time`]]:[]),
+    (R.fe&&R.fe.rec&&R.fe.rec.p!=null)?['Recession odds, 12 mo', `${Math.round(R.fe.rec.p*100)}%`, `Six-factor model · curve alone ${Math.round(R.fe.rec.curveOnly*100)}%`]:['Recession odds, 12 mo', `${Math.round(rec.p*100)}%`, `10y−3m spread ${rec.spread>0?'+':''}${rec.spread.toFixed(2)} pts`],
     ['10-year yield', `${rt.t10.toFixed(2)}%`, `${rt.lean} · ${pdBp(rt.d5)} this week`],
     ['TQQQ conditions', `${sig.nMet} of 4`, ({accumulate_heavy:'Accumulate, add heavier',accumulate:'Accumulate in stages',watch:'Watch, no buying yet',hold:'Stop adding, hold',wait:'No entry'})[sig.state]],
     ['Open calls', `${openN}`, R.score.resolved?`${R.score.hits} of ${R.score.resolved} resolved calls right`:'None resolved yet']
@@ -5135,6 +5889,7 @@ function renderPred(){
 
   // signals
   renderSignals(R);
+  try{ feRender(R); }catch(e){ console.error(e); }
 
   // recession
   const cv=R.charts.curve;
@@ -5143,7 +5898,7 @@ function renderPred(){
   const inv=rec.minSpread12m!=null&&rec.minSpread12m<0;
   document.getElementById('pdRecText').innerHTML=`<p>The 10-year yields ${rec.spread.toFixed(2)} points more than the 3-month bill, up from ${rec.spread3mAgo!=null?rec.spread3mAgo.toFixed(2):'—'} three months ago. A positive, steepening curve usually means lower recession odds in this model.</p>
     <p>${inv?`The curve briefly inverted in the past year (${rec.minSpread12m.toFixed(2)} on ${fmtD(rec.minDate,{month:'short',day:'numeric',year:'numeric'})}). Recessions have often started after an inverted curve turns positive again, which this one-variable model does not capture.`:'The curve has not inverted in the past year.'}</p>
-    <p class="note">Method: the New York Fed's probit on the 10-year minus 3-month spread. It looks only at the curve, not at credit, jobs or oil.</p>`;
+    <p class="note">Method: the New York Fed's probit on the 10-year minus 3-month spread. It looks only at the curve, not at credit, jobs or oil, which is why the six-factor model above is the headline number.</p>`;
 
   // rates
   const rk=[['3-month bill',rt.t3m.toFixed(2)+'%',''],['2-year',rt.t2.toFixed(2)+'%',''],['10-year',rt.t10.toFixed(2)+'%',`${pdBp(rt.d21)} 1 mo · ${pdBp(rt.d63)} 3 mo`],['30-year',rt.t30.toFixed(2)+'%','']];
@@ -5165,7 +5920,7 @@ function renderPred(){
       <dl><dt>Due</dt><dd>${fmtD(h.due,{month:'short',day:'numeric'})} · ${h.daysLeft!=null?h.daysLeft+' trading days left':''}</dd>
       <dt>So far</dt><dd>${tracking}${onTrack==null?'':onTrack?' · on track':' · against'}</dd>
       <dt>Rule confidence</dt><dd>${Math.round(h.conf*100)}%</dd>
-      <dt>Past 15 months</dt><dd>${h.bt&&h.bt.n?`${h.bt.hit} of ${h.bt.n} right`:'Not enough history'}</dd></dl>
+      <dt>Past 15 months</dt><dd>${h.bt&&h.bt.n?`${h.bt.hit} of ${h.bt.n} right`:'Not enough history'}</dd>${h.lt?`<dt>Since ${h.lt.from}</dt><dd>Right ${Math.round(h.lt.up)}% of ${h.lt.n.toLocaleString()} days</dd>`:''}</dl>
       <div class="pd-prog" title="${pctDone}% of the window elapsed"><i style="width:${pctDone}%"></i></div></article>`;
   }).join(''):`<div class="pd-empty">No open calls. None of the rules fired at the latest close.</div>`;
 
@@ -5178,22 +5933,21 @@ function renderPred(){
     (all.length?all.map(h=>`<tr><td>${fmtD(h.made)}</td><td>${esc(NM[h.sym]||h.sym)} ${h.dir==='up'?'higher':'lower'}<span class="sub">${esc(h.name)}</span></td><td>${h.h} days</td><td>${h.change==null?'—':pdPct(h.change)}</td><td><span class="pd-res ${h.status==='hit'?'hit':h.status==='miss'?'miss':'open'}">${h.status==='hit'?'Right':h.status==='miss'?'Wrong':'Open'}</span></td></tr>`).join('')
     :`<tr><td colspan="5" class="na">No calls yet.</td></tr>`)+`</tbody>`;
   document.getElementById('pdRulesTable').innerHTML=`<thead><tr><th>Rule</th><th>Asset</th><th>Call</th><th>Today</th><th>Past 15 months</th></tr></thead><tbody>`+
-    R.rules.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(NM[r.sym]||r.sym)}</td><td>${r.dir==='up'?'Higher':'Lower'} in ${r.h} days</td><td>${r.firing?'<span class="pd-chip on">Firing</span>':'<span class="pd-chip off">Quiet</span>'}</td><td>${r.bt==null?'Needs credit history':r.bt.n?`${r.bt.hit} of ${r.bt.n}`:'Never fired'}</td></tr>`).join('')+`</tbody>`;
+    R.rules.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(NM[r.sym]||r.sym)}</td><td>${r.dir==='up'?'Higher':'Lower'} in ${r.h} days</td><td>${r.firing?'<span class="pd-chip on">Firing</span>':'<span class="pd-chip off">Quiet</span>'}</td><td>${r.bt==null?'Needs credit history':r.bt.n?`${r.bt.hit} of ${r.bt.n}`:'Never fired'}${r.lt?`<span class="sub">${r.lt.from}–${r.lt.to}: higher ${Math.round(r.lt.up)}% of ${r.lt.n.toLocaleString()} days</span>`:''}${(()=>{ const a=(((D.PRED_CAL||window.PRED_CAL_STATIC||{}).audit||{}).v1||{})[{tqqq_entry:'tqqq',vix_spike:'vixspike',dip_uptrend:'dip',overbought:'ob',oversold:'os'}[r.id]]; return a?`<span class="sub">1991–2026 on the S&amp;P 500: right ${Math.round(a.hit)}% of ${a.n} vs ${Math.round(a.base)}% by chance</span>`:''; })()}</td></tr>`).join('')+`</tbody>`;
 
   document.getElementById('pdMethodText').innerHTML=`
     <p><b>Data.</b> Daily closes for the S&amp;P 500, Nasdaq Composite, Russell 2000, VIX (Cboe), Brent crude, gold and EUR/USD, plus Treasury yields (Federal Reserve H.15). Index providers do not allow their price histories to be republished, so this page shows only what the model derives from them: distances from moving averages, momentum readings, signals and the percent results of each call. Fed odds come from public prediction markets.</p>
     <p><b>Regime score.</b> Each input is mapped onto −1 to +1 with fixed breakpoints: for example, a VIX of 13 scores +1 and 27 scores −1, and a high-yield spread of 250 bp scores +1 and 550 bp scores −1. The weighted average is rescaled to 0–100. The weights are judgment calls, not fitted to history.</p>
     <p><b>Calls.</b> When a rule fires and no call from that rule is open, it logs one call with the starting price. A call is right if the asset closes on the right side of that price exactly N trading days later. Calls are never edited after they are made.</p>
-    <p><b>Limits.</b> The rules have not been backtested over full cycles. The stored price history starts in July 2025, so the "past 15 months" counts are small. Treat the scorecard as the real test.</p>`;
+    <p><b>Limits.</b> The original rules were checked on the S&amp;P 500 from 1991 to 2026 (see the accuracy check in How the forecasts are built): only the pullback-in-an-uptrend rule beat chance by a statistically meaningful margin. The regime score's weights are judgment calls and cannot be backtested because high-yield spread history is not stored. The stored price history starts in July 2025, so the "past 15 months" counts are small. Treat the scorecard as the real test.</p>`;
 }
 
 // ---------- tabs
 let capDrawn=false;
 function showTab(t){
   if(t==='bonds') t='cap';
-  if(t==='port') t='pred';
   currentTab=t;
-  document.documentElement.classList.toggle('term',t==='pred');
+  document.documentElement.classList.add('term');
   document.querySelectorAll('.tabs button[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===t));
   document.querySelectorAll('.tabwrap').forEach(w=>w.classList.toggle('on',w.dataset.tab===t));
   document.querySelectorAll('.navhide').forEach(s=>s.classList.remove('navhide')); const sb=document.getElementById('secbar'); if(sb){sb.classList.remove('on');}
@@ -5205,12 +5959,16 @@ function showTab(t){
   document.getElementById('tab-home').hidden = t!=='home';
   document.getElementById('tab-week').hidden = t!=='week';
   document.getElementById('tab-pred').hidden = t!=='pred';
+  document.getElementById('tab-mkt').hidden = t!=='mkt';
+  document.getElementById('tab-port').hidden = t!=='port';
   document.getElementById('tab-gov').hidden = t!=='gov';
   document.getElementById('tab-re').hidden = t!=='re';
   document.getElementById('tab-con').hidden = t!=='con';
   if (t==='con'){ try{ conRender(); }catch(e){ console.error(e); } }
   if (t==='gov'){ try{ polRender(); }catch(e){ console.error(e); } try{ legRender(); }catch(e){ console.error(e); } try{ govRender(); }catch(e){ console.error(e); } try{ cpiRender(); }catch(e){ console.error(e); } }
-  if (t==='pred'){ if(window.portRender){ try{ portRender(); }catch(e){ console.error(e); } } renderPred(); try{ gpuRender(); }catch(e){ console.error(e); } try{ hmRender(); }catch(e){ console.error(e); } } monStop();
+  if (t==='port'){ if(window.portRender){ try{ portRender(); }catch(e){ console.error(e); } } }
+  if (t==='pred'){ try{ gpuRender(); }catch(e){ console.error(e); } try{ hmRender(); }catch(e){ console.error(e); } } monStop();
+  if (t==='mkt'||t==='pred'){ renderPred(); }
   if (t==='week'){ renderWeek(); }
   if (t==='mig' && !migDrawn){ renderAll(); migDrawn=true; }
   if (t==='cap'){ renderBonds(); }
@@ -5315,7 +6073,7 @@ function hmRender(){
   const at=H0.at?new Date(H0.at):null;
   st.classList.remove('on','warn');
   if(at){ const today=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'}), d=x.sess||H0.sess||today;
-    st.textContent=(H0.intraday&&!x.sess?'Intraday snapshot ':'Close of ')+fmtD(d,{weekday:'short',month:'short',day:'numeric'})+(x.fb?' · largest names only, smaller ones gray':'')+(H0.intraday?' · '+at.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET':'');
+    st.textContent=(H0.intraday&&!x.sess?'Intraday snapshot ':'Close of ')+fmtD(d,{weekday:'short',month:'short',day:'numeric'})+(x.fb?' · backup data: only the largest names have prices, the rest show gray':'')+(x.snap?' · live snapshot from '+new Date(x.snap).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET':'')+(H0.intraday?' · '+at.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET':'');
     if(d!==today) st.classList.add('warn'); else st.classList.add('on'); }
   const cls=v=>v>0.005?'up':v<-0.005?'dn':'';
   const secs=S.bySec.filter(s=>s.k!=='Other').sort((a,b)=>b.c-a.c), best=secs[0], worst=secs[secs.length-1];
@@ -5358,7 +6116,7 @@ function hmRender(){
   box.onclick=ev=>{ const el=ev.target.closest('.hm-t'); box.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel')); if(el){ el.classList.add('sel'); show(el,ev); } };
   document.getElementById('hmRamp').style.background=`linear-gradient(90deg,${[-3,-2,-1,0,1,2,3].map(hmColor).join(',')})`;
   const u=(H0.u||{})[HM.ix];
-  note.innerHTML=`${esc(x.n)} weights are by ${esc(x.wt)}${x.wt==='share price'?' (the Dow is price-weighted, so a $880 stock moves it more than a $90 one regardless of company size)':''}. The weighted average is Σ weight × move ÷ Σ weight over the ${S.n} stocks shown${S.cov<99.5?`, which cover ${S.cov.toFixed(1)}% of the index`:''}, so it tracks the index's own move; the equal-weight figure shows how the typical stock did. Sectors are GICS-style groupings. Source: ${u?`<a href="${esc(u)}" target="_blank" rel="noopener">Slickcharts</a>`:'Slickcharts'}, refreshed with the nightly run.`;
+  note.innerHTML=(x.fb?`<b>Why most tiles are gray:</b> the overnight update can only get prices for the largest stocks on the free data plan. Opening this dashboard in the Claude desktop app with live updates on fills in every stock from the close, and saves it for everyone. `:'')+`${esc(x.n)} weights are by ${esc(x.wt)}${x.wt==='share price'?' (the Dow is price-weighted, so a $880 stock moves it more than a $90 one regardless of company size)':''}. The weighted average is Σ weight × move ÷ Σ weight over the ${S.n} stocks shown${S.cov<99.5?`, which cover ${S.cov.toFixed(1)}% of the index`:''}, so it tracks the index's own move; the equal-weight figure shows how the typical stock did. Sectors are GICS-style groupings. Source: ${u?`<a href="${esc(u)}" target="_blank" rel="noopener">Slickcharts</a>`:'Slickcharts'}, refreshed with the nightly run.`;
   HM.drawn=true;
 }
 (function hmInit(){
@@ -6142,6 +6900,13 @@ function hmlEt(){
   const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour12:false,weekday:'short',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
   return {wd:p.weekday,ymd:`${p.year}-${p.month}-${p.day}`,min:(+p.hour%24)*60+(+p.minute)};
 }
+// Most recent completed session: today after 4:15 PM ET on a weekday, else the previous weekday (holidays not modelled).
+function hmlSession(){ const t=hmlEt(); const d=new Date(t.ymd+'T12:00:00Z'); const wd=d.getUTCDay();
+  if(wd>=1&&wd<=5&&t.min>=16*60+15) return t.ymd;
+  do{ d.setUTCDate(d.getUTCDate()-1); }while(d.getUTCDay()===0||d.getUTCDay()===6); return d.toISOString().slice(0,10); }
+// True when the stored map is not a full close for that session (FMP backup, an intraday snapshot, or an older day).
+function hmlNeedsClose(){ const H=D.HEATMAP; if(!H||!H.idx) return false; const ses=hmlSession();
+  return H.intraday||Object.values(H.idx).some(x=>x.fb||(x.sess||H.sess)<ses); }
 function hmlMarketOpen(){ const t=hmlEt(); return !['Sat','Sun'].includes(t.wd)&&t.min>=9*60+30&&t.min<16*60; }
 function hmlText(res){
   if(!res) return ''; const p=res.payload; if(typeof p==='string') return p;
@@ -6160,7 +6925,7 @@ function hmlBtn(){
   const b=document.getElementById('hmLiveBtn'); if(!b) return;
   if(!HML.owner){ b.hidden=true; return; }
   b.hidden=false; b.disabled=HML.busy;
-  b.textContent=HML.busy?'Updating live…':HML.on?(hmlMarketOpen()?'Live · update now':'Live updates (market closed)'):'Turn on live updates';
+  b.textContent=HML.busy?'Updating…':HML.on?(hmlMarketOpen()?'Live · update now':'Live updates (market closed)'):'Turn on live updates';
 }
 async function hmlCall(tool,input){ return HML.mcp.callTool(HML_SRV,tool,input,{cache:false}); }
 async function hmlLoad(url){
@@ -6174,7 +6939,7 @@ async function hmlLoad(url){
   await new Promise(r=>setTimeout(r,900));
   return hmlText(await hmlCall('get_page_text',HML.tab?{tabId:HML.tab,max_chars:200000}:{max_chars:200000}));
 }
-async function hmlRun(){
+async function hmlRun(mode){ const close=mode==='close', ses=close?hmlSession():null;
   if(HML.busy||!HML.mcp) return;
   if(!D.HEATMAP||!D.HEATMAP.idx){ hmlMsg('No stored heat map to update yet.',true); return; }
   HML.busy=true; hmlBtn(); hmlMsg('');
@@ -6188,17 +6953,17 @@ async function hmlRun(){
       catch(e){ if(HML_DENY.includes(e&&e.code)||(e&&e.code==='cancelled')) throw e; bad.push(k); continue; }
       const [minN,minW]=HML_MIN[k];
       if(r.rows.length<minN||d3.sum(r.rows,q=>q[1])<minW){ bad.push(k); continue; }
-      x.rows=r.rows; delete x.sess; delete x.fb;
+      x.rows=r.rows; delete x.fb; delete x.snap; if(close) x.sess=ses; else delete x.sess;
       if(k!=='sp') Object.entries(r.names).forEach(([s,n])=>{ if(!H.names[s]) H.names[s]=n; });
       got.push(k);
     }
     if(!got.length){ hmlMsg('Live update failed: Slickcharts did not return a readable table. The map shows the last stored data.',true); return; }
-    H.at=new Date().toISOString(); H.sess=et.ymd; H.intraday=true;
+    H.at=new Date().toISOString(); H.sess=close?ses:et.ymd; H.intraday=!close; if(close) HML.closeDone=ses;
     D.HEATMAP=H; HML.last=Date.now();
     try{ hmRender(); }catch(e){ console.error(e); }
     const lab={sp:'S&P 500',nq:'Nasdaq-100',dj:'Dow 30'};
-    hmlMsg(bad.length?`Live data for ${got.map(k=>lab[k]).join(', ')}; ${bad.map(k=>lab[k]).join(', ')} kept its last stored data.`:'');
-    if(CANWRITE&&DB){ try{ await DB.doc('ds/HEATMAP').update({v:H,asof:et.ymd}); META.HEATMAP=Object.assign(META.HEATMAP||{},{asof:et.ymd}); }catch(e){ console.warn('heat map save',e); } }
+    hmlMsg(bad.length?`${close?'Closing':'Live'} data for ${got.map(k=>lab[k]).join(', ')}; ${bad.map(k=>lab[k]).join(', ')} kept its last stored data.`:'');
+    if(CANWRITE&&DB){ try{ await DB.doc('ds/HEATMAP').update({v:H,asof:close?ses:et.ymd}); META.HEATMAP=Object.assign(META.HEATMAP||{},{asof:close?ses:et.ymd}); }catch(e){ console.warn('heat map save',e); } }
   }catch(e){
     const c=e&&e.code;
     if(c==='server_not_connected'||c==='capability_disabled'||c==='not_granted'||c==='capability_removed'){ HML.on=false; hmlMsg('Live updates need this dashboard open in the Claude desktop app.',true); }
@@ -6208,13 +6973,15 @@ async function hmlRun(){
   }finally{ HML.busy=false; hmlBtn(); }
 }
 function hmlVisible(){ const t=document.getElementById('tab-pred'); return document.visibilityState==='visible'&&!(t&&t.hidden); }
-function hmlTick(){ hmlBtn(); if(HML.on&&!HML.busy&&hmlMarketOpen()&&hmlVisible()&&Date.now()-HML.last>=HML_EVERY) hmlRun(); }
+function hmlCatchUp(){ if(!HML.on||HML.busy||hmlMarketOpen()||!hmlNeedsClose()) return false; const ses=hmlSession();
+  if(HML.closeTry===ses&&Date.now()-HML.closeAt<30*60*1000) return false; HML.closeTry=ses; HML.closeAt=Date.now(); hmlRun('close'); return true; }
+function hmlTick(){ hmlBtn(); if(!HML.on||HML.busy||document.visibilityState!=='visible') return; if(hmlMarketOpen()){ if(hmlVisible()&&Date.now()-HML.last>=HML_EVERY) hmlRun(); } else hmlCatchUp(); }
 async function hmlStart(){
-  if(HML.on) { if(hmlMarketOpen()) hmlRun(); else hmlMsg('The market is closed. Live updates resume at the 9:30 AM ET open while this tab is on screen.'); return; }
+  if(HML.on) { if(hmlMarketOpen()) hmlRun(); else if(hmlNeedsClose()){ HML.closeTry=null; hmlCatchUp(); } else hmlMsg('The market is closed and the map already shows the latest close. Live updates resume at the 9:30 AM ET open while this tab is on screen.'); return; }
   HML.on=true; hmlBtn();
   if(!HML.timer) HML.timer=setInterval(hmlTick,30*1000);
   document.addEventListener('visibilitychange',hmlTick);
-  if(hmlMarketOpen()) hmlRun(); else hmlMsg('Live updates are on. They run during market hours, 9:30 AM–4 PM ET, while this tab is on screen.');
+  if(hmlMarketOpen()) hmlRun(); else if(!hmlCatchUp()) hmlMsg('Live updates are on. They run during market hours, 9:30 AM–4 PM ET, while this tab is on screen.');
 }
 (async function hmlInit(){
   try{ HML.owner=!!(USER&&await USER.isOwner()); }catch(e){ HML.owner=false; }
@@ -6365,8 +7132,8 @@ function monStop(){ if(!MON.on) return; MON.on=false; MON.unsub.splice(0).forEac
 applyLiveCache(LIVE0);
 buildTabMenus();
 buildTicker();
-const HASHOF={pred:'#predictions',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate',con:'#consumer'};
-const TABOF=Object.assign(Object.fromEntries(Object.entries(HASHOF).map(([k,v])=>[v,k])),{'#portfolio':'pred'});
+const HASHOF={pred:'#trading',mkt:'#predictions',port:'#portfolio',week:'#weekly',cap:'#capital-markets',bonds:'#bonds',cal:'#calendar',local:'#local',news:'#news',home:'#home-ownership',mig:'#migration',gov:'#government',re:'#real-estate',con:'#consumer'};
+const TABOF=Object.assign(Object.fromEntries(Object.entries(HASHOF).map(([k,v])=>[v,k])),{});
 { const hp=location.hash.split('/'); const t0=TABOF[hp[0]]||'week'; showTab(t0); if(hp[1]) setTimeout(()=>showSection(t0,hp[1]),0); }
 startLiveRates();
 cmSubscribe(); wkInit(); askInit(); freshBadges(); cmRender(); tpiStamp(); rfInit();
@@ -6381,7 +7148,7 @@ new MutationObserver(()=>{ if(migDrawn) renderAll(); }).observe(document.documen
 <footer class="site-foot">
 <div class="sf-inner">
 <div class="sf-brand"><span class="sf-name">JAM Capital Markets</span><p>Rates, capital markets, inflation, federal spending and Boston / New Hampshire real estate in one place, refreshed automatically.</p><p class="sf-stamp" id="sfStamp" data-lock="1"></p></div>
-<div class="sf-col"><h4>Markets</h4><ul><li><a href="#weekly" data-go="week">The wrap</a></li><li><a href="#capital-markets" data-go="cap">Capital markets</a></li><li><a href="#predictions" data-go="pred">Trading</a></li><li><a href="#calendar" data-go="cal">Calendar</a></li><li><a href="#news" data-go="news">News &amp; deals</a></li></ul></div>
+<div class="sf-col"><h4>Markets</h4><ul><li><a href="#weekly" data-go="week">The wrap</a></li><li><a href="#capital-markets" data-go="cap">Capital markets</a></li><li><a href="#trading" data-go="pred">Trading</a></li><li><a href="#predictions" data-go="mkt">Market predictions</a></li><li><a href="#portfolio" data-go="port">Portfolio Builder</a></li><li><a href="#calendar" data-go="cal">Calendar</a></li><li><a href="#news" data-go="news">News &amp; deals</a></li></ul></div>
 <div class="sf-col"><h4>Real estate</h4><ul><li><a href="#real-estate" data-go="re">Real estate</a></li><li><a href="#local" data-go="local">Local markets</a></li><li><a href="#home-ownership" data-go="home">Home ownership</a></li><li><a href="#migration" data-go="mig">Migration</a></li></ul></div>
 <div class="sf-col"><h4>Economy</h4><ul><li><a href="#consumer" data-go="con">Consumer</a></li><li><a href="#government" data-go="gov">Government</a></li></ul></div>
 </div>
